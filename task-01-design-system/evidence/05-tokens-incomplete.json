@@ -1,0 +1,160 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "name": "Vault Design System Tokens (Export - Incomplete / Missing Figma Variables)",
+  "version": "1.0.0-unresolved",
+  "metadata": {
+    "exportedAt": "2026-10-29T14:12:00Z",
+    "exporter": "Figma Token Studio / Variables Engine",
+    "notice": "WARNING: Export executed without 'Include Variable Collections' checked. Color variables omitted; only static paint style names exported without values."
+  },
+  "typography": {
+    "display": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "700" },
+        "fontSize": { "$type": "dimension", "$value": "57px" },
+        "lineHeight": { "$type": "dimension", "$value": "80px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-1.5px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "700" },
+        "fontSize": { "$type": "dimension", "$value": "45px" },
+        "lineHeight": { "$type": "dimension", "$value": "63px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-1.0px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "36px" },
+        "lineHeight": { "$type": "dimension", "$value": "50px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-0.5px" }
+      }
+    },
+    "headline": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "32px" },
+        "lineHeight": { "$type": "dimension", "$value": "45px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-0.25px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "28px" },
+        "lineHeight": { "$type": "dimension", "$value": "39px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "24px" },
+        "lineHeight": { "$type": "dimension", "$value": "34px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      }
+    },
+    "title": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "22px" },
+        "lineHeight": { "$type": "dimension", "$value": "33px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "16px" },
+        "lineHeight": { "$type": "dimension", "$value": "24px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.15px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "14px" },
+        "lineHeight": { "$type": "dimension", "$value": "21px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.1px" }
+      }
+    },
+    "body": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "400" },
+        "fontSize": { "$type": "dimension", "$value": "16px" },
+        "lineHeight": { "$type": "dimension", "$value": "26px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "400" },
+        "fontSize": { "$type": "dimension", "$value": "14px" },
+        "lineHeight": { "$type": "dimension", "$value": "22px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "400" },
+        "fontSize": { "$type": "dimension", "$value": "12px" },
+        "lineHeight": { "$type": "dimension", "$value": "19px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.4px" }
+      }
+    },
+    "label": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "14px" },
+        "lineHeight": { "$type": "dimension", "$value": "21px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.1px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "12px" },
+        "lineHeight": { "$type": "dimension", "$value": "18px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.5px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "11px" },
+        "lineHeight": { "$type": "dimension", "$value": "16px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.5px" }
+      }
+    }
+  },
+  "shadows": {
+    "soft": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "8px",
+        "spread": "0px",
+        "color": "rgba(15, 76, 92, 0.08)"
+      }
+    },
+    "medium": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "24px",
+        "spread": "-4px",
+        "color": "rgba(15, 76, 92, 0.16)"
+      }
+    },
+    "hard": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "16px",
+        "blur": "48px",
+        "spread": "-8px",
+        "color": "rgba(15, 76, 92, 0.28)"
+      }
+    }
+  },
+  "color": {}
+}
