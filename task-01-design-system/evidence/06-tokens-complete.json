@@ -1,0 +1,306 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "name": "Vault Enterprise Design Tokens (Export - Complete / With Figma Variables)",
+  "version": "1.0.0",
+  "metadata": {
+    "exportedAt": "2026-10-29T14:45:00Z",
+    "exporter": "Figma Token Studio / Variables Engine",
+    "status": "Production-Validated",
+    "brandAnchor": "#0F4C5C",
+    "pinnedTone": 40
+  },
+  "color": {
+    "primitive": {
+      "primary": {
+        "0": { "$type": "color", "$value": "#000000" },
+        "10": { "$type": "color", "$value": "#001F28" },
+        "20": { "$type": "color", "$value": "#003643" },
+        "30": { "$type": "color", "$value": "#004E60" },
+        "40": { "$type": "color", "$value": "#0F4C5C" },
+        "50": { "$type": "color", "$value": "#286475" },
+        "60": { "$type": "color", "$value": "#437D8F" },
+        "70": { "$type": "color", "$value": "#5F97AA" },
+        "80": { "$type": "color", "$value": "#7CB2C5" },
+        "90": { "$type": "color", "$value": "#98CEE1" },
+        "95": { "$type": "color", "$value": "#D1F0FA" },
+        "98": { "$type": "color", "$value": "#F5FAFC" },
+        "100": { "$type": "color", "$value": "#FFFFFF" }
+      },
+      "neutral": {
+        "10": { "$type": "color", "$value": "#191C1D" },
+        "20": { "$type": "color", "$value": "#2E3132" },
+        "30": { "$type": "color", "$value": "#444748" },
+        "50": { "$type": "color", "$value": "#71787B" },
+        "80": { "$type": "color", "$value": "#C4C7C7" },
+        "90": { "$type": "color", "$value": "#E0E3E3" },
+        "95": { "$type": "color", "$value": "#EEF1F1" },
+        "98": { "$type": "color", "$value": "#F8FAFA" },
+        "100": { "$type": "color", "$value": "#FFFFFF" }
+      },
+      "error": {
+        "10": { "$type": "color", "$value": "#410002" },
+        "40": { "$type": "color", "$value": "#BA1A1A" },
+        "90": { "$type": "color", "$value": "#FFDAD6" },
+        "100": { "$type": "color", "$value": "#FFFFFF" }
+      },
+      "warning": {
+        "10": { "$type": "color", "$value": "#261900" },
+        "40": { "$type": "color", "$value": "#7A5900" },
+        "90": { "$type": "color", "$value": "#FFE086" },
+        "100": { "$type": "color", "$value": "#FFFFFF" }
+      },
+      "success": {
+        "10": { "$type": "color", "$value": "#00210B" },
+        "40": { "$type": "color", "$value": "#196538" },
+        "90": { "$type": "color", "$value": "#A5F2B5" },
+        "100": { "$type": "color", "$value": "#FFFFFF" }
+      }
+    },
+    "role": {
+      "surface": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.98}",
+        "$description": "Main viewport canvas"
+      },
+      "surface-container": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.95}",
+        "$description": "Property listing cards, summary tiles"
+      },
+      "surface-container-high": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.90}",
+        "$description": "Elevated deal query modals and flyouts"
+      },
+      "on-surface": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.10}",
+        "$description": "High-emphasis titles, body text, valuations"
+      },
+      "on-surface-variant": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.50}",
+        "$description": "Secondary metadata, timestamps, agent IDs"
+      },
+      "primary": {
+        "$type": "color",
+        "$value": "{color.primitive.primary.40}",
+        "$description": "Primary action triggers, brand anchor"
+      },
+      "on-primary": {
+        "$type": "color",
+        "$value": "{color.primitive.primary.100}",
+        "$description": "Text and glyphs rendered over primary elements"
+      },
+      "primary-container": {
+        "$type": "color",
+        "$value": "{color.primitive.primary.90}",
+        "$description": "Active filter pills, selected listing cards"
+      },
+      "on-primary-container": {
+        "$type": "color",
+        "$value": "{color.primitive.primary.10}",
+        "$description": "Text inside active filter pills"
+      },
+      "outline": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.50}",
+        "$description": "Component boundaries and form field borders"
+      },
+      "outline-variant": {
+        "$type": "color",
+        "$value": "{color.primitive.neutral.80}",
+        "$description": "Subtle card dividers (strictly non-text)"
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.primitive.error.40}",
+        "$description": "Critical compliance flags, destructive triggers"
+      },
+      "on-error": {
+        "$type": "color",
+        "$value": "{color.primitive.error.100}",
+        "$description": "Text over error buttons"
+      },
+      "error-container": {
+        "$type": "color",
+        "$value": "{color.primitive.error.90}",
+        "$description": "Inspection breach callout banner background"
+      },
+      "on-error-container": {
+        "$type": "color",
+        "$value": "{color.primitive.error.10}",
+        "$description": "Text inside inspection breach callout banner"
+      },
+      "warning-container": {
+        "$type": "color",
+        "$value": "{color.primitive.warning.90}",
+        "$description": "Escrow deadline penalty banner background"
+      },
+      "on-warning-container": {
+        "$type": "color",
+        "$value": "{color.primitive.warning.10}",
+        "$description": "Text inside escrow deadline warning banner"
+      },
+      "success-container": {
+        "$type": "color",
+        "$value": "{color.primitive.success.90}",
+        "$description": "Cleared funds and registered title badge background"
+      },
+      "on-success-container": {
+        "$type": "color",
+        "$value": "{color.primitive.success.10}",
+        "$description": "Text inside verified badge"
+      }
+    }
+  },
+  "typography": {
+    "display": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "700" },
+        "fontSize": { "$type": "dimension", "$value": "57px" },
+        "lineHeight": { "$type": "dimension", "$value": "80px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-1.5px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "700" },
+        "fontSize": { "$type": "dimension", "$value": "45px" },
+        "lineHeight": { "$type": "dimension", "$value": "63px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-1.0px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "36px" },
+        "lineHeight": { "$type": "dimension", "$value": "50px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-0.5px" }
+      }
+    },
+    "headline": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "32px" },
+        "lineHeight": { "$type": "dimension", "$value": "45px" },
+        "letterSpacing": { "$type": "dimension", "$value": "-0.25px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "28px" },
+        "lineHeight": { "$type": "dimension", "$value": "39px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "24px" },
+        "lineHeight": { "$type": "dimension", "$value": "34px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      }
+    },
+    "title": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "22px" },
+        "lineHeight": { "$type": "dimension", "$value": "33px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "16px" },
+        "lineHeight": { "$type": "dimension", "$value": "24px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.15px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "600" },
+        "fontSize": { "$type": "dimension", "$value": "14px" },
+        "lineHeight": { "$type": "dimension", "$value": "21px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.1px" }
+      }
+    },
+    "body": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "400" },
+        "fontSize": { "$type": "dimension", "$value": "16px" },
+        "lineHeight": { "$type": "dimension", "$value": "26px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "400" },
+        "fontSize": { "$type": "dimension", "$value": "14px" },
+        "lineHeight": { "$type": "dimension", "$value": "22px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "400" },
+        "fontSize": { "$type": "dimension", "$value": "12px" },
+        "lineHeight": { "$type": "dimension", "$value": "19px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.4px" }
+      }
+    },
+    "label": {
+      "large": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "14px" },
+        "lineHeight": { "$type": "dimension", "$value": "21px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.1px" }
+      },
+      "medium": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "12px" },
+        "lineHeight": { "$type": "dimension", "$value": "18px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.5px" }
+      },
+      "small": {
+        "fontFamily": { "$type": "fontFamily", "$value": "Plus Jakarta Sans" },
+        "fontWeight": { "$type": "fontWeight", "$value": "500" },
+        "fontSize": { "$type": "dimension", "$value": "11px" },
+        "lineHeight": { "$type": "dimension", "$value": "16px" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.5px" }
+      }
+    }
+  },
+  "shadows": {
+    "soft": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "8px",
+        "spread": "0px",
+        "color": "rgba(15, 76, 92, 0.08)"
+      }
+    },
+    "medium": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "24px",
+        "spread": "-4px",
+        "color": "rgba(15, 76, 92, 0.16)"
+      }
+    },
+    "hard": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": "0px",
+        "offsetY": "16px",
+        "blur": "48px",
+        "spread": "-8px",
+        "color": "rgba(15, 76, 92, 0.28)"
+      }
+    }
+  }
+}
