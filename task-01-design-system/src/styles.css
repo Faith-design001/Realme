@@ -1,6 +1,6 @@
 /* ==========================================================================
  * RealMe Enterprise Design System - Application Layout & Component Styles
- * Enforces 100% token consumption from tokens.css
+ * Enforces 100% token consumption from tokens.css (06-tokens-complete.json)
  * Zero raw hex colors. Strict semantic role mappings.
  * ========================================================================== */
 
@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: var(--realme-color-shadow);
+  background-color: var(--realme-color-surface-container-lowest-2);
   color: var(--realme-color-surface);
   font-family: var(--realme-type-body-large-font-family);
   font-size: var(--realme-type-body-large-font-size);
@@ -27,7 +27,7 @@ body {
 .app-layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--realme-color-shadow);
+  background-color: var(--realme-color-surface-container-lowest-2);
 }
 
 /* ==========================================================================
@@ -97,8 +97,8 @@ body {
 }
 
 .nav-btn.is-active {
-  background-color: var(--realme-color-surface-container-lowest-2);
-  color: var(--realme-color-surface);
+  background-color: var(--realme-color-primary);
+  color: var(--realme-color-on-primary);
   border-color: var(--realme-color-surface-hint);
   box-shadow: var(--realme-shadow-soft-shadow);
 }
@@ -296,7 +296,7 @@ body {
   font-weight: var(--realme-type-title-medium-font-weight);
 }
 
-/* 3 KPI Metric Cards */
+/* 3 KPI Metric Cards - Using Strict Token Containers */
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -313,20 +313,25 @@ body {
   box-shadow: var(--realme-shadow-soft-shadow);
 }
 
+/* Card 1: Warning Container */
 .kpi-card-amber {
-  background-color: var(--realme-color-warning);
-  color: var(--realme-color-on-warning);
+  background-color: var(--realme-color-warning-container);
+  color: var(--realme-color-on-warning-container);
+  border: 1px solid var(--realme-color-warning);
 }
 
+/* Card 2: Primary Container */
 .kpi-card-lavender {
-  background-color: var(--realme-color-inverse-primary);
-  color: var(--realme-color-primary);
+  background-color: var(--realme-color-primary-container);
+  color: var(--realme-color-on-primary-container);
+  border: 1px solid var(--realme-color-inverse-primary);
 }
 
+/* Card 3: Secondary Container */
 .kpi-card-slate {
-  background-color: var(--realme-color-surface-container-lowest-2);
-  border: 1px solid var(--realme-color-surface-hint);
-  color: var(--realme-color-surface);
+  background-color: var(--realme-color-secondary-container);
+  color: var(--realme-color-on-secondary-container);
+  border: 1px solid var(--realme-color-secondary);
 }
 
 .kpi-card-header {
@@ -341,7 +346,7 @@ body {
   font-size: var(--realme-type-label-small-font-size);
   font-weight: var(--realme-type-label-large-font-weight);
   letter-spacing: var(--realme-type-label-small-letter-spacing);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .kpi-card-badge {
@@ -354,8 +359,8 @@ body {
 }
 
 .badge-amber-subtle {
-  background-color: var(--realme-color-surface);
-  color: var(--realme-color-on-surface);
+  background-color: var(--realme-color-warning);
+  color: var(--realme-color-on-warning);
 }
 
 .badge-lavender-subtle {
@@ -364,8 +369,8 @@ body {
 }
 
 .badge-slate-subtle {
-  background-color: var(--realme-color-scrim);
-  color: var(--realme-color-surface-container-hightest);
+  background-color: var(--realme-color-secondary);
+  color: var(--realme-color-on-secondary);
 }
 
 .kpi-card-body {
@@ -386,7 +391,7 @@ body {
   font-family: var(--realme-type-body-small-font-family);
   font-size: var(--realme-type-body-small-font-size);
   font-weight: var(--realme-type-label-large-font-weight);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 /* Surface Cards Shared */
@@ -433,8 +438,8 @@ body {
 /* Filter Toggles */
 .filter-toggle-group {
   display: inline-flex;
-  background-color: var(--realme-color-shadow);
-  border: 1px solid var(--realme-color-surface-container-lowest-2);
+  background-color: var(--realme-color-surface-container-lowest-2);
+  border: 1px solid var(--realme-color-surface-hint);
   border-radius: 8px;
   padding: 2px;
 }
@@ -451,8 +456,8 @@ body {
 }
 
 .filter-btn.is-selected {
-  background-color: var(--realme-color-surface-container-lowest-2);
-  color: var(--realme-color-surface);
+  background-color: var(--realme-color-primary);
+  color: var(--realme-color-on-primary);
   font-weight: var(--realme-type-label-large-font-weight);
 }
 
@@ -492,7 +497,7 @@ body {
   color: var(--realme-color-surface-container-hightest);
 }
 
-/* Segmented Bar */
+/* Segmented Bar - Pure Token Mappings */
 .segmented-bar {
   display: flex;
   height: 6px;
@@ -510,18 +515,18 @@ body {
 }
 
 .seg-progress {
-  background-color: var(--realme-color-warning);
+  background-color: var(--realme-color-secondary);
 }
 
 .seg-review {
-  background-color: var(--realme-color-error);
+  background-color: var(--realme-color-warning);
 }
 
 .seg-completed {
-  background-color: var(--realme-color-inverse-primary);
+  background-color: var(--realme-color-primary);
 }
 
-/* Heatmap Section */
+/* Heatmap Section - Token Compliant */
 .legend-group {
   display: flex;
   align-items: center;
@@ -544,11 +549,11 @@ body {
 }
 
 .dot-low {
-  background-color: var(--realme-color-primary-container);
+  background-color: var(--realme-color-secondary-container);
 }
 
 .dot-med {
-  background-color: var(--realme-color-warning);
+  background-color: var(--realme-color-warning-container);
 }
 
 .dot-high {
@@ -603,18 +608,18 @@ body {
 }
 
 .cell-med-high {
-  background-color: var(--realme-color-accent);
-  color: var(--realme-color-on-accent);
+  background-color: var(--realme-color-error-container);
+  color: var(--realme-color-on-error-container);
 }
 
 .cell-med {
-  background-color: var(--realme-color-warning);
-  color: var(--realme-color-on-warning);
+  background-color: var(--realme-color-warning-container);
+  color: var(--realme-color-on-warning-container);
 }
 
 .cell-low {
-  background-color: var(--realme-color-primary);
-  color: var(--realme-color-on-primary);
+  background-color: var(--realme-color-secondary-container);
+  color: var(--realme-color-on-secondary-container);
 }
 
 .cell-muted {
@@ -650,8 +655,8 @@ body {
 }
 
 .query-pill {
-  background-color: var(--realme-color-shadow);
-  border: 1px solid var(--realme-color-surface-container-lowest-2);
+  background-color: var(--realme-color-surface-container-lowest-2);
+  border: 1px solid var(--realme-color-surface-hint);
   border-radius: 8px;
   padding: 10px 14px;
   display: flex;
@@ -664,8 +669,8 @@ body {
 }
 
 .query-pill:hover {
-  background-color: var(--realme-color-surface-container-lowest-2);
-  border-color: var(--realme-color-surface-hint);
+  background-color: var(--realme-color-primary);
+  border-color: var(--realme-color-inverse-primary);
 }
 
 .query-icon {
@@ -877,7 +882,7 @@ body {
   gap: 12px;
   margin: 18px 0;
   padding: 12px;
-  background-color: var(--realme-color-shadow);
+  background-color: var(--realme-color-surface-container-lowest-2);
   border-radius: 8px;
 }
 
@@ -950,14 +955,14 @@ body {
 
 .confidence-track {
   height: 4px;
-  background-color: var(--realme-color-shadow);
+  background-color: var(--realme-color-surface-container-lowest-2);
   border-radius: 9999px;
   overflow: hidden;
 }
 
 .confidence-fill {
   height: 100%;
-  background-color: var(--realme-color-inverse-primary);
+  background-color: var(--realme-color-primary);
 }
 
 /* Deadline Card */
