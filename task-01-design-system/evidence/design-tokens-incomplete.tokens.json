@@ -711,7 +711,7 @@
       },
       "fontFamily": {
         "type": "string",
-        "value": "DM Sans"
+        "value": "JetBrains Mono"
       },
       "fontWeight": {
         "type": "number",

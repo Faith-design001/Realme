@@ -6,7 +6,7 @@ Recorded by: Faith Ojo (RealMe Properties Ltd / RealMe Design System)
 ---
 
 ### [00:00 - 00:45] Overview of RealMe 15-Style Typographic Hierarchy
-- Typography Foundation: `Plus Jakarta Sans` (Display/Headline/Title/Label), `JetBrains Mono` (Body), `DM Sans` (Label Small).
+- Typography Foundation: `Plus Jakarta Sans` (Display/Headline/Title/Label Large & Medium), `JetBrains Mono` (Body and Label Small).
 - Derived directly from `06-tokens-complete.json`.
 - Mathematical Multiplier: 1.5x formula applied across all roles.
 

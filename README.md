@@ -7,7 +7,7 @@ RealMe is an internal real estate transaction and deal intelligence platform for
 
 ## 2. Status
 - **Finished**: 
-  - Task 01: Complete enterprise design system specification, 14-tone perceptual color palette with pinned `#0D1F3D` brand anchor (`primary40`), 15-style typography hierarchy (`Plus Jakarta Sans` for headers, `JetBrains Mono` for tabular records, `DM Sans` for micro labels), brand-pigmented atmospheric shadow system, token compiler pipeline (`build-tokens.js`), verified deal dashboard UI screen consuming 100% tokens and 0 raw hex values, machine-specific evidence sheets, prompt telemetry logs, deliberate unmerged regression branch test, and complete 12-question interview defence documentation.
+  - Task 01: Complete enterprise design system specification, 14-tone perceptual color palette with pinned `#0D1F3D` brand anchor (`primary40`), 15-style typography hierarchy (`Plus Jakarta Sans` for headers, `JetBrains Mono` for tabular records and micro labels), brand-pigmented atmospheric shadow system, token compiler pipeline (`build-tokens.js`), verified deal dashboard UI screen consuming 100% tokens and 0 raw hex values, machine-specific evidence sheets, prompt telemetry logs, deliberate unmerged regression branch test, and complete 12-question interview defence documentation.
 - **Half Done**: 
   - Token distribution pipeline: Tokens compile locally to `tokens.css`; automated npm package publishing and Figma API synchronization webhook scheduled for Task 02.
 - **Not Started**: 
@@ -22,7 +22,7 @@ RealMe is an internal real estate transaction and deal intelligence platform for
 - **Design Tokens / DTCG Standard**: Chose W3C Design Tokens Community Group format (`06-tokens-complete.json`) rather than proprietary styles because it acts as an engine-agnostic single source of truth across web, mobile, and agent parsers.
 - **Node.js (v24 LTS)**: Chose standard vanilla Node runtime for `build-tokens.js` rather than heavy third-party CLI tools (like Style Dictionary) to eliminate unnecessary dependency overhead and enable transparent, deterministic alias resolution.
 - **Vanilla CSS Custom Properties**: Chose native CSS custom properties rather than Tailwind CSS or CSS-in-JS because CSS variables allow instantaneous zero-runtime theme and brand switching directly at the browser boundary without client bundle bloat on weak 3G Lagos cellular networks.
-- **Plus Jakarta Sans, JetBrains Mono & DM Sans**: Chose `Plus Jakarta Sans` for punchy high-contrast display valuations under midday sun, `JetBrains Mono` for monospaced tabular deal facts and inspection caveats, and `DM Sans` for micro status chips.
+- **Plus Jakarta Sans & JetBrains Mono**: Chose `Plus Jakarta Sans` for punchy high-contrast display valuations under midday sun, and `JetBrains Mono` for monospaced tabular deal facts, inspection caveats, and micro status chips.
 - **Git Version Control**: Chose Git with strict branch isolation rather than trunk-only commits to enforce traceable, unmerged proof of deliberate regression tests and process evidence.
 
 ---

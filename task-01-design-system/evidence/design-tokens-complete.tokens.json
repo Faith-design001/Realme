@@ -313,7 +313,7 @@
       "value": {
         "fontSize": 11,
         "textDecoration": "none",
-        "fontFamily": "DM Sans",
+        "fontFamily": "JetBrains Mono",
         "fontWeight": 500,
         "fontStyle": "normal",
         "fontStretch": "normal",
@@ -4158,7 +4158,7 @@
       },
       "fontFamily": {
         "type": "string",
-        "value": "DM Sans"
+        "value": "JetBrains Mono"
       },
       "fontWeight": {
         "type": "number",

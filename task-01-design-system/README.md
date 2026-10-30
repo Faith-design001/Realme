@@ -15,7 +15,7 @@ Task 01 establishes the foundational enterprise design system for **RealMe**—t
    - Symmetrical light/dark theme derivations and functional scales for Error (`#910725`), Warning (`#633602`), and Accent (`#2A0808`).
    - 44 semantic role tokens with verified WCAG contrast ratios (e.g. `on-surface` on `surface` = **16.76:1** AAA; `on-primary` on `primary` = **16.40:1** AAA).
 2. **Typographic Scale & Formula Constraints**:
-   - 15 styles across 5 roles (Display, Headline, Title, Body, Label) combining `Plus Jakarta Sans` for headers, `JetBrains Mono` for tabular deal records, and `DM Sans` for micro status chips.
+   - 15 styles across 5 roles (Display, Headline, Title, Body, Label) combining `Plus Jakarta Sans` for headers and `JetBrains Mono` for tabular deal records and micro status chips.
    - Strict formula-driven line heights: $1.5\times$ multiplier applied across the scale (e.g. Display Large: 64px size $\times 1.5 = 96\text{px}$ line height; Body Medium: 14px size $\times 1.5 = 21\text{px}$ line height).
    - Visually judged compact letter spacing (-2.0px on Display Large) preventing multi-digit currency truncation.
 3. **Atmospheric Shadow System**:

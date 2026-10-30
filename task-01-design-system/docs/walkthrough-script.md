@@ -17,7 +17,7 @@
 ### [00:00 - 00:45] Introduction & System Overview
 "Hello. Today I'm walking through the type scale for **RealMe**, the internal deal intelligence platform for Realme Properties Ltd in Lekki, Lagos. 
 
-Our typographic foundation is configured into five roles—Display, Headline, Title, Body, and Label—with three sizes each, giving us fifteen styles derived directly from our Figma variables export `06-tokens-complete.json`. We use `Plus Jakarta Sans` for bold headings, `JetBrains Mono` for tabular deal records and legal clauses, and `DM Sans` for micro status chips. Every single style obeys our strict mathematical line-height multiplier formula: font size times 1.5.
+Our typographic foundation is configured into five roles—Display, Headline, Title, Body, and Label—with three sizes each, giving us fifteen styles derived directly from our Figma variables export `06-tokens-complete.json`. We use `Plus Jakarta Sans` for bold headings, and `JetBrains Mono` for tabular deal records, legal clauses, and micro status chips. Every single style obeys our strict mathematical line-height multiplier formula: font size times 1.5.
 
 While building this system, three values were intensely difficult to settle because they sat right at the intersection of mathematical theory, physical device constraints, and high-stakes real estate transactions. Here is why we picked them, and why settling them was hard."
 
