@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realme Vault - Deal Intelligence Dashboard</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Utility Bar -->
+  <header class="vault-header">
+    <div class="header-brand">
+      <div class="brand-mark">V</div>
+      <div class="brand-info">
+        <h1 class="brand-title">Realme Vault</h1>
+        <p class="brand-subtitle">Lekki Brokerage Intelligence Platform &bull; Lekki, Lagos</p>
+      </div>
+    </div>
+    <div class="header-status">
+      <span class="status-pill status-isolated">Tenant Isolation: Mathematical RLS Active</span>
+      <span class="status-meta">Server Snapshot: 10:42 AM WAT &bull; Cached Server-Side</span>
+    </div>
+  </header>
+
+  <!-- Main Viewport Layout -->
+  <main class="vault-main">
+    <!-- Top Telemetry Cards -->
+    <section class="telemetry-grid">
+      <div class="telemetry-card">
+        <span class="telemetry-label">Active Field Listings</span>
+        <div class="telemetry-value">48</div>
+        <span class="telemetry-hint">Assigned to Team Lead A</span>
+      </div>
+      <div class="telemetry-card">
+        <span class="telemetry-label">Open Compliance Flags</span>
+        <div class="telemetry-value text-warning">03</div>
+        <span class="telemetry-hint">Requires Broker Signoff</span>
+      </div>
+      <div class="telemetry-card">
+        <span class="telemetry-label">Escrow Contingencies</span>
+        <div class="telemetry-value text-error">02</div>
+        <span class="telemetry-hint">Penalties Triggering in 48h</span>
+      </div>
+      <div class="telemetry-card">
+        <span class="telemetry-label">Tenant Security Barrier</span>
+        <div class="telemetry-value text-success">100%</div>
+        <span class="telemetry-hint">PostgreSQL Owner RLS Enforced</span>
+      </div>
+    </section>
+
+    <!-- Query Shortcuts (Zero-Typing Field UX) -->
+    <section class="shortcuts-section">
+      <h2 class="section-heading">Frequent Deal Queries &bull; Instant Field Retrieval</h2>
+      <div class="shortcuts-row">
+        <button class="shortcut-btn" type="button">
+          <span class="shortcut-icon">&para;</span>
+          <span class="shortcut-text">What was the absolute bottom-dollar price for 45 Lekki Phase 1?</span>
+        </button>
+        <button class="shortcut-btn" type="button">
+          <span class="shortcut-icon">&sect;</span>
+          <span class="shortcut-text">Did structural engineer note foundation cracks or mold in July report?</span>
+        </button>
+        <button class="shortcut-btn" type="button">
+          <span class="shortcut-icon">&dagger;</span>
+          <span class="shortcut-text">What escrow timeline penalties did legal counsel outline in private email?</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Active Deal Record View -->
+    <section class="deal-record-section">
+      <div class="deal-card">
+        <div class="deal-card-header">
+          <div>
+            <span class="deal-badge">Private Listing Record</span>
+            <h3 class="deal-title">45 Lekki Phase 1, Admiralty Way Corridor</h3>
+            <p class="deal-meta">Record ID: #RLM-LK1-045 &bull; Agent: Faith Ojo (ID: AGY-LEK-400)</p>
+          </div>
+          <div class="deal-pricing">
+            <span class="pricing-label">Bottom-Dollar Agreed Price</span>
+            <span class="pricing-figure">&#8358;450,000,000</span>
+            <span class="pricing-strike">Asking: &#8358;520,000,000</span>
+          </div>
+        </div>
+
+        <div class="deal-card-body">
+          <!-- Compliance Alert: Structural Crack Note -->
+          <div class="alert-box alert-error">
+            <div class="alert-indicator">&excl;</div>
+            <div class="alert-content">
+              <h4 class="alert-title">Inspection Disclosure &bull; Structural Engineer Caveat (July 19 Report)</h4>
+              <p class="alert-text">
+                Unredacted inspection notes active settlement hairline crack on northern boundary retaining wall. 
+                Sub-base requires underpinning before title deed perfection. No active mold or toxic moisture detected in main dwelling.
+              </p>
+            </div>
+          </div>
+
+          <!-- Legal Escrow Clause -->
+          <div class="alert-box alert-warning">
+            <div class="alert-indicator">&#9888;</div>
+            <div class="alert-content">
+              <h4 class="alert-title">Legal Counsel Escrow Stipulation &bull; Private Thread (Attorneys to Broker)</h4>
+              <p class="alert-text">
+                Strict 14-calendar-day escrow closing deadline applies. Failure to deposit 10% balance by Friday 17:00 WAT triggers 
+                a 5% liquidated damages penalty against the escrow deposit under Clause 8.2 of the Lekki Master Covenant.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="deal-card-footer">
+          <div class="verification-badge">
+            <span class="check-icon">&#10003;</span>
+            <span class="verification-text">Private Listing Verified &bull; Multi-Tenant Isolated to Agent #AGY-LEK-400</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-secondary" type="button">Inspect Document Hashes</button>
+            <button class="btn btn-primary" type="button">Execute Escrow Rider</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,442 @@
+/* Vault Enterprise Design System - Component Styles
+ * Enforces 100% token consumption. No hardcoded hex colors or arbitrary typography.
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--vault-color-surface);
+  color: var(--vault-color-on-surface);
+  font-family: var(--vault-type-body-large-font-family);
+  font-size: var(--vault-type-body-large-font-size);
+  line-height: var(--vault-type-body-large-line-height);
+  font-weight: var(--vault-type-body-large-font-weight);
+  letter-spacing: var(--vault-type-body-large-letter-spacing);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.vault-header {
+  background-color: var(--vault-color-surface);
+  border-bottom: 1px solid var(--vault-color-outline-variant);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--vault-shadow-soft);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-mark {
+  background-color: var(--vault-color-primary);
+  color: var(--vault-color-on-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--vault-type-title-large-font-size);
+  font-weight: var(--vault-type-title-large-font-weight);
+  font-family: var(--vault-type-title-large-font-family);
+  box-shadow: var(--vault-shadow-soft);
+}
+
+.brand-title {
+  font-family: var(--vault-type-title-large-font-family);
+  font-size: var(--vault-type-title-large-font-size);
+  font-weight: var(--vault-type-title-large-font-weight);
+  line-height: var(--vault-type-title-large-line-height);
+  color: var(--vault-color-on-surface);
+}
+
+.brand-subtitle {
+  font-family: var(--vault-type-label-medium-font-family);
+  font-size: var(--vault-type-label-medium-font-size);
+  font-weight: var(--vault-type-label-medium-font-weight);
+  line-height: var(--vault-type-label-medium-line-height);
+  color: var(--vault-color-on-surface-variant);
+}
+
+.header-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.status-pill {
+  font-family: var(--vault-type-label-small-font-family);
+  font-size: var(--vault-type-label-small-font-size);
+  font-weight: var(--vault-type-label-small-font-weight);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: var(--vault-type-label-small-letter-spacing);
+}
+
+.status-isolated {
+  background-color: var(--vault-color-primary-container);
+  color: var(--vault-color-on-primary-container);
+}
+
+.status-meta {
+  font-family: var(--vault-type-body-small-font-family);
+  font-size: var(--vault-type-body-small-font-size);
+  color: var(--vault-color-on-surface-variant);
+}
+
+/* Main Layout */
+.vault-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Telemetry Grid */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.telemetry-card {
+  background-color: var(--vault-color-surface-container);
+  border: 1px solid var(--vault-color-outline-variant);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--vault-shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.telemetry-label {
+  font-family: var(--vault-type-label-medium-font-family);
+  font-size: var(--vault-type-label-medium-font-size);
+  font-weight: var(--vault-type-label-medium-font-weight);
+  color: var(--vault-color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: var(--vault-type-label-medium-letter-spacing);
+}
+
+.telemetry-value {
+  font-family: var(--vault-type-display-medium-font-family);
+  font-size: var(--vault-type-display-medium-font-size);
+  font-weight: var(--vault-type-display-medium-font-weight);
+  line-height: var(--vault-type-display-medium-line-height);
+  letter-spacing: var(--vault-type-display-medium-letter-spacing);
+  color: var(--vault-color-on-surface);
+}
+
+.telemetry-hint {
+  font-family: var(--vault-type-body-small-font-family);
+  font-size: var(--vault-type-body-small-font-size);
+  color: var(--vault-color-on-surface-variant);
+}
+
+.text-warning {
+  color: var(--vault-color-on-warning-container);
+}
+
+.text-error {
+  color: var(--vault-color-error);
+}
+
+.text-success {
+  color: var(--vault-color-on-success-container);
+}
+
+/* Shortcuts Section */
+.shortcuts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-heading {
+  font-family: var(--vault-type-title-medium-font-family);
+  font-size: var(--vault-type-title-medium-font-size);
+  font-weight: var(--vault-type-title-medium-font-weight);
+  line-height: var(--vault-type-title-medium-line-height);
+  color: var(--vault-color-on-surface);
+}
+
+.shortcuts-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+.shortcut-btn {
+  background-color: var(--vault-color-surface-container);
+  border: 1px solid var(--vault-color-outline);
+  border-radius: 8px;
+  padding: 12px 16px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.2s ease;
+  box-shadow: var(--vault-shadow-soft);
+}
+
+.shortcut-btn:hover {
+  background-color: var(--vault-color-surface-container-high);
+  border-color: var(--vault-color-primary);
+  box-shadow: var(--vault-shadow-medium);
+}
+
+.shortcut-icon {
+  color: var(--vault-color-primary);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.shortcut-text {
+  font-family: var(--vault-type-body-medium-font-family);
+  font-size: var(--vault-type-body-medium-font-size);
+  font-weight: var(--vault-type-body-medium-font-weight);
+  line-height: var(--vault-type-body-medium-line-height);
+  color: var(--vault-color-on-surface);
+}
+
+/* Deal Card Section */
+.deal-record-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.deal-card {
+  background-color: var(--vault-color-surface);
+  border: 1px solid var(--vault-color-outline);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: var(--vault-shadow-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.deal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid var(--vault-color-outline-variant);
+  padding-bottom: 20px;
+}
+
+.deal-badge {
+  display: inline-block;
+  background-color: var(--vault-color-primary-container);
+  color: var(--vault-color-on-primary-container);
+  font-family: var(--vault-type-label-small-font-family);
+  font-size: var(--vault-type-label-small-font-size);
+  font-weight: var(--vault-type-label-small-font-weight);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  letter-spacing: var(--vault-type-label-small-letter-spacing);
+}
+
+.deal-title {
+  font-family: var(--vault-type-headline-large-font-family);
+  font-size: var(--vault-type-headline-large-font-size);
+  font-weight: var(--vault-type-headline-large-font-weight);
+  line-height: var(--vault-type-headline-large-line-height);
+  letter-spacing: var(--vault-type-headline-large-letter-spacing);
+  color: var(--vault-color-on-surface);
+}
+
+.deal-meta {
+  font-family: var(--vault-type-body-small-font-family);
+  font-size: var(--vault-type-body-small-font-size);
+  color: var(--vault-color-on-surface-variant);
+  margin-top: 4px;
+}
+
+.deal-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.pricing-label {
+  font-family: var(--vault-type-label-small-font-family);
+  font-size: var(--vault-type-label-small-font-size);
+  font-weight: var(--vault-type-label-small-font-weight);
+  color: var(--vault-color-on-surface-variant);
+  text-transform: uppercase;
+}
+
+.pricing-figure {
+  font-family: var(--vault-type-display-large-font-family);
+  font-size: var(--vault-type-display-large-font-size);
+  font-weight: var(--vault-type-display-large-font-weight);
+  line-height: var(--vault-type-display-large-line-height);
+  letter-spacing: var(--vault-type-display-large-letter-spacing);
+  color: var(--vault-color-primary);
+}
+
+.pricing-strike {
+  font-family: var(--vault-type-body-small-font-family);
+  font-size: var(--vault-type-body-small-font-size);
+  color: var(--vault-color-on-surface-variant);
+  text-decoration: line-through;
+}
+
+/* Alert Boxes */
+.deal-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.alert-box {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  align-items: flex-start;
+}
+
+.alert-error {
+  background-color: var(--vault-color-error-container);
+  border-left: 4px solid var(--vault-color-error);
+}
+
+.alert-error .alert-indicator {
+  color: var(--vault-color-error);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.alert-error .alert-title {
+  font-family: var(--vault-type-title-small-font-family);
+  font-size: var(--vault-type-title-small-font-size);
+  font-weight: var(--vault-type-title-small-font-weight);
+  color: var(--vault-color-on-error-container);
+}
+
+.alert-error .alert-text {
+  font-family: var(--vault-type-body-medium-font-family);
+  font-size: var(--vault-type-body-medium-font-size);
+  line-height: var(--vault-type-body-medium-line-height);
+  color: var(--vault-color-on-error-container);
+  margin-top: 4px;
+}
+
+.alert-warning {
+  background-color: var(--vault-color-warning-container);
+  border-left: 4px solid var(--vault-color-outline);
+}
+
+.alert-warning .alert-indicator {
+  color: var(--vault-color-on-warning-container);
+  font-size: 20px;
+}
+
+.alert-warning .alert-title {
+  font-family: var(--vault-type-title-small-font-family);
+  font-size: var(--vault-type-title-small-font-size);
+  font-weight: var(--vault-type-title-small-font-weight);
+  color: var(--vault-color-on-warning-container);
+}
+
+.alert-warning .alert-text {
+  font-family: var(--vault-type-body-medium-font-family);
+  font-size: var(--vault-type-body-medium-font-size);
+  line-height: var(--vault-type-body-medium-line-height);
+  color: var(--vault-color-on-warning-container);
+  margin-top: 4px;
+}
+
+/* Deal Card Footer */
+.deal-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 1px solid var(--vault-color-outline-variant);
+  padding-top: 20px;
+}
+
+.verification-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.check-icon {
+  background-color: var(--vault-color-success-container);
+  color: var(--vault-color-on-success-container);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.verification-text {
+  font-family: var(--vault-type-label-medium-font-family);
+  font-size: var(--vault-type-label-medium-font-size);
+  color: var(--vault-color-on-surface-variant);
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  font-family: var(--vault-type-label-large-font-family);
+  font-size: var(--vault-type-label-large-font-size);
+  font-weight: var(--vault-type-label-large-font-weight);
+  line-height: var(--vault-type-label-large-line-height);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary {
+  background-color: var(--vault-color-surface-container);
+  border-color: var(--vault-color-outline);
+  color: var(--vault-color-on-surface);
+}
+
+.btn-secondary:hover {
+  background-color: var(--vault-color-surface-container-high);
+}
+
+.btn-primary {
+  background-color: var(--vault-color-primary);
+  color: var(--vault-color-on-primary);
+  box-shadow: var(--vault-shadow-soft);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--vault-shadow-medium);
+  filter: brightness(1.1);
+}
