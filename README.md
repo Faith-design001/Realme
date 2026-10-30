@@ -32,8 +32,8 @@ To verify the design tokens and run the RealMe deal dashboard from a fresh clone
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/faithojo/realme-vault.git
-cd realme-vault
+git clone https://github.com/faithojo/realme.git
+cd realme
 
 # 2. Navigate to task directory
 cd task-01-design-system
