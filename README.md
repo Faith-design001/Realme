@@ -86,7 +86,7 @@ Built from primary brand pigment (`#0D1F3D`) to simulate real-world ambient boun
 
 ---
 
-## 6. What We Got Wrong (Defect Audit & Failures)
+## 6. What i Got Wrong (Defect Audit & Failures)
 1. **Figma Variables Export Omission (`evidence/05-tokens-incomplete.json`)**: Initial export was run without checking variable collections, omitting the entire color system. The compiler crashed with unresolved references. Corrected by re-exporting `evidence/06-tokens-complete.json` with all variables included.
 2. **Compiler Primitive Leakage**: In the first prompt attempt, the agent recursively flattened primitive scales directly into `:root`, defeating semantic abstraction. We halted the agent and enforced strict role-only compilation in `scripts/build-tokens.js`.
 3. **Outline-Variant Contrast Boundary Defect (`tokens.css:55`)**: `--realme-color-outline-variant` (`#C1C7CE`) measured against surface canvas (`#FBFCFF`) yields a contrast ratio of **1.66:1**, falling below WCAG 2.1 non-text standards (3.0:1). On budget Android screens with TN displays under midday sun, container partitions wash out into an indistinct grey field. Documented in `docs/defects.md` and restricted strictly to non-functional decorative lines.
