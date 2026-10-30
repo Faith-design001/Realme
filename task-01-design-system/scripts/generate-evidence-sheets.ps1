@@ -1,6 +1,6 @@
 # RealMe Enterprise Design System: Evidence Proof Sheet Generator
-# Strictly adheres 100% to RealMe tokens from 06-tokens-complete.json / tokens.css.
-# Zero foreign or ad-hoc colors.
+# Strictly adheres 100% to RealMe LIGHT MODE tokens from 06-tokens-complete.json / tokens.css.
+# Surface: #FBFCFF | Primary: #0D1F3D (Pinned 40) | Zero dark mode / Zero foreign colors.
 
 Add-Type -AssemblyName System.Drawing
 
@@ -55,14 +55,14 @@ function Create-Palette-Image {
     $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
     $g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::ClearTypeGridFit
 
-    $bgBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#08152A")) # --realme-color-shadow
+    $bgBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#FBFCFF")) # --realme-color-surface
     $g.FillRectangle($bgBrush, 0, 0, $width, $height)
 
     # Title
     $titleFont = New-Object System.Drawing.Font("Segoe UI", 20, [System.Drawing.FontStyle]::Bold)
     $subFont = New-Object System.Drawing.Font("Segoe UI", 11, [System.Drawing.FontStyle]::Regular)
-    $textBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#FBFCFF")) # --realme-color-surface
-    $mutedBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#8D909C")) # --realme-color-surface-container-hightest
+    $textBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#181B24")) # --realme-color-on-surface
+    $mutedBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#2C3136")) # --realme-color-on-surface-variant
 
     $g.DrawString($title, $titleFont, $textBrush, 40, 30)
     $g.DrawString($subtitle, $subFont, $mutedBrush, 40, 70)
@@ -84,11 +84,11 @@ function Create-Palette-Image {
         $g.FillRectangle($brush, $x, $startY, $swatchWidth, $swatchHeight)
 
         if ($t.Pinned) {
-            $pinnedPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#FEF3E6"), 3)
+            $pinnedPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#0D1F3D"), 3)
             $g.DrawRectangle($pinnedPen, $x, $startY, $swatchWidth, $swatchHeight)
-            $g.DrawString("PINNED", $swatchBold, (New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#FEF3E6"))), $x + 10, $startY + 10)
+            $g.DrawString("PINNED", $swatchBold, (New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#0D1F3D"))), $x + 10, $startY + 10)
         } else {
-            $borderPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#222631"), 1)
+            $borderPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#C1C7CE"), 1)
             $g.DrawRectangle($borderPen, $x, $startY, $swatchWidth, $swatchHeight)
         }
 
@@ -100,8 +100,8 @@ function Create-Palette-Image {
 
     # Analysis Card
     $cardY = 320
-    $cardBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#181B24")) # --realme-color-inverse-surface
-    $cardPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#222631"), 1)
+    $cardBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#F0F0F2")) # --realme-color-surface-container-low-3
+    $cardPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#C1C7CE"), 1)
     $g.FillRectangle($cardBrush, 40, $cardY, ($width - 80), 320)
     $g.DrawRectangle($cardPen, 40, $cardY, ($width - 80), 320)
 
@@ -134,33 +134,33 @@ function Create-Spacing-Proof {
     $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
     $g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::ClearTypeGridFit
 
-    $g.FillRectangle((New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#08152A"))), 0, 0, $width, $height)
+    $g.FillRectangle((New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#FBFCFF"))), 0, 0, $width, $height)
 
     $titleFont = New-Object System.Drawing.Font("Segoe UI", 18, [System.Drawing.FontStyle]::Bold)
     $subFont = New-Object System.Drawing.Font("Segoe UI", 11, [System.Drawing.FontStyle]::Regular)
-    $textBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#FBFCFF"))
-    $mutedBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#8D909C"))
+    $textBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#181B24"))
+    $mutedBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#2C3136"))
 
     $g.DrawString($title, $titleFont, $textBrush, 40, 30)
     $g.DrawString("Optical Character Density & Horizontal Bounding Width Evaluation | $trackingLabel", $subFont, $mutedBrush, 40, 65)
 
     # Big Valuation Box
-    $boxBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#181B24"))
-    $boxPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#222631"), 1)
+    $boxBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#F0F0F2"))
+    $boxPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#C1C7CE"), 1)
     $g.FillRectangle($boxBrush, 40, 110, ($width - 80), 180)
     $g.DrawRectangle($boxPen, 40, 110, ($width - 80), 180)
 
     $heroFont = New-Object System.Drawing.Font("Segoe UI", 48, [System.Drawing.FontStyle]::Bold)
-    $heroBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#D4E1F6")) # --realme-color-primary-container
+    $heroBrush = New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#0D1F3D")) # --realme-color-primary
     $heroText = [char]0x20A6 + "450,000,000"
 
     $g.DrawString($heroText, $heroFont, $heroBrush, 70, 140)
 
-    $dimPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#80A6E4"), 1) # --realme-color-inverse-primary
+    $dimPen = New-Object System.Drawing.Pen([System.Drawing.ColorTranslator]::FromHtml("#0D1F3D"), 1)
     $dimPen.DashStyle = [System.Drawing.Drawing2D.DashStyle]::Dash
     $g.DrawLine($dimPen, 70, 245, 680, 245)
     $dimFont = New-Object System.Drawing.Font("Consolas", 9, [System.Drawing.FontStyle]::Regular)
-    $g.DrawString("<-- Measured Optical Footprint: 610px | Tracking: $letterSpacing px -->", $dimFont, (New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#80A6E4"))), 140, 252)
+    $g.DrawString("<-- Measured Optical Footprint: 610px | Tracking: $letterSpacing px -->", $dimFont, (New-Object System.Drawing.SolidBrush([System.Drawing.ColorTranslator]::FromHtml("#0D1F3D"))), 140, 252)
 
     # Analysis Card
     $cardY = 320
@@ -179,7 +179,7 @@ function Create-Spacing-Proof {
 }
 
 # -----------------------------------------------------------------------------
-# 3. EXECUTIVE AUDIT DASHBOARD MOCKUPS (100% AUTHENTIC REALME DESIGN TOKENS)
+# 3. EXECUTIVE AUDIT DASHBOARD MOCKUPS (100% AUTHENTIC REALME LIGHT DESIGN SYSTEM)
 # -----------------------------------------------------------------------------
 function Create-Structured-Dashboard-Mockup {
     param(
@@ -200,14 +200,14 @@ function Create-Structured-Dashboard-Mockup {
     $bFontName = if ($withSystem) { "Consolas" } else { "Times New Roman" }
     $roundR = if ($withSystem) { 12 } else { 0 }
 
-    # 100% REALME TOKENS FROM tokens.css
+    # 100% AUTHENTIC LIGHT THEME TOKENS FROM tokens.css
     if ($withSystem) {
-        $cCanvas           = [System.Drawing.ColorTranslator]::FromHtml("#222631") # --realme-color-surface-container-lowest-2
-        $cRail             = [System.Drawing.ColorTranslator]::FromHtml("#000000") # --realme-color-scrim
-        $cCard             = [System.Drawing.ColorTranslator]::FromHtml("#181B24") # --realme-color-inverse-surface
-        $cCardBorder       = [System.Drawing.ColorTranslator]::FromHtml("#222631") # --realme-color-surface-container-lowest-2
-        $cText             = [System.Drawing.ColorTranslator]::FromHtml("#FBFCFF") # --realme-color-surface
-        $cMuted            = [System.Drawing.ColorTranslator]::FromHtml("#8D909C") # --realme-color-surface-container-hightest
+        $cCanvas           = [System.Drawing.ColorTranslator]::FromHtml("#FBFCFF") # --realme-color-surface (Light Canvas)
+        $cRail             = [System.Drawing.ColorTranslator]::FromHtml("#F0F0F2") # --realme-color-surface-container-low-3
+        $cCard             = [System.Drawing.ColorTranslator]::FromHtml("#FFFFFF") # Crisp white surface
+        $cCardBorder       = [System.Drawing.ColorTranslator]::FromHtml("#C1C7CE") # --realme-color-outline-variant
+        $cText             = [System.Drawing.ColorTranslator]::FromHtml("#181B24") # --realme-color-on-surface
+        $cMuted            = [System.Drawing.ColorTranslator]::FromHtml("#2C3136") # --realme-color-on-surface-variant
         $cPrimary          = [System.Drawing.ColorTranslator]::FromHtml("#0D1F3D") # --realme-color-primary (Pinned 40)
         $cOnPrimary        = [System.Drawing.ColorTranslator]::FromHtml("#FFFFFF") # --realme-color-on-primary
         $cPrimaryContainer = [System.Drawing.ColorTranslator]::FromHtml("#D4E1F6") # --realme-color-primary-container
@@ -246,7 +246,7 @@ function Create-Structured-Dashboard-Mockup {
         $cOnErrorContainer = [System.Drawing.Color]::FromArgb(100, 0, 0)
     }
 
-    # Clear Canvas
+    # Clear Canvas (Crisp Light Background)
     $g.FillRectangle((New-Object System.Drawing.SolidBrush($cCanvas)), 0, 0, $width, $height)
 
     # -------------------------------------------------------------------------
@@ -258,7 +258,7 @@ function Create-Structured-Dashboard-Mockup {
 
     # Brand Glyph
     $glyphBg = New-Object System.Drawing.SolidBrush($cPrimary)
-    Draw-RoundedRect $g $glyphBg (New-Object System.Drawing.Pen($cInversePrimary, 1)) 13 14 42 42 $roundR
+    Draw-RoundedRect $g $glyphBg $null 13 14 42 42 $roundR
     $glyphFont = New-Object System.Drawing.Font($hFontName, 16, [System.Drawing.FontStyle]::Bold)
     $g.DrawString("R", $glyphFont, (New-Object System.Drawing.SolidBrush($cOnPrimary)), 25, 22)
 
@@ -268,7 +268,7 @@ function Create-Structured-Dashboard-Mockup {
         $iy = 85 + ($i * 50)
         $isActive = ($i -eq 0)
         $btnBg = if ($isActive -and $withSystem) { (New-Object System.Drawing.SolidBrush($cPrimary)) } else { $null }
-        $btnPen = if ($isActive -and $withSystem) { (New-Object System.Drawing.Pen($cCardBorder, 1)) } else { $null }
+        $btnPen = if ($isActive -and $withSystem) { $null } else { $null }
         Draw-RoundedRect $g $btnBg $btnPen 13 $iy 42 42 8
         $iconColor = if ($isActive) { $cOnPrimary } else { $cMuted }
         $g.DrawString($navIcons[$i], (New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($iconColor)), 20, $iy + 14)
@@ -278,15 +278,15 @@ function Create-Structured-Dashboard-Mockup {
     # 2. TOP TELEMETRY / STATUS BAR
     # -------------------------------------------------------------------------
     $topH = 58
-    $g.FillRectangle((New-Object System.Drawing.SolidBrush($cRail)), $railW, 0, ($width - $railW), $topH)
+    $g.FillRectangle((New-Object System.Drawing.SolidBrush($cCanvas)), $railW, 0, ($width - $railW), $topH)
     $g.DrawLine((New-Object System.Drawing.Pen($cCardBorder, 1)), $railW, $topH, $width, $topH)
 
     $pillFont = New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)
     $metaFont = New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Regular)
 
     # Live Badge
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) 90 14 110 30 15
-    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cInversePrimary)), 102, 25, 8, 8)
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cRail)) (New-Object System.Drawing.Pen($cCardBorder, 1)) 90 14 110 30 15
+    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cPrimary)), 102, 25, 8, 8)
     $g.DrawString("Live 2026 - Q3", $pillFont, (New-Object System.Drawing.SolidBrush($cText)), 116, 22)
 
     # Meta tags
@@ -294,25 +294,25 @@ function Create-Structured-Dashboard-Mockup {
     $g.DrawString("CYCLE D - 42", $metaFont, (New-Object System.Drawing.SolidBrush($cMuted)), 345, 23)
 
     # Evidence Sealed Badge (RealMe Primary Container)
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimaryContainer)) (New-Object System.Drawing.Pen($cInversePrimary, 1)) 445 14 135 30 15
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimaryContainer)) (New-Object System.Drawing.Pen($cPrimary, 1)) 445 14 135 30 15
     $g.DrawString("EVIDENCE SEALED", $pillFont, (New-Object System.Drawing.SolidBrush($cOnPrimaryContainer)), 458, 22)
 
     # Right Action Buttons
     $rx = $width - 480
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $rx 14 165 30 8
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cRail)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $rx 14 165 30 8
     $g.DrawString("Workspace Standard v", $pillFont, (New-Object System.Drawing.SolidBrush($cText)), $rx + 10, 22)
 
     $rx += 175
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $rx 14 110 30 8
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cRail)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $rx 14 110 30 8
     $g.DrawString("[cmd K] Command", $pillFont, (New-Object System.Drawing.SolidBrush($cMuted)), $rx + 8, 22)
 
     $rx += 120
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $rx 14 70 30 8
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cRail)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $rx 14 70 30 8
     $g.DrawString("Inbox 3", $pillFont, (New-Object System.Drawing.SolidBrush($cText)), $rx + 12, 22)
 
     $rx += 80
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cText)) $null $rx 14 90 30 8
-    $g.DrawString("+ New Audit", $pillFont, (New-Object System.Drawing.SolidBrush([System.Drawing.Color]::Black)), $rx + 10, 22)
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimary)) $null $rx 14 90 30 8
+    $g.DrawString("+ New Audit", $pillFont, (New-Object System.Drawing.SolidBrush($cOnPrimary)), $rx + 10, 22)
 
     # -------------------------------------------------------------------------
     # 3. MAIN DASHBOARD CONTENT AREA
@@ -328,7 +328,7 @@ function Create-Structured-Dashboard-Mockup {
     $g.DrawString("Good Morning, Jane", $greetFont, (New-Object System.Drawing.SolidBrush($cText)), 92, $contentY)
     $g.DrawString("Audit cycle 2026 - Q3 is currently at 82% completion.", $subFont, (New-Object System.Drawing.SolidBrush($cMuted)), 92, $contentY + 36)
 
-    # 3 TOP KPI CARDS (Mapped 100% to RealMe Semantic Containers)
+    # 3 TOP KPI CARDS (Mapped 100% to RealMe Semantic Containers in Light Mode)
     $kpiY = $contentY + 70
     $kpiW = ($mainW - 32) / 3
     $kpiH = 100
@@ -343,7 +343,7 @@ function Create-Structured-Dashboard-Mockup {
 
     # Card 2: RealMe Primary Container (#D4E1F6 / #112A54)
     $k2X = 92 + $kpiW + 16
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimaryContainer)) (New-Object System.Drawing.Pen($cInversePrimary, 1)) $k2X $kpiY $kpiW $kpiH $roundR
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimaryContainer)) (New-Object System.Drawing.Pen($cPrimary, 1)) $k2X $kpiY $kpiW $kpiH $roundR
     $g.DrawString("OPEN FINDINGS", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cOnPrimaryContainer)), $k2X + 16, $kpiY + 14)
     Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimary)) $null ($k2X + $kpiW - 60) ($kpiY + 12) 48 20 10
     $g.DrawString("HIGH", (New-Object System.Drawing.Font($hFontName, 7, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cOnPrimary)), ($k2X + $kpiW - 50), $kpiY + 16)
@@ -367,12 +367,12 @@ function Create-Structured-Dashboard-Mockup {
     Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) 92 $overY $mainW $overH $roundR
 
     # Header Bar
-    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cInversePrimary)), 110, $overY + 22, 6, 6)
+    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cPrimary)), 110, $overY + 22, 6, 6)
     $g.DrawString("AUDIT STATUS OVERVIEW - 44 TOTAL", (New-Object System.Drawing.Font($hFontName, 9, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cText)), 124, $overY + 18)
 
     # Quarter toggle
     $togX = 92 + $mainW - 220
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCanvas)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $togX ($overY + 14) 200 28 6
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cRail)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $togX ($overY + 14) 200 28 6
     $g.DrawString("Week", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Regular)), (New-Object System.Drawing.SolidBrush($cMuted)), $togX + 14, $overY + 20)
     $g.DrawString("Month", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Regular)), (New-Object System.Drawing.SolidBrush($cMuted)), $togX + 72, $overY + 20)
     Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimary)) $null ($togX + 130) ($overY + 16) 65 24 4
@@ -411,7 +411,7 @@ function Create-Structured-Dashboard-Mockup {
     Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) 92 $heatY $mainW $heatH $roundR
 
     # Heatmap Header
-    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cInversePrimary)), 110, $heatY + 22, 6, 6)
+    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cPrimary)), 110, $heatY + 22, 6, 6)
     $g.DrawString("FINDINGS HEATMAP * BY DEPARTMENT", (New-Object System.Drawing.Font($hFontName, 9, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cText)), 124, $heatY + 18)
 
     # Legend (Mapped strictly to Secondary, Warning, Error)
@@ -429,13 +429,9 @@ function Create-Structured-Dashboard-Mockup {
     $cols = @("FINANCE", "IT OPS", "HR", "LEGAL")
     $rows = @("HIGH RISK", "MED RISK", "LOW RISK")
     
-    # Strictly RealMe Token Pairs:
-    # High Risk: error (#910725) & on-error (#FFFFFF) or error-container (#FDE6EB)
-    # Med Risk: warning-container (#FEF3E6) & on-warning-container (#311B01)
-    # Low Risk: secondary-container (#E9F0FA) & on-secondary-container (#112B54)
-    # Muted: surface-container-lowest (#222631) & surface-container-highest (#8D909C)
+    # Authentic Light Token Pairs
     $cellMatrix = @(
-        @( @{ Val="04"; Bg=$cError; Fg=$cOnPrimary }, @{ Val="07"; Bg=$cError; Fg=$cOnPrimary }, @{ Val="01"; Bg=$cErrorContainer; Fg=$cOnErrorContainer }, @{ Val="00"; Bg=$cCardBorder; Fg=$cMuted } ),
+        @( @{ Val="04"; Bg=$cError; Fg=$cOnPrimary }, @{ Val="07"; Bg=$cError; Fg=$cOnPrimary }, @{ Val="01"; Bg=$cErrorContainer; Fg=$cOnErrorContainer }, @{ Val="00"; Bg=$cRail; Fg=$cMuted } ),
         @( @{ Val="12"; Bg=$cWarningContainer; Fg=$cOnWarningContainer }, @{ Val="09"; Bg=$cWarningContainer; Fg=$cOnWarningContainer }, @{ Val="04"; Bg=$cWarningContainer; Fg=$cOnWarningContainer }, @{ Val="06"; Bg=$cWarningContainer; Fg=$cOnWarningContainer } ),
         @( @{ Val="22"; Bg=$cSecondaryContainer; Fg=$cOnSecondaryContainer }, @{ Val="18"; Bg=$cSecondaryContainer; Fg=$cOnSecondaryContainer }, @{ Val="31"; Bg=$cSecondaryContainer; Fg=$cOnSecondaryContainer }, @{ Val="08"; Bg=$cSecondaryContainer; Fg=$cOnSecondaryContainer } )
     )
@@ -455,7 +451,7 @@ function Create-Structured-Dashboard-Mockup {
         for ($ci = 0; $ci -lt 4; $ci++) {
             $cellData = $cellMatrix[$ri][$ci]
             $cellX = $tblX + 120 + ($ci * ($cellW + 8))
-            Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cellData.Bg)) $null $cellX $rY $cellW $cellH 6
+            Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cellData.Bg)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $cellX $rY $cellW $cellH 6
             $g.DrawString($cellData.Val, (New-Object System.Drawing.Font($bFontName, 12, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cellData.Fg)), $cellX + 68, $rY + 12)
         }
     }
@@ -477,11 +473,11 @@ function Create-Structured-Dashboard-Mockup {
     $g.DrawString($subMsg, (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Regular)), (New-Object System.Drawing.SolidBrush($cMuted)), $intelX + 20, $actY + 44)
 
     # Review & Snooze buttons
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCanvas)) (New-Object System.Drawing.Pen($cCardBorder, 1)) ($intelX + 20) ($actY + 84) 100 32 6
-    $g.DrawString("REVIEW ->", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cText)), $intelX + 34, $actY + 92)
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimary)) $null ($intelX + 20) ($actY + 84) 100 32 6
+    $g.DrawString("REVIEW ->", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cOnPrimary)), $intelX + 34, $actY + 92)
 
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cText)) $null ($intelX + 130) ($actY + 84) 90 32 6
-    $g.DrawString("SNOOZE", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush([System.Drawing.Color]::Black)), $intelX + 150, $actY + 92)
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cRail)) (New-Object System.Drawing.Pen($cCardBorder, 1)) ($intelX + 130) ($actY + 84) 90 32 6
+    $g.DrawString("SNOOZE", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cText)), $intelX + 150, $actY + 92)
 
     # 2. AI RISK INSIGHT CARD
     $aiY = $actY + $actH + 20
@@ -489,12 +485,12 @@ function Create-Structured-Dashboard-Mockup {
     Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $intelX $aiY $intelW $aiH $roundR
 
     # Header
-    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cInversePrimary)), $intelX + 20, $aiY + 22, 6, 6)
-    $g.DrawString("AI RISK INSIGHT", (New-Object System.Drawing.Font($hFontName, 9, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cInversePrimary)), $intelX + 32, $aiY + 18)
+    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cPrimary)), $intelX + 20, $aiY + 22, 6, 6)
+    $g.DrawString("AI RISK INSIGHT", (New-Object System.Drawing.Font($hFontName, 9, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cPrimary)), $intelX + 32, $aiY + 18)
     $g.DrawString("Model v4.2", (New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Regular)), (New-Object System.Drawing.SolidBrush($cMuted)), $intelX + $intelW - 85, $aiY + 18)
 
     # Tag badges
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cErrorContainer)) $null ($intelX + 20) ($aiY + 44) 75 22 4
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cErrorContainer)) (New-Object System.Drawing.Pen($cError, 1)) ($intelX + 20) ($aiY + 44) 75 22 4
     $g.DrawString("EMERGING", (New-Object System.Drawing.Font($hFontName, 7, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cOnErrorContainer)), $intelX + 28, $aiY + 48)
     $g.DrawString("cluster * 7 signals", (New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Regular)), (New-Object System.Drawing.SolidBrush($cMuted)), $intelX + 105, $aiY + 48)
 
@@ -536,7 +532,7 @@ function Create-Structured-Dashboard-Mockup {
     } elseif ($withSystem) {
         # Tokenized primary container (#0D1F3D)
         $actionBtnBrush = New-Object System.Drawing.SolidBrush($cPrimary)
-        Draw-RoundedRect $g $actionBtnBrush (New-Object System.Drawing.Pen($cInversePrimary, 1)) ($intelX + 20) $btnY $btnW 44 8
+        Draw-RoundedRect $g $actionBtnBrush $null ($intelX + 20) $btnY $btnW 44 8
         $g.DrawString("EXECUTE WORKFLOW ->", (New-Object System.Drawing.Font($hFontName, 9, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cOnPrimary)), $intelX + 130, $btnY + 14)
     } else {
         # Unstyled raw generic blue button
@@ -545,21 +541,21 @@ function Create-Structured-Dashboard-Mockup {
         $g.DrawString("EXECUTE WORKFLOW", (New-Object System.Drawing.Font($hFontName, 9, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush([System.Drawing.Color]::White)), $intelX + 130, $btnY + 14)
     }
 
-    # Confidence Score Bar (Primary Container / Inverse Primary)
+    # Confidence Score Bar (Primary Container / Primary)
     $confY = $btnY + 62
     $g.DrawString("CONFIDENCE SCORE", (New-Object System.Drawing.Font($hFontName, 7, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cMuted)), $intelX + 20, $confY)
-    $g.DrawString("90.1%", (New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cInversePrimary)), $intelX + $intelW - 65, $confY)
-    $g.FillRectangle((New-Object System.Drawing.SolidBrush($cCanvas)), ($intelX + 20), ($confY + 16), ($intelW - 40), 5)
-    $g.FillRectangle((New-Object System.Drawing.SolidBrush($cPrimary)), ($intelX + 20), ($confY + 16), [float](($intelW - 40) * 0.901), 5)
+    $g.DrawString("90.1%", (New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cPrimary)), $intelX + $intelW - 65, $confY)
+    $g.FillRectangle((New-Object System.Drawing.SolidBrush($cRail)), ($intelX + 20), ($confY + 16), ($intelW - 40), 6)
+    $g.FillRectangle((New-Object System.Drawing.SolidBrush($cPrimary)), ($intelX + 20), ($confY + 16), [float](($intelW - 40) * 0.901), 6)
 
     # 3. REGULATORY DEADLINES CARD
     $deadY = $aiY + $aiH + 16
     $deadH = 95
     Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cCard)) (New-Object System.Drawing.Pen($cCardBorder, 1)) $intelX $deadY $intelW $deadH $roundR
-    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cInversePrimary)), $intelX + 20, $deadY + 18, 6, 6)
+    $g.FillEllipse((New-Object System.Drawing.SolidBrush($cPrimary)), $intelX + 20, $deadY + 18, 6, 6)
     $g.DrawString("REGULATORY DEADLINES * ESCROW", (New-Object System.Drawing.Font($hFontName, 8, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cText)), $intelX + 32, $deadY + 14)
     $g.DrawString("Strict 14-calendar-day escrow deadline. 5% penalty triggers Friday 17:00 WAT.", (New-Object System.Drawing.Font($bFontName, 8, [System.Drawing.FontStyle]::Regular)), (New-Object System.Drawing.SolidBrush($cMuted)), $intelX + 20, $deadY + 38)
-    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimaryContainer)) (New-Object System.Drawing.Pen($cInversePrimary, 1)) ($intelX + 20) ($deadY + 62) 130 22 11
+    Draw-RoundedRect $g (New-Object System.Drawing.SolidBrush($cPrimaryContainer)) (New-Object System.Drawing.Pen($cPrimary, 1)) ($intelX + 20) ($deadY + 62) 130 22 11
     $g.DrawString("RLS BARRIER: SEALED", (New-Object System.Drawing.Font($hFontName, 7, [System.Drawing.FontStyle]::Bold)), (New-Object System.Drawing.SolidBrush($cOnPrimaryContainer)), $intelX + 28, $deadY + 66)
 
     # -------------------------------------------------------------------------
@@ -579,7 +575,7 @@ function Create-Structured-Dashboard-Mockup {
 }
 
 # -----------------------------------------------------------------------------
-# EXECUTE MOCKUPS REGENERATION
+# EXECUTE MOCKUPS REGENERATION (LIGHT MODE ENTERPRISE SPECIFICATION)
 # -----------------------------------------------------------------------------
 Create-Structured-Dashboard-Mockup `
     "$evidenceDir\09-screen-without-system.png" `
@@ -589,7 +585,7 @@ Create-Structured-Dashboard-Mockup `
 
 Create-Structured-Dashboard-Mockup `
     "$evidenceDir\10-screen-with-system.png" `
-    "VERIFIED AUDIT: Screen Built WITH RealMe Design System (Plus Jakarta Sans, JetBrains Mono, Pinned #0D1F3D)" `
+    "VERIFIED AUDIT: Screen Built WITH RealMe Design System (Plus Jakarta Sans, JetBrains Mono, Pinned #0D1F3D, Light Canvas #FBFCFF)" `
     $true `
     $false
 
