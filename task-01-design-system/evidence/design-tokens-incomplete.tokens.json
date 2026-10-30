@@ -711,7 +711,7 @@
       },
       "fontFamily": {
         "type": "string",
-        "value": "JetBrains Mono"
+        "value": "Plus Jakarta Sans"
       },
       "fontWeight": {
         "type": "number",

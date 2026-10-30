@@ -313,7 +313,7 @@
       "value": {
         "fontSize": 11,
         "textDecoration": "none",
-        "fontFamily": "JetBrains Mono",
+        "fontFamily": "Plus Jakarta Sans",
         "fontWeight": 500,
         "fontStyle": "normal",
         "fontStretch": "normal",
@@ -4158,7 +4158,7 @@
       },
       "fontFamily": {
         "type": "string",
-        "value": "JetBrains Mono"
+        "value": "Plus Jakarta Sans"
       },
       "fontWeight": {
         "type": "number",

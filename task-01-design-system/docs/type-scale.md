@@ -1,10 +1,9 @@
 # RealMe Enterprise Design System: Typographic Hierarchy & Metrics
 
 ## 1. Typographic Foundation
-- **Primary Headings & Titles**: `Plus Jakarta Sans`
+- **Primary Headings, Titles & UI Action Labels**: `Plus Jakarta Sans`
 - **Body & Tabular Records**: `JetBrains Mono`
-- **Micro Badges / UI Metadata**: `JetBrains Mono`
-- **Contextual Justification**: In RealMe, deal facts, pre-listing bottom-dollar agreed prices, escrow penalty dates, and structural crack inspection dimensions are legally binding data points. Monospaced `JetBrains Mono` for Body and Micro Labels ensures tabular alignment, fixed digit widths, and clear visual separation of clauses and status codes. `Plus Jakarta Sans` provides bold, authoritative weight for display valuations under direct sunlight on budget mobile screens.
+- **Contextual Justification**: In RealMe, deal facts, pre-listing bottom-dollar agreed prices, escrow penalty dates, and structural crack inspection dimensions are legally binding data points. Monospaced `JetBrains Mono` for Body ensures tabular alignment, fixed digit widths, and clear visual separation of clauses and measurements. `Plus Jakarta Sans` provides bold, authoritative weight and crisp legibility for display valuations, headlines, titles, and UI action labels under direct sunlight on budget mobile screens.
 
 ---
 
@@ -36,7 +35,7 @@ $$\text{Line Height} = \text{Font Size} \times 1.5$$
 | **Body** | Body Small | JetBrains Mono | 400 (Regular) | 12px | 1.5 | 18px | -0.32px | Timestamps, server-side sync notices |
 | **Label** | Label Large | Plus Jakarta Sans | 600 (SemiBold) | 14px | 1.5 | 21px | -0.45px | Primary action buttons ("Execute Escrow Rider") |
 | **Label** | Label Medium | Plus Jakarta Sans | 500 (Medium) | 12px | 1.5 | 18px | -0.35px | Filter chips, active listing status tags |
-| **Label** | Label Small | JetBrains Mono | 500 (Medium) | 11px | 1.5 | 16.5px | -0.22px | Micro compliance badges, tenant isolation pill |
+| **Label** | Label Small | Plus Jakarta Sans | 500 (Medium) | 11px | 1.5 | 16.5px | -0.22px | Micro compliance badges, tenant isolation pill |
 
 ---
 

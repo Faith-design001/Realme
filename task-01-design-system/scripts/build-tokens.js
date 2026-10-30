@@ -94,7 +94,7 @@ function compileTokens() {
   }
 
   // 3. Typography Styles (15 Material 3 derived styles in schema.font)
-  css += `\n  /* ==========================================\n   * 3. TYPOGRAPHY SYSTEM (15 ROLES & STYLES)\n   * Plus Jakarta Sans (Headings), JetBrains Mono (Body), DM Sans (Micro)\n   * ========================================== */\n`;
+  css += `\n  /* ==========================================\n   * 3. TYPOGRAPHY SYSTEM (15 ROLES & STYLES)\n   * Plus Jakarta Sans (Display, Headline, Title, Labels), JetBrains Mono (Body)\n   * ========================================== */\n`;
   if (schema.font) {
     for (const [fontKey, fontObj] of Object.entries(schema.font)) {
       const f = fontObj.value;

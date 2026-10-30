@@ -16,7 +16,7 @@
 - **Finished (Task 01: Enterprise Design System)**:
   - Canonical W3C/DTCG Figma token exports (`evidence/05-tokens-incomplete.json` vs `evidence/06-tokens-complete.json`).
   - 14-tone perceptual color system anchored to pinned primary key `#0D1F3D` (Midnight Navy Blue).
-  - 15 formula-derived typographic styles (`Plus Jakarta Sans` for headers, `JetBrains Mono` for tabular records and micro labels).
+  - 15 formula-derived typographic styles (`Plus Jakarta Sans` for display, headlines, titles, and labels; `JetBrains Mono` for tabular records).
   - Brand-pigmented atmospheric shadow system derived from `#0D1F3D`.
   - Standalone Node compiler (`scripts/build-tokens.js`) resolving nested token aliases into clean `--realme-*` CSS custom properties.
   - Verified RealMe deal intelligence dashboard (`src/index.html` + `src/styles.css`) consuming 100% design tokens and 0 raw hex values.
@@ -35,7 +35,7 @@
 - **Design Tokens / W3C DTCG Format**: Selected the Design Tokens Community Group JSON format rather than proprietary CSS frameworks to maintain an engine-agnostic single source of truth bridging Figma directly to code.
 - **Node.js (v24 LTS Runtime)**: Selected standard vanilla Node for the compiler script (`build-tokens.js`) rather than heavy third-party CLI suites to eliminate external dependencies and enable transparent, deterministic alias resolution.
 - **Vanilla CSS Custom Properties**: Selected native CSS custom properties rather than Tailwind or CSS-in-JS to allow zero-runtime theme and brand switching directly at the browser boundary without bloating client bundles on weak 3G Lagos cellular networks.
-- **Plus Jakarta Sans & JetBrains Mono**: Selected `Plus Jakarta Sans` for punchy high-contrast display valuations under midday sun, and `JetBrains Mono` for tabular deal records, inspection caveats, and micro status chips to ensure monospaced digit alignment and zero character ambiguity.
+- **Plus Jakarta Sans & JetBrains Mono**: Selected `Plus Jakarta Sans` for punchy high-contrast display valuations and crisp UI action labels under midday sun, and `JetBrains Mono` for tabular deal records, inspection caveats, and structural coordinates to ensure monospaced digit alignment and zero character ambiguity.
 - **Git Version Control**: Maintained strict Git branch hygiene with immutable commit logs spanning multiple days to document process evidence and unmerged regression tests.
 
 ---
@@ -68,7 +68,7 @@ Every line height strictly satisfies the mathematical multiplier formula: $\text
 12. **Body Small**: 12px / 18px LH / 400 Regular / -0.32px letter spacing (`JetBrains Mono`)
 13. **Label Large**: 14px / 21px LH / 600 SemiBold / -0.45px letter spacing (`Plus Jakarta Sans`)
 14. **Label Medium**: 12px / 18px LH / 500 Medium / -0.35px letter spacing (`Plus Jakarta Sans`)
-15. **Label Small**: 11px / 16.5px LH / 500 Medium / -0.22px letter spacing (`JetBrains Mono`)
+15. **Label Small**: 11px / 16.5px LH / 500 Medium / -0.22px letter spacing (`Plus Jakarta Sans`)
 
 ### C. Atmospheric Elevation Shadows
 Built from primary brand pigment (`#0D1F3D`) to simulate real-world ambient bounce light:

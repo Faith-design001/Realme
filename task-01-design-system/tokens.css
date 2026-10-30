@@ -82,7 +82,7 @@
 
   /* ==========================================
    * 3. TYPOGRAPHY SYSTEM (15 ROLES & STYLES)
-   * Plus Jakarta Sans (Headings), JetBrains Mono (Body), DM Sans (Micro)
+   * Plus Jakarta Sans (Display, Headline, Title, Labels), JetBrains Mono (Body)
    * ========================================== */
   --realme-type-display-large-font-family: "Plus Jakarta Sans", sans-serif;
   --realme-type-display-large-font-weight: 800;
@@ -168,7 +168,7 @@
   --realme-type-label-medium-line-height: 18px;
   --realme-type-label-medium-letter-spacing: -0.35px;
 
-  --realme-type-label-small-font-family: "JetBrains Mono", monospace;
+  --realme-type-label-small-font-family: "Plus Jakarta Sans", sans-serif;
   --realme-type-label-small-font-weight: 500;
   --realme-type-label-small-font-size: 11px;
   --realme-type-label-small-line-height: 16.5px;
