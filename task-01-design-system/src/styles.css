@@ -1,7 +1,8 @@
-/* RealMe Enterprise Design System - Component Styles
- * Enforces 100% token consumption from RealMe compiled tokens (tokens.css).
- * Zero raw hex colors. Semantic roles strictly applied.
- */
+/* ==========================================================================
+ * RealMe Enterprise Design System - Application Layout & Component Styles
+ * Enforces 100% token consumption from tokens.css
+ * Zero raw hex colors. Strict semantic role mappings.
+ * ========================================================================== */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -10,8 +11,8 @@
 }
 
 body {
-  background-color: var(--realme-color-surface);
-  color: var(--realme-color-on-surface);
+  background-color: var(--realme-color-shadow);
+  color: var(--realme-color-surface);
   font-family: var(--realme-type-body-large-font-family);
   font-size: var(--realme-type-body-large-font-size);
   line-height: var(--realme-type-body-large-line-height);
@@ -19,71 +20,963 @@ body {
   letter-spacing: var(--realme-type-body-large-letter-spacing);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* RealMe Header */
-.realme-header {
-  background-color: var(--realme-color-surface);
-  border-bottom: 1px solid var(--realme-color-outline-variant);
-  padding: 16px 32px;
+/* Master Layout Grid */
+.app-layout {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: var(--realme-shadow-soft-shadow);
+  min-height: 100vh;
+  background-color: var(--realme-color-shadow);
 }
 
-.header-brand {
+/* ==========================================================================
+ * 1. LEFT ICON NAVIGATION RAIL
+ * ========================================================================== */
+.nav-rail {
+  width: 68px;
+  background-color: var(--realme-color-scrim);
+  border-right: 1px solid var(--realme-color-surface-container-lowest-2);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  padding: 20px 0;
+  flex-shrink: 0;
+  z-index: 20;
 }
 
-.brand-mark {
-  background-color: var(--realme-color-primary);
-  color: var(--realme-color-on-primary);
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+.nav-brand {
+  margin-bottom: 32px;
+}
+
+.brand-glyph {
+  width: 42px;
+  height: 42px;
+  background: var(--realme-color-primary);
+  border: 1px solid var(--realme-color-inverse-primary);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--realme-type-title-large-font-size);
-  font-weight: var(--realme-type-title-large-font-weight);
-  font-family: var(--realme-type-title-large-font-family);
   box-shadow: var(--realme-shadow-soft-shadow);
 }
 
-.brand-title {
-  font-family: var(--realme-type-title-large-font-family);
+.glyph-char {
+  font-family: var(--realme-type-headline-large-font-family);
   font-size: var(--realme-type-title-large-font-size);
-  font-weight: var(--realme-type-title-large-font-weight);
-  line-height: var(--realme-type-title-large-line-height);
-  color: var(--realme-color-on-surface);
+  font-weight: var(--realme-type-display-large-font-weight);
+  color: var(--realme-color-on-primary);
 }
 
-.brand-subtitle {
-  font-family: var(--realme-type-label-medium-font-family);
-  font-size: var(--realme-type-label-medium-font-size);
-  font-weight: var(--realme-type-label-medium-font-weight);
-  line-height: var(--realme-type-label-medium-line-height);
-  color: var(--realme-color-on-surface-variant);
-}
-
-.header-status {
+.nav-items {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
+  gap: 16px;
+  width: 100%;
+  align-items: center;
+  flex: 1;
 }
 
-.status-pill {
+.nav-btn {
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--realme-color-surface-container-hightest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.nav-btn:hover {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  color: var(--realme-color-surface);
+}
+
+.nav-btn.is-active {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  color: var(--realme-color-surface);
+  border-color: var(--realme-color-surface-hint);
+  box-shadow: var(--realme-shadow-soft-shadow);
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-footer {
+  margin-top: auto;
+}
+
+/* ==========================================================================
+ * 2. MAIN APPLICATION VIEWPORT
+ * ========================================================================== */
+.app-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Top Status / Telemetry Bar */
+.top-bar {
+  height: 60px;
+  background-color: var(--realme-color-scrim);
+  border-bottom: 1px solid var(--realme-color-surface-container-lowest-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  flex-shrink: 0;
+}
+
+.top-bar-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+}
+
+.telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
   font-family: var(--realme-type-label-small-font-family);
   font-size: var(--realme-type-label-small-font-size);
   font-weight: var(--realme-type-label-small-font-weight);
-  padding: 4px 10px;
-  border-radius: 9999px;
-  text-transform: uppercase;
   letter-spacing: var(--realme-type-label-small-letter-spacing);
+}
+
+.live-pill {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  color: var(--realme-color-surface);
+}
+
+.live-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--realme-color-inverse-primary);
+}
+
+.telemetry-meta {
+  color: var(--realme-color-surface-container-hightest);
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+}
+
+.rls-pill {
+  background-color: var(--realme-color-primary-container);
+  color: var(--realme-color-on-primary-container);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pill-btn {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  border: 1px solid var(--realme-color-surface-hint);
+  color: var(--realme-color-surface);
+  border-radius: 8px;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--realme-type-label-medium-font-family);
+  font-size: var(--realme-type-label-medium-font-size);
+  font-weight: var(--realme-type-label-medium-font-weight);
+}
+
+.pill-label {
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.pill-value {
+  color: var(--realme-color-surface);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.chevron {
+  font-size: 10px;
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.cmd-icon {
+  background-color: var(--realme-color-scrim);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+}
+
+.inbox-count {
+  background-color: var(--realme-color-primary-container);
+  color: var(--realme-color-on-primary-container);
+  padding: 1px 6px;
+  border-radius: 9999px;
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.primary-action-btn {
+  background-color: var(--realme-color-surface);
+  color: var(--realme-color-on-surface);
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-family: var(--realme-type-label-large-font-family);
+  font-size: var(--realme-type-label-large-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  cursor: pointer;
+  box-shadow: var(--realme-shadow-soft-shadow);
+  transition: opacity 0.15s ease;
+}
+
+.primary-action-btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+ * 3. DASHBOARD MAIN GRID
+ * ========================================================================== */
+.dashboard-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  padding: 28px;
+  min-height: 0;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* LEFT MAIN COLUMN */
+.col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Welcome Section */
+.welcome-section {
+  margin-bottom: 4px;
+}
+
+.welcome-title {
+  font-family: var(--realme-type-headline-large-font-family);
+  font-size: var(--realme-type-headline-large-font-size);
+  line-height: var(--realme-type-headline-large-line-height);
+  font-weight: var(--realme-type-headline-large-font-weight);
+  color: var(--realme-color-surface);
+  letter-spacing: var(--realme-type-headline-large-letter-spacing);
+  margin-bottom: 4px;
+}
+
+.welcome-subtitle {
+  font-family: var(--realme-type-title-medium-font-family);
+  font-size: var(--realme-type-title-medium-font-size);
+  line-height: var(--realme-type-title-medium-line-height);
+  color: var(--realme-color-surface-container-hightest);
+  font-weight: var(--realme-type-title-medium-font-weight);
+}
+
+/* 3 KPI Metric Cards */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.kpi-card {
+  border-radius: 14px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 110px;
+  box-shadow: var(--realme-shadow-soft-shadow);
+}
+
+.kpi-card-amber {
+  background-color: var(--realme-color-warning);
+  color: var(--realme-color-on-warning);
+}
+
+.kpi-card-lavender {
+  background-color: var(--realme-color-inverse-primary);
+  color: var(--realme-color-primary);
+}
+
+.kpi-card-slate {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  border: 1px solid var(--realme-color-surface-hint);
+  color: var(--realme-color-surface);
+}
+
+.kpi-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.kpi-card-label {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  letter-spacing: var(--realme-type-label-small-letter-spacing);
+  opacity: 0.9;
+}
+
+.kpi-card-badge {
+  padding: 2px 10px;
+  border-radius: 9999px;
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  letter-spacing: var(--realme-type-label-small-letter-spacing);
+}
+
+.badge-amber-subtle {
+  background-color: var(--realme-color-surface);
+  color: var(--realme-color-on-surface);
+}
+
+.badge-lavender-subtle {
+  background-color: var(--realme-color-primary);
+  color: var(--realme-color-on-primary);
+}
+
+.badge-slate-subtle {
+  background-color: var(--realme-color-scrim);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.kpi-card-body {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.kpi-card-number {
+  font-family: var(--realme-type-display-small-font-family);
+  font-size: var(--realme-type-display-small-font-size);
+  line-height: 1;
+  font-weight: var(--realme-type-display-small-font-weight);
+  letter-spacing: var(--realme-type-display-small-letter-spacing);
+}
+
+.kpi-card-delta {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  opacity: 0.85;
+}
+
+/* Surface Cards Shared */
+.surface-card {
+  background-color: var(--realme-color-inverse-surface);
+  border: 1px solid var(--realme-color-surface-container-lowest-2);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: var(--realme-shadow-soft-shadow);
+}
+
+.card-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--realme-color-inverse-primary);
+}
+
+.dot-purple {
+  background-color: var(--realme-color-inverse-primary);
+}
+
+.card-title-text {
+  font-family: var(--realme-type-title-small-font-family);
+  font-size: var(--realme-type-title-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  letter-spacing: var(--realme-type-title-small-letter-spacing);
+  color: var(--realme-color-surface);
+}
+
+/* Filter Toggles */
+.filter-toggle-group {
+  display: inline-flex;
+  background-color: var(--realme-color-shadow);
+  border: 1px solid var(--realme-color-surface-container-lowest-2);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: var(--realme-color-surface-container-hightest);
+  font-family: var(--realme-type-label-medium-font-family);
+  font-size: var(--realme-type-label-medium-font-size);
+  cursor: pointer;
+}
+
+.filter-btn.is-selected {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  color: var(--realme-color-surface);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+/* Status Columns */
+.status-columns-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.status-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-col-label {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  color: var(--realme-color-surface-container-hightest);
+  letter-spacing: var(--realme-type-label-small-letter-spacing);
+}
+
+.status-col-value {
+  font-family: var(--realme-type-headline-medium-font-family);
+  font-size: var(--realme-type-headline-medium-font-size);
+  font-weight: var(--realme-type-headline-medium-font-weight);
+  color: var(--realme-color-surface);
+  line-height: 1.1;
+}
+
+.status-col-meta {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+/* Segmented Bar */
+.segmented-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: var(--realme-color-surface-container-lowest-2);
+}
+
+.bar-seg {
+  height: 100%;
+}
+
+.seg-planned {
+  background-color: var(--realme-color-primary-container);
+}
+
+.seg-progress {
+  background-color: var(--realme-color-warning);
+}
+
+.seg-review {
+  background-color: var(--realme-color-error);
+}
+
+.seg-completed {
+  background-color: var(--realme-color-inverse-primary);
+}
+
+/* Heatmap Section */
+.legend-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot-low {
+  background-color: var(--realme-color-primary-container);
+}
+
+.dot-med {
+  background-color: var(--realme-color-warning);
+}
+
+.dot-high {
+  background-color: var(--realme-color-error);
+}
+
+.heatmap-table-container {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.heatmap-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+.heatmap-table th {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-small-font-weight);
+  color: var(--realme-color-surface-container-hightest);
+  text-align: center;
+  padding: 6px;
+}
+
+.heatmap-table .th-corner {
+  width: 110px;
+}
+
+.heatmap-table .row-label {
+  text-align: left;
+  font-size: var(--realme-type-label-small-font-size);
+  color: var(--realme-color-surface);
+  white-space: nowrap;
+}
+
+.heat-cell {
+  height: 38px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-title-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.cell-high {
+  background-color: var(--realme-color-error);
+  color: var(--realme-color-on-error);
+}
+
+.cell-med-high {
+  background-color: var(--realme-color-accent);
+  color: var(--realme-color-on-accent);
+}
+
+.cell-med {
+  background-color: var(--realme-color-warning);
+  color: var(--realme-color-on-warning);
+}
+
+.cell-low {
+  background-color: var(--realme-color-primary);
+  color: var(--realme-color-on-primary);
+}
+
+.cell-muted {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.heatmap-footnote {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.highlight-link {
+  color: var(--realme-color-inverse-primary);
+  text-decoration: underline;
+}
+
+/* Frequent Queries */
+.queries-title {
+  font-family: var(--realme-type-title-small-font-family);
+  font-size: var(--realme-type-label-medium-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  letter-spacing: var(--realme-type-label-small-letter-spacing);
+  color: var(--realme-color-surface-container-hightest);
+  margin-bottom: 12px;
+}
+
+.queries-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.query-pill {
+  background-color: var(--realme-color-shadow);
+  border: 1px solid var(--realme-color-surface-container-lowest-2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--realme-color-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.query-pill:hover {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  border-color: var(--realme-color-surface-hint);
+}
+
+.query-icon {
+  font-family: var(--realme-type-headline-small-font-family);
+  font-size: 14px;
+  color: var(--realme-color-inverse-primary);
+}
+
+.query-text {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+ * 4. RIGHT INTELLIGENCE SIDEBAR
+ * ========================================================================== */
+.col-intel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Alert Banner Card */
+.alert-banner-card {
+  background-color: var(--realme-color-inverse-surface);
+  border: 1px solid var(--realme-color-surface-container-lowest-2);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: var(--realme-shadow-soft-shadow);
+}
+
+.alert-banner-top {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.alert-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--realme-color-error-container);
+  color: var(--realme-color-on-error-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.alert-banner-headline {
+  font-family: var(--realme-type-title-medium-font-family);
+  font-size: var(--realme-type-title-medium-font-size);
+  font-weight: var(--realme-type-title-medium-font-weight);
+  color: var(--realme-color-surface);
+  margin-bottom: 4px;
+}
+
+.alert-banner-sub {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+  line-height: 1.4;
+}
+
+.text-hazard {
+  color: var(--realme-color-error);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.alert-banner-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-review {
+  background-color: var(--realme-color-surface-container-lowest-2);
+  border: 1px solid var(--realme-color-surface-hint);
+  color: var(--realme-color-surface);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: var(--realme-type-label-large-font-family);
+  font-size: var(--realme-type-label-medium-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  cursor: pointer;
+}
+
+.btn-snooze {
+  background-color: var(--realme-color-surface);
+  border: none;
+  color: var(--realme-color-on-surface);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: var(--realme-type-label-large-font-family);
+  font-size: var(--realme-type-label-medium-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  cursor: pointer;
+}
+
+/* Insight Card */
+.insight-card {
+  padding: 22px;
+}
+
+.insight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.insight-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.insight-heading {
+  font-family: var(--realme-type-title-small-font-family);
+  font-size: var(--realme-type-title-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  letter-spacing: var(--realme-type-title-small-letter-spacing);
+  color: var(--realme-color-surface);
+}
+
+.model-badge {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.insight-tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tag-emerging {
+  background-color: var(--realme-color-error-container);
+  color: var(--realme-color-on-error-container);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  letter-spacing: var(--realme-type-label-small-letter-spacing);
+}
+
+.tag-meta {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.insight-deal-title {
+  font-family: var(--realme-type-headline-small-font-family);
+  font-size: var(--realme-type-headline-small-font-size);
+  font-weight: var(--realme-type-headline-small-font-weight);
+  color: var(--realme-color-surface);
+  margin-bottom: 8px;
+}
+
+.insight-lead-text {
+  font-family: var(--realme-type-body-medium-font-family);
+  font-size: var(--realme-type-body-medium-font-size);
+  line-height: var(--realme-type-body-medium-line-height);
+  color: var(--realme-color-surface-container-hightest);
+  margin-bottom: 16px;
+}
+
+.insight-section {
+  margin-bottom: 14px;
+}
+
+.section-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.section-micro-label {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  color: var(--realme-color-surface-container-hightest);
+  letter-spacing: var(--realme-type-label-small-letter-spacing);
+}
+
+.badge-priority {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: 10px;
+  color: var(--realme-color-error);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.section-body-text {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  line-height: 1.5;
+  color: var(--realme-color-surface);
+}
+
+.metrics-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 18px 0;
+  padding: 12px;
+  background-color: var(--realme-color-shadow);
+  border-radius: 8px;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-box-label {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.metric-box-val {
+  font-family: var(--realme-type-body-large-font-family);
+  font-size: var(--realme-type-title-small-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  color: var(--realme-color-surface);
+}
+
+.btn-workflow {
+  width: 100%;
+  background-color: var(--realme-color-primary);
+  border: 1px solid var(--realme-color-surface-hint);
+  color: var(--realme-color-on-primary);
+  border-radius: 8px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--realme-type-label-large-font-family);
+  font-size: var(--realme-type-label-large-font-size);
+  font-weight: var(--realme-type-label-large-font-weight);
+  cursor: pointer;
+  margin-bottom: 16px;
+  box-shadow: var(--realme-shadow-soft-shadow);
+  transition: opacity 0.15s ease;
+}
+
+.btn-workflow:hover {
+  opacity: 0.9;
+}
+
+.confidence-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.confidence-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.conf-title {
+  font-family: var(--realme-type-label-small-font-family);
+  font-size: var(--realme-type-label-small-font-size);
+  color: var(--realme-color-surface-container-hightest);
+}
+
+.conf-score {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  color: var(--realme-color-inverse-primary);
+  font-weight: var(--realme-type-label-large-font-weight);
+}
+
+.confidence-track {
+  height: 4px;
+  background-color: var(--realme-color-shadow);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background-color: var(--realme-color-inverse-primary);
+}
+
+/* Deadline Card */
+.deadline-card {
+  padding: 18px 20px;
+}
+
+.deadline-text {
+  font-family: var(--realme-type-body-small-font-family);
+  font-size: var(--realme-type-body-small-font-size);
+  line-height: 1.5;
+  color: var(--realme-color-surface);
+  margin-bottom: 12px;
+}
+
+.deadline-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .status-isolated {
@@ -91,353 +984,8 @@ body {
   color: var(--realme-color-on-primary-container);
 }
 
-.status-meta {
+.deadline-tag {
   font-family: var(--realme-type-body-small-font-family);
-  font-size: var(--realme-type-body-small-font-size);
-  color: var(--realme-color-on-surface-variant);
-}
-
-/* Main Layout */
-.realme-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* Telemetry Grid */
-.telemetry-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-.telemetry-card {
-  background-color: var(--realme-color-surface-container);
-  border: 1px solid var(--realme-color-outline-variant);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: var(--realme-shadow-soft-shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.telemetry-label {
-  font-family: var(--realme-type-label-medium-font-family);
-  font-size: var(--realme-type-label-medium-font-size);
-  font-weight: var(--realme-type-label-medium-font-weight);
-  color: var(--realme-color-on-surface-variant);
-  text-transform: uppercase;
-  letter-spacing: var(--realme-type-label-medium-letter-spacing);
-}
-
-.telemetry-value {
-  font-family: var(--realme-type-display-medium-font-family);
-  font-size: var(--realme-type-display-medium-font-size);
-  font-weight: var(--realme-type-display-medium-font-weight);
-  line-height: var(--realme-type-display-medium-line-height);
-  letter-spacing: var(--realme-type-display-medium-letter-spacing);
-  color: var(--realme-color-on-surface);
-}
-
-.telemetry-hint {
-  font-family: var(--realme-type-body-small-font-family);
-  font-size: var(--realme-type-body-small-font-size);
-  color: var(--realme-color-on-surface-variant);
-}
-
-.text-warning {
-  color: var(--realme-color-warning);
-}
-
-.text-error {
-  color: var(--realme-color-error);
-}
-
-.text-primary {
-  color: var(--realme-color-primary);
-}
-
-/* Shortcuts Section */
-.shortcuts-section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.section-heading {
-  font-family: var(--realme-type-title-medium-font-family);
-  font-size: var(--realme-type-title-medium-font-size);
-  font-weight: var(--realme-type-title-medium-font-weight);
-  line-height: var(--realme-type-title-medium-line-height);
-  color: var(--realme-color-on-surface);
-}
-
-.shortcuts-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 12px;
-}
-
-.shortcut-btn {
-  background-color: var(--realme-color-surface-container);
-  border: 1px solid var(--realme-color-outline);
-  border-radius: 8px;
-  padding: 12px 16px;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  transition: all 0.2s ease;
-  box-shadow: var(--realme-shadow-soft-shadow);
-}
-
-.shortcut-btn:hover {
-  background-color: var(--realme-color-surface-variant);
-  border-color: var(--realme-color-primary);
-  box-shadow: var(--realme-shadow-medium-shadow);
-}
-
-.shortcut-icon {
-  color: var(--realme-color-primary);
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.shortcut-text {
-  font-family: var(--realme-type-body-medium-font-family);
-  font-size: var(--realme-type-body-medium-font-size);
-  font-weight: var(--realme-type-body-medium-font-weight);
-  line-height: var(--realme-type-body-medium-line-height);
-  color: var(--realme-color-on-surface);
-}
-
-/* Deal Card Section */
-.deal-record-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.deal-card {
-  background-color: var(--realme-color-surface);
-  border: 1px solid var(--realme-color-outline);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: var(--realme-shadow-medium-shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.deal-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 16px;
-  border-bottom: 1px solid var(--realme-color-outline-variant);
-  padding-bottom: 20px;
-}
-
-.deal-badge {
-  display: inline-block;
-  background-color: var(--realme-color-primary-container);
-  color: var(--realme-color-on-primary-container);
-  font-family: var(--realme-type-label-small-font-family);
   font-size: var(--realme-type-label-small-font-size);
-  font-weight: var(--realme-type-label-small-font-weight);
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  letter-spacing: var(--realme-type-label-small-letter-spacing);
-}
-
-.deal-title {
-  font-family: var(--realme-type-headline-large-font-family);
-  font-size: var(--realme-type-headline-large-font-size);
-  font-weight: var(--realme-type-headline-large-font-weight);
-  line-height: var(--realme-type-headline-large-line-height);
-  letter-spacing: var(--realme-type-headline-large-letter-spacing);
-  color: var(--realme-color-on-surface);
-}
-
-.deal-meta {
-  font-family: var(--realme-type-body-small-font-family);
-  font-size: var(--realme-type-body-small-font-size);
-  color: var(--realme-color-on-surface-variant);
-  margin-top: 4px;
-}
-
-.deal-pricing {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.pricing-label {
-  font-family: var(--realme-type-label-small-font-family);
-  font-size: var(--realme-type-label-small-font-size);
-  font-weight: var(--realme-type-label-small-font-weight);
-  color: var(--realme-color-on-surface-variant);
-  text-transform: uppercase;
-}
-
-.pricing-figure {
-  font-family: var(--realme-type-display-large-font-family);
-  font-size: var(--realme-type-display-large-font-size);
-  font-weight: var(--realme-type-display-large-font-weight);
-  line-height: var(--realme-type-display-large-line-height);
-  letter-spacing: var(--realme-type-display-large-letter-spacing);
-  color: var(--realme-color-primary);
-}
-
-.pricing-strike {
-  font-family: var(--realme-type-body-small-font-family);
-  font-size: var(--realme-type-body-small-font-size);
-  color: var(--realme-color-on-surface-variant);
-  text-decoration: line-through;
-}
-
-/* Alert Boxes */
-.deal-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.alert-box {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  border-radius: 8px;
-  align-items: flex-start;
-}
-
-.alert-error {
-  background-color: var(--realme-color-error-container);
-  border-left: 4px solid var(--realme-color-error);
-}
-
-.alert-error .alert-indicator {
-  color: var(--realme-color-error);
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.alert-error .alert-title {
-  font-family: var(--realme-type-title-small-font-family);
-  font-size: var(--realme-type-title-small-font-size);
-  font-weight: var(--realme-type-title-small-font-weight);
-  color: var(--realme-color-on-error-container);
-}
-
-.alert-error .alert-text {
-  font-family: var(--realme-type-body-medium-font-family);
-  font-size: var(--realme-type-body-medium-font-size);
-  line-height: var(--realme-type-body-medium-line-height);
-  color: var(--realme-color-on-error-container);
-  margin-top: 4px;
-}
-
-.alert-warning {
-  background-color: var(--realme-color-warning-container);
-  border-left: 4px solid var(--realme-color-warning);
-}
-
-.alert-warning .alert-indicator {
-  color: var(--realme-color-on-warning-container);
-  font-size: 20px;
-}
-
-.alert-warning .alert-title {
-  font-family: var(--realme-type-title-small-font-family);
-  font-size: var(--realme-type-title-small-font-size);
-  font-weight: var(--realme-type-title-small-font-weight);
-  color: var(--realme-color-on-warning-container);
-}
-
-.alert-warning .alert-text {
-  font-family: var(--realme-type-body-medium-font-family);
-  font-size: var(--realme-type-body-medium-font-size);
-  line-height: var(--realme-type-body-medium-line-height);
-  color: var(--realme-color-on-warning-container);
-  margin-top: 4px;
-}
-
-/* Deal Card Footer */
-.deal-card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  border-top: 1px solid var(--realme-color-outline-variant);
-  padding-top: 20px;
-}
-
-.verification-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.check-icon {
-  background-color: var(--realme-color-primary-container);
-  color: var(--realme-color-on-primary-container);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.verification-text {
-  font-family: var(--realme-type-label-medium-font-family);
-  font-size: var(--realme-type-label-medium-font-size);
-  color: var(--realme-color-on-surface-variant);
-}
-
-.card-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.btn {
-  font-family: var(--realme-type-label-large-font-family);
-  font-size: var(--realme-type-label-large-font-size);
-  font-weight: var(--realme-type-label-large-font-weight);
-  line-height: var(--realme-type-label-large-line-height);
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.btn-secondary {
-  background-color: var(--realme-color-surface-container);
-  border-color: var(--realme-color-outline);
-  color: var(--realme-color-on-surface);
-}
-
-.btn-secondary:hover {
-  background-color: var(--realme-color-surface-variant);
-}
-
-.btn-primary {
-  background-color: var(--realme-color-primary);
-  color: var(--realme-color-on-primary);
-  box-shadow: var(--realme-shadow-soft-shadow);
-}
-
-.btn-primary:hover {
-  box-shadow: var(--realme-shadow-medium-shadow);
-  filter: brightness(1.1);
+  color: var(--realme-color-surface-container-hightest);
 }

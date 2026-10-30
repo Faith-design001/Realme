@@ -4,131 +4,398 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RealMe - Deal Intelligence Dashboard</title>
+  <title>RealMe - Deal Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../tokens.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- RealMe Header / Utility Bar -->
-  <header class="realme-header">
-    <div class="header-brand">
-      <div class="brand-mark">R</div>
-      <div class="brand-info">
-        <h1 class="brand-title">RealMe</h1>
-        <p class="brand-subtitle">Real Estate Intelligence Platform &bull; Lekki, Lagos</p>
+  <div class="app-layout">
+    <!-- 1. LEFT ICON NAVIGATION RAIL -->
+    <aside class="nav-rail" aria-label="Primary Navigation">
+      <div class="nav-brand">
+        <div class="brand-glyph" aria-hidden="true">
+          <span class="glyph-char">R</span>
+        </div>
       </div>
-    </div>
-    <div class="header-status">
-      <span class="status-pill status-isolated">Tenant Isolation: Enforced RLS</span>
-      <span class="status-meta">Server Snapshot: 10:42 AM WAT &bull; Cached Server-Side</span>
-    </div>
-  </header>
 
-  <!-- Main Viewport Layout -->
-  <main class="realme-main">
-    <!-- Top Telemetry Cards -->
-    <section class="telemetry-grid">
-      <div class="telemetry-card">
-        <span class="telemetry-label">Active Field Listings</span>
-        <div class="telemetry-value">48</div>
-        <span class="telemetry-hint">Assigned to Team Lead A</span>
-      </div>
-      <div class="telemetry-card">
-        <span class="telemetry-label">Open Compliance Flags</span>
-        <div class="telemetry-value text-warning">03</div>
-        <span class="telemetry-hint">Requires Broker Signoff</span>
-      </div>
-      <div class="telemetry-card">
-        <span class="telemetry-label">Escrow Contingencies</span>
-        <div class="telemetry-value text-error">02</div>
-        <span class="telemetry-hint">Penalties Triggering in 48h</span>
-      </div>
-      <div class="telemetry-card">
-        <span class="telemetry-label">Tenant Security Barrier</span>
-        <div class="telemetry-value text-primary">100%</div>
-        <span class="telemetry-hint">PostgreSQL Owner RLS Enforced</span>
-      </div>
-    </section>
+      <nav class="nav-items">
+        <button class="nav-btn is-active" type="button" aria-label="Dashboard Overview" title="Dashboard Overview">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+        </button>
 
-    <!-- Query Shortcuts (Zero-Typing Field UX) -->
-    <section class="shortcuts-section">
-      <h2 class="section-heading">Frequent Deal Queries &bull; Instant Field Retrieval</h2>
-      <div class="shortcuts-row">
-        <button class="shortcut-btn" type="button">
-          <span class="shortcut-icon">&para;</span>
-          <span class="shortcut-text">What was the absolute bottom-dollar price for 45 Lekki Phase 1?</span>
+        <button class="nav-btn" type="button" aria-label="Deal Listings" title="Deal Listings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
         </button>
-        <button class="shortcut-btn" type="button">
-          <span class="shortcut-icon">&sect;</span>
-          <span class="shortcut-text">Did structural engineer note foundation cracks or mold in July report?</span>
+
+        <button class="nav-btn" type="button" aria-label="Inspection Audits" title="Inspection Audits">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
         </button>
-        <button class="shortcut-btn" type="button">
-          <span class="shortcut-icon">&dagger;</span>
-          <span class="shortcut-text">What escrow timeline penalties did legal counsel outline in private email?</span>
+
+        <button class="nav-btn" type="button" aria-label="Deal Intelligence" title="Deal Intelligence">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </button>
+
+        <button class="nav-btn" type="button" aria-label="New Record" title="New Record">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+        </button>
+
+        <button class="nav-btn" type="button" aria-label="Escrow Analytics" title="Escrow Analytics">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+        </button>
+      </nav>
+
+      <div class="nav-footer">
+        <button class="nav-btn" type="button" aria-label="Settings" title="Settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
         </button>
       </div>
-    </section>
+    </aside>
 
-    <!-- Active Deal Record View -->
-    <section class="deal-record-section">
-      <div class="deal-card">
-        <div class="deal-card-header">
-          <div>
-            <span class="deal-badge">Private Listing Record</span>
-            <h3 class="deal-title">45 Lekki Phase 1, Admiralty Way Corridor</h3>
-            <p class="deal-meta">Record ID: #RLM-LK1-045 &bull; Agent: Faith Ojo (ID: AGY-LEK-400)</p>
-          </div>
-          <div class="deal-pricing">
-            <span class="pricing-label">Bottom-Dollar Agreed Price</span>
-            <span class="pricing-figure">&#8358;450,000,000</span>
-            <span class="pricing-strike">Asking: &#8358;520,000,000</span>
-          </div>
+    <!-- 2. MAIN APPLICATION CONTENT -->
+    <div class="app-viewport">
+      <!-- TOP STATUS / TELEMETRY BAR -->
+      <header class="top-bar">
+        <div class="top-bar-telemetry">
+          <span class="telemetry-pill live-pill">
+            <span class="live-indicator"></span> Live 2026 - Q3
+          </span>
+          <span class="telemetry-meta">UTC 14:32:08 WAT</span>
+          <span class="telemetry-meta">CYCLE D - 42</span>
+          <span class="telemetry-pill rls-pill">EVIDENCE SEALED</span>
         </div>
 
-        <div class="deal-card-body">
-          <!-- Compliance Alert: Structural Crack Note -->
-          <div class="alert-box alert-error">
-            <div class="alert-indicator">&excl;</div>
-            <div class="alert-content">
-              <h4 class="alert-title">Inspection Disclosure &bull; Structural Engineer Caveat (July 19 Report)</h4>
-              <p class="alert-text">
-                Unredacted inspection notes active settlement hairline crack on northern boundary retaining wall.
-                Sub-base requires underpinning before title deed perfection. No active mold or toxic moisture detected
-                in main dwelling.
-              </p>
+        <div class="top-bar-actions">
+          <button class="pill-btn dropdown-btn" type="button">
+            <span class="pill-label">Workspace</span>
+            <span class="pill-value">Standard Holdings</span>
+            <span class="chevron" aria-hidden="true">&#9662;</span>
+          </button>
+
+          <button class="pill-btn cmd-btn" type="button">
+            <span class="cmd-icon">&#8984; K</span>
+            <span class="cmd-text">Command</span>
+          </button>
+
+          <button class="pill-btn inbox-btn" type="button">
+            <span>Inbox</span>
+            <span class="inbox-count">3</span>
+          </button>
+
+          <button class="primary-action-btn" type="button">
+            <span>+ New Audit</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- TWO-COLUMN DASHBOARD BODY -->
+      <main class="dashboard-grid">
+        <!-- LEFT MAIN COLUMN -->
+        <div class="col-main">
+          <!-- WELCOME HEADER -->
+          <section class="welcome-section">
+            <h1 class="welcome-title">Good Morning, Jane</h1>
+            <p class="welcome-subtitle">Audit cycle 2026 - Q3 is currently at 82% completion.</p>
+          </section>
+
+          <!-- 3 KPI METRIC CARDS -->
+          <section class="kpi-row" aria-label="High-Level Deal Metrics">
+            <!-- Card 1: Warm Gold -->
+            <div class="kpi-card kpi-card-amber">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">ACTIVE AUDITS</span>
+                <span class="kpi-card-badge badge-amber-subtle">OPEN</span>
+              </div>
+              <div class="kpi-card-body">
+                <span class="kpi-card-number">24</span>
+                <span class="kpi-card-delta">+2</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Lavender / Periwinkle -->
+            <div class="kpi-card kpi-card-lavender">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">OPEN FINDINGS</span>
+                <span class="kpi-card-badge badge-lavender-subtle">HIGH</span>
+              </div>
+              <div class="kpi-card-body">
+                <span class="kpi-card-number">68</span>
+                <span class="kpi-card-delta">+14%</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Deep Slate -->
+            <div class="kpi-card kpi-card-slate">
+              <div class="kpi-card-header">
+                <span class="kpi-card-label">CRITICAL FINDINGS</span>
+                <span class="kpi-card-badge badge-slate-subtle">LOW</span>
+              </div>
+              <div class="kpi-card-body">
+                <span class="kpi-card-number">09</span>
+                <span class="kpi-card-delta">+3</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- AUDIT STATUS OVERVIEW CARD -->
+          <section class="surface-card overview-card">
+            <div class="card-header-bar">
+              <div class="card-header-title">
+                <span class="dot-indicator"></span>
+                <h2 class="card-title-text">AUDIT STATUS OVERVIEW - 44 TOTAL</h2>
+              </div>
+              <div class="filter-toggle-group">
+                <button class="filter-btn" type="button">Week</button>
+                <button class="filter-btn" type="button">Month</button>
+                <button class="filter-btn is-selected" type="button">Quarter</button>
+              </div>
+            </div>
+
+            <div class="status-columns-grid">
+              <div class="status-col">
+                <span class="status-col-label">PLANNED</span>
+                <span class="status-col-value">12</span>
+                <span class="status-col-meta">26% of cycle</span>
+              </div>
+              <div class="status-col">
+                <span class="status-col-label">IN PROGRESS</span>
+                <span class="status-col-value">08</span>
+                <span class="status-col-meta">18% of cycle</span>
+              </div>
+              <div class="status-col">
+                <span class="status-col-label">REVIEW</span>
+                <span class="status-col-value">03</span>
+                <span class="status-col-meta">7% of cycle</span>
+              </div>
+              <div class="status-col">
+                <span class="status-col-label">COMPLETED</span>
+                <span class="status-col-value">21</span>
+                <span class="status-col-meta">49% of cycle</span>
+              </div>
+            </div>
+
+            <!-- Segmented Progress Bar -->
+            <div class="segmented-bar" aria-hidden="true">
+              <div class="bar-seg seg-planned" style="width: 26%;"></div>
+              <div class="bar-seg seg-progress" style="width: 18%;"></div>
+              <div class="bar-seg seg-review" style="width: 7%;"></div>
+              <div class="bar-seg seg-completed" style="width: 49%;"></div>
+            </div>
+          </section>
+
+          <!-- FINDINGS HEATMAP BY DEPARTMENT / ZONE -->
+          <section class="surface-card heatmap-card">
+            <div class="card-header-bar">
+              <div class="card-header-title">
+                <span class="dot-indicator"></span>
+                <h2 class="card-title-text">FINDINGS HEATMAP &bull; BY DEPARTMENT</h2>
+              </div>
+              <div class="legend-group">
+                <span class="legend-item"><span class="legend-dot dot-low"></span> Low</span>
+                <span class="legend-item"><span class="legend-dot dot-med"></span> Medium</span>
+                <span class="legend-item"><span class="legend-dot dot-high"></span> High</span>
+              </div>
+            </div>
+
+            <div class="heatmap-table-container">
+              <table class="heatmap-table">
+                <thead>
+                  <tr>
+                    <th class="th-corner"></th>
+                    <th>FINANCE</th>
+                    <th>IT OPS</th>
+                    <th>HR</th>
+                    <th>LEGAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th class="row-label">HIGH RISK</th>
+                    <td><div class="heat-cell cell-high">04</div></td>
+                    <td><div class="heat-cell cell-high">07</div></td>
+                    <td><div class="heat-cell cell-med-high">01</div></td>
+                    <td><div class="heat-cell cell-muted">00</div></td>
+                  </tr>
+                  <tr>
+                    <th class="row-label">MED RISK</th>
+                    <td><div class="heat-cell cell-med">12</div></td>
+                    <td><div class="heat-cell cell-med">09</div></td>
+                    <td><div class="heat-cell cell-med">04</div></td>
+                    <td><div class="heat-cell cell-med">06</div></td>
+                  </tr>
+                  <tr>
+                    <th class="row-label">LOW RISK</th>
+                    <td><div class="heat-cell cell-low">22</div></td>
+                    <td><div class="heat-cell cell-low">18</div></td>
+                    <td><div class="heat-cell cell-low">31</div></td>
+                    <td><div class="heat-cell cell-low">08</div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="heatmap-footnote">
+              Click cell to drill into findings. <span class="highlight-link">Procurement / Finance</span> shows the highest concentration this cycle.
+            </p>
+          </section>
+
+          <!-- FREQUENT REALME DEAL QUERIES (ZERO-TYPING UX) -->
+          <section class="surface-card queries-card">
+            <h3 class="queries-title">FAVORITE FIELD AGENT QUERIES &bull; INSTANT RETRIEVAL</h3>
+            <div class="queries-grid">
+              <button class="query-pill" type="button">
+                <span class="query-icon">&para;</span>
+                <span class="query-text">Bottom-dollar price for 45 Lekki Phase 1?</span>
+              </button>
+              <button class="query-pill" type="button">
+                <span class="query-icon">&sect;</span>
+                <span class="query-text">Foundation cracks/mold in July structural report?</span>
+              </button>
+              <button class="query-pill" type="button">
+                <span class="query-icon">&dagger;</span>
+                <span class="query-text">Escrow penalties in broker-to-attorney email?</span>
+              </button>
+            </div>
+          </section>
+        </div>
+
+        <!-- RIGHT INTELLIGENCE SIDEBAR -->
+        <aside class="col-intel" aria-label="Deal & Risk Intelligence">
+          <!-- 1. ALERT BANNER CARD -->
+          <div class="alert-banner-card">
+            <div class="alert-banner-top">
+              <div class="alert-icon-wrap" aria-hidden="true">&#9888;</div>
+              <div class="alert-banner-text">
+                <h3 class="alert-banner-headline">12 open findings require action.</h3>
+                <p class="alert-banner-sub">
+                  3 critical risks identified in <span class="text-hazard">Procurement Controls</span> may impact compliance objectives.
+                </p>
+              </div>
+            </div>
+            <div class="alert-banner-actions">
+              <button class="btn-review" type="button">REVIEW &rarr;</button>
+              <button class="btn-snooze" type="button">SNOOZE</button>
             </div>
           </div>
 
-          <!-- Legal Escrow Clause -->
-          <div class="alert-box alert-warning">
-            <div class="alert-indicator">&#9888;</div>
-            <div class="alert-content">
-              <h4 class="alert-title">Legal Counsel Escrow Stipulation &bull; Private Thread (Attorneys to Broker)</h4>
-              <p class="alert-text">
-                Strict 14-calendar-day escrow closing deadline applies. Failure to deposit 10% balance by Friday 17:00
-                WAT triggers
-                a 5% liquidated damages penalty against the escrow deposit under Clause 8.2 of the Lekki Master
-                Covenant.
+          <!-- 2. AI RISK INSIGHT CARD -->
+          <div class="surface-card insight-card">
+            <div class="insight-header">
+              <div class="insight-title-wrap">
+                <span class="dot-indicator dot-purple"></span>
+                <h2 class="insight-heading">AI RISK INSIGHT</h2>
+              </div>
+              <span class="model-badge">Model v4.2</span>
+            </div>
+
+            <div class="insight-tags">
+              <span class="tag-emerging">EMERGING</span>
+              <span class="tag-meta">cluster &bull; 7 signals</span>
+            </div>
+
+            <div class="insight-body">
+              <h3 class="insight-deal-title">Procurement Controls: 45 Lekki Phase 1</h3>
+              <p class="insight-lead-text">
+                Anomalous patterns detected in vendor onboarding cycles. Failure rate increased <span class="text-hazard">+18%</span> compared to previous quarter.
               </p>
+
+              <div class="insight-section">
+                <h4 class="section-micro-label">LIKELY ROOT CAUSE</h4>
+                <p class="section-body-text">
+                  Tiered approval matrix disabled following ERP upgrade on Jun 12. Settlement hairline crack on northern boundary retaining wall.
+                </p>
+              </div>
+
+              <div class="insight-section">
+                <div class="section-label-row">
+                  <h4 class="section-micro-label">SUGGESTED REMEDIATION</h4>
+                  <span class="badge-priority">HIGH PRIORITY</span>
+                </div>
+                <p class="section-body-text">
+                  Initiate immediate review of tiered approval workflows for all vendors added after June 15. Reserve &#8358;15M underpinning holdback.
+                </p>
+              </div>
+
+              <div class="metrics-split">
+                <div class="metric-box">
+                  <span class="metric-box-label">Est. exposure</span>
+                  <span class="metric-box-val text-hazard">$1.42M (&#8358;450M Agreed)</span>
+                </div>
+                <div class="metric-box">
+                  <span class="metric-box-label">Resolve in</span>
+                  <span class="metric-box-val">&asymp; 6 days</span>
+                </div>
+              </div>
+
+              <button class="btn-workflow" type="button">
+                <span>EXECUTE WORKFLOW</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+
+              <div class="confidence-footer">
+                <div class="confidence-labels">
+                  <span class="conf-title">CONFIDENCE SCORE</span>
+                  <span class="conf-score">90.1%</span>
+                </div>
+                <div class="confidence-track">
+                  <div class="confidence-fill" style="width: 90.1%;"></div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="deal-card-footer">
-          <div class="verification-badge">
-            <span class="check-icon">&#10003;</span>
-            <span class="verification-text">Private Listing Verified &bull; Multi-Tenant Isolated to Agent
-              #AGY-LEK-400</span>
+          <!-- 3. REGULATORY DEADLINES CARD -->
+          <div class="surface-card deadline-card">
+            <div class="card-header-bar">
+              <div class="card-header-title">
+                <span class="dot-indicator"></span>
+                <h2 class="card-title-text">REGULATORY DEADLINES &bull; ESCROW</h2>
+              </div>
+            </div>
+            <p class="deadline-text">
+              Strict 14-calendar-day escrow closing deadline applies under Clause 8.2. 5% liquidated damages penalty triggers Friday 17:00 WAT.
+            </p>
+            <div class="deadline-pill-row">
+              <span class="status-pill status-isolated">RLS BARRIER: SEALED</span>
+              <span class="deadline-tag">Agent #AGY-LEK-400</span>
+            </div>
           </div>
-          <div class="card-actions">
-            <button class="btn btn-secondary" type="button">Inspect Document Hashes</button>
-            <button class="btn btn-primary" type="button">Execute Escrow Rider</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </aside>
+      </main>
+    </div>
+  </div>
 </body>
 
 </html>
