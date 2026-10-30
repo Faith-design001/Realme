@@ -1,47 +1,47 @@
-# Task 01: Vault Enterprise Design System & Agent Consumption Proof
+# Task 01: RealMe Enterprise Design System & Agent Consumption Proof
 
 *Written for a technical interviewer who has four minutes.*
 
 ---
 
 ## 1. What This Task Was
-Task 01 establishes the foundational enterprise design system for **Vault**—the internal real estate deal intelligence platform built for **Realme Properties Ltd** (a 400-agent brokerage based in Lekki, Lagos). The objective was to build a rigorous, accessible token architecture, export it from Figma into an agent-consumable format, enforce semantic-only role abstraction, and mathematically prove that an AI coding agent consumed the system without leaking raw values or reverting to generic defaults.
+Task 01 establishes the foundational enterprise design system for **RealMe**—the internal real estate deal intelligence platform built for **Realme Properties Ltd** (a 400-agent brokerage based in Lekki, Lagos). The objective was to build a rigorous, accessible token architecture, export it from Figma into an agent-consumable format (`06-tokens-complete.json`), enforce semantic-only role abstraction, and mathematically prove that an AI coding agent consumed the system without leaking raw values or reverting to generic defaults.
 
 ---
 
 ## 2. What We Built
 1. **Mathematical Tonal Color System**:
-   - Pinned brand anchor at Tone 40 (`#0F4C5C` - Lekki Deep Cyan-Teal) across 13 perceptual HCT tones (`0` to `100`).
-   - Symmetrical light/dark theme derivations and functional scales for Error (`#BA1A1A`), Warning (`#7A5900`), and Success (`#196538`).
-   - 19 semantic role tokens with verified WCAG contrast ratios (e.g. `on-surface` on `surface` = 15.68:1 AAA; `on-primary` on `primary` = 7.84:1 AAA).
+   - Pinned brand anchor at Tone 40 (`#0D1F3D` - Midnight Navy Blue) across 14 perceptual HCT tones (`0` to `100`).
+   - Symmetrical light/dark theme derivations and functional scales for Error (`#910725`), Warning (`#633602`), and Accent (`#2A0808`).
+   - 44 semantic role tokens with verified WCAG contrast ratios (e.g. `on-surface` on `surface` = **16.76:1** AAA; `on-primary` on `primary` = **16.40:1** AAA).
 2. **Typographic Scale & Formula Constraints**:
-   - 15 styles across 5 roles (Display, Headline, Title, Body, Label) in `Plus Jakarta Sans`.
-   - Strict formula-driven line heights: $1.4\times$ for Display/Headlines (preventing multi-line title collapse), $1.5\times$ for Titles/Labels (grid alignment), and $1.6\times$ for Body (preventing line-jumping on vibrating Android displays).
-   - Visually judged compact letter spacing (-1.5px on Display Large) preventing multi-digit currency truncation.
+   - 15 styles across 5 roles (Display, Headline, Title, Body, Label) combining `Plus Jakarta Sans` for headers, `JetBrains Mono` for tabular deal records, and `DM Sans` for micro status chips.
+   - Strict formula-driven line heights: $1.5\times$ multiplier applied across the scale (e.g. Display Large: 64px size $\times 1.5 = 96\text{px}$ line height; Body Medium: 14px size $\times 1.5 = 21\text{px}$ line height).
+   - Visually judged compact letter spacing (-2.0px on Display Large) preventing multi-digit currency truncation.
 3. **Atmospheric Shadow System**:
-   - Soft, Medium, and Hard elevation tokens tinted with primary brand pigment (`rgba(15, 76, 92, alpha)`) rather than generic black, simulating physical ambient bounce light.
+   - Soft, Medium, and Hard elevation tokens tinted with primary brand pigment (`rgba(13, 31, 61, alpha)`) rather than generic black, simulating physical ambient bounce light.
 4. **Token Pipeline & Compiler**:
-   - DTCG/W3C token exports (`evidence/05-tokens-incomplete.json` vs `evidence/06-tokens-complete.json`).
+   - Canonical Figma Design Tokens exports (`evidence/05-tokens-incomplete.json` vs `evidence/06-tokens-complete.json`).
    - Standalone Node compiler (`scripts/build-tokens.js`) resolving nested aliases and emitting `tokens.css` exposing exclusively semantic roles.
 5. **Verified Screen Implementation**:
-   - Live Vault Deal Dashboard (`src/index.html` + `src/styles.css`) consuming 100% tokens and 0 raw hex values.
+   - Live RealMe Deal Dashboard (`src/index.html` + `src/styles.css`) consuming 100% tokens and 0 raw hex values.
    - Proof telemetry assets, prompt logs, and unmerged deliberate regression test branch (`test/broken-token-referencing`).
 
 ---
 
 ## 3. What We Decided
-- **Pinning Over Algorithmic Normalization**: We explicitly pinned `#0F4C5C` as Primary 40. Without pinning, the default HCT generator absorbed the maritime teal into a desaturated blue-slate (`#1B6578`), diluting the brand.
-- **Strict Role Encapsulation (Primitive Banning)**: We forbade exporting primitive palette tokens to CSS variables. Components can only consume semantic roles (`--vault-color-primary`, `--vault-color-surface`). This prevents developers and AI agents from hardcoding primitive shades that break during theme switching.
+- **Pinning Over Algorithmic Normalization**: We explicitly pinned `#0D1F3D` as Primary 40. Without pinning, the default HCT generator absorbed the midnight navy into a desaturated slate-cyan (`#1A3F75`), diluting the brand.
+- **Strict Role Encapsulation (Primitive Banning)**: We forbade exporting primitive palette tokens to CSS variables. Components can only consume semantic roles (`--realme-color-primary`, `--realme-color-surface`). This prevents developers and AI agents from hardcoding primitive shades that break during theme switching.
 - **Material Baseline Divergences**:
-  1. *Typeface/Weight*: Swapped Roboto Regular (400) for Plus Jakarta Sans Bold (700) on Display/Headlines to withstand harsh Lagos equatorial glare on budget 250-nit phone screens.
-  2. *Body Leading*: Expanded Body Medium line-height from $1.43\times$ (20px) to $1.6\times$ (22px) to prevent line-jumping when field agents read dense structural caveats on transit.
+  1. *Typeface/Weight*: Swapped Roboto Regular (400) for Plus Jakarta Sans ExtraBold (800) with -2.0px tracking on Display Large to withstand harsh Lagos equatorial glare on budget 250-nit phone screens.
+  2. *Monospaced Body Records*: Set Body typography in `JetBrains Mono` (1.5x leading) because RealMe deal facts, bottom-dollar pricing numbers, and inspection crack measurements are tabular, structured data requiring zero glyph ambiguity.
 
 ---
 
 ## 4. What We Got Wrong (Failures & Defect Audit)
-1. **The Figma Variables Export Omission**: In our initial export, variable collections were unchecked, producing `evidence/05-tokens-incomplete.json` where the entire color system was an empty object `{}`. The compiler crashed with `Cannot read properties of undefined (reading primary)`. We identified the omission and re-exported `evidence/06-tokens-complete.json`.
-2. **Agent Token Compiler Primitive Leakage**: In our first prompt, the agent naively flattened primitive palettes directly into `:root`, exposing `--color-primary-40` and un-dereferenced aliases (`{color.primitive...}`). We stopped the agent, rewrote the prompt with strict architectural invariants, and enforced recursive alias dereferencing.
-3. **Outline-Variant Contrast Boundary Defect**: Our compiled `--vault-color-outline-variant` (`#C4C7C7`, `tokens.css:21`) has a 1.62:1 contrast ratio against the surface canvas. On cheap Android TN panels under midday sun, container partitions wash out completely. We documented this failure in `docs/defects.md` and restricted the token strictly to non-functional decorative lines.
+1. **The Figma Variables Export Omission**: In our initial export, variable collections were unchecked, producing `evidence/05-tokens-incomplete.json` where the entire color system was omitted, leaving only `effect` and `typography`. The compiler failed to resolve color roles. We identified the omission and re-exported `evidence/06-tokens-complete.json` with variable collections included.
+2. **Agent Token Compiler Primitive Leakage**: In our first prompt, the agent naively flattened primitive palettes directly into `:root`, exposing `--realme-color-primary40` and un-dereferenced aliases (`{primitive colors...}`). We stopped the agent, rewrote the prompt with strict architectural invariants, and enforced recursive alias dereferencing.
+3. **Outline-Variant Contrast Boundary Defect**: Our compiled `--realme-color-outline-variant` (`#C1C7CE`, `tokens.css:55`) has a 1.66:1 contrast ratio against the surface canvas. On cheap Android TN panels under midday sun, container partitions wash out completely. We documented this failure in `docs/defects.md` and restricted the token strictly to non-functional decorative lines.
 
 ---
 

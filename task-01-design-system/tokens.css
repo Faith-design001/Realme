@@ -1,131 +1,177 @@
 /**
- * Vault Enterprise Design System - Compiled Tokens
- * Auto-generated from Figma Variables (evidence/06-tokens-complete.json)
+ * RealMe Enterprise Design System - Compiled Tokens
+ * Auto-generated from Figma Design Tokens (evidence/06-tokens-complete.json)
  * DO NOT EDIT DIRECTLY. Run: node scripts/build-tokens.js
  */
 
 :root {
   /* ==========================================
    * 1. SEMANTIC COLOR ROLES
+   * Single Source of Truth: Pinned Primary 40 (#0D1F3D)
    * ========================================== */
-  --vault-color-surface: #F8FAFA; /* Main viewport canvas */
-  --vault-color-surface-container: #EEF1F1; /* Property listing cards, summary tiles */
-  --vault-color-surface-container-high: #E0E3E3; /* Elevated deal query modals and flyouts */
-  --vault-color-on-surface: #191C1D; /* High-emphasis titles, body text, valuations */
-  --vault-color-on-surface-variant: #71787B; /* Secondary metadata, timestamps, agent IDs */
-  --vault-color-primary: #0F4C5C; /* Primary action triggers, brand anchor */
-  --vault-color-on-primary: #FFFFFF; /* Text and glyphs rendered over primary elements */
-  --vault-color-primary-container: #98CEE1; /* Active filter pills, selected listing cards */
-  --vault-color-on-primary-container: #001F28; /* Text inside active filter pills */
-  --vault-color-outline: #71787B; /* Component boundaries and form field borders */
-  --vault-color-outline-variant: #C4C7C7; /* Subtle card dividers (strictly non-text) */
-  --vault-color-error: #BA1A1A; /* Critical compliance flags, destructive triggers */
-  --vault-color-on-error: #FFFFFF; /* Text over error buttons */
-  --vault-color-error-container: #FFDAD6; /* Inspection breach callout banner background */
-  --vault-color-on-error-container: #410002; /* Text inside inspection breach callout banner */
-  --vault-color-warning-container: #FFE086; /* Escrow deadline penalty banner background */
-  --vault-color-on-warning-container: #261900; /* Text inside escrow deadline warning banner */
-  --vault-color-success-container: #A5F2B5; /* Cleared funds and registered title badge background */
-  --vault-color-on-success-container: #00210B; /* Text inside verified badge */
+  --realme-color-primary: #0D1F3D;
+  --realme-color-on-primary: #FFFFFF;
+  --realme-color-primary-container: #D4E1F6;
+  --realme-color-on-primary-container: #112A54;
+  --realme-color-primary-fixed: #D4E1F6;
+  --realme-color-on-primary-fixed: #030810;
+  --realme-color-primary-fixed-dim: #AAC3ED;
+  --realme-color-on-primary-fixed-dim-variant: #112A54;
+  --realme-color-inverse-primary: #80A6E4;
+  --realme-color-on-inverse-primary: #FAFCFE;
+  --realme-color-secondary: #19407F;
+  --realme-color-on-secondary: #FFFFFF;
+  --realme-color-secondary-container: #E9F0FA;
+  --realme-color-on-secondary-container: #112B54;
+  --realme-color-secondary-fixed: #E9F0FA;
+  --realme-color-on-secondary-fixed: #030810;
+  --realme-color-secondary-fixed-dim: #AAC4ED;
+  --realme-color-on-secondary-fixed-dim-2: #112B54;
+  --realme-color-tertiary: #1B3F7D;
+  --realme-color-on-tertiary: #FFFFFF;
+  --realme-color-tertiary-container: #EAF0FA;
+  --realme-color-on-tertiary-container: #122A53;
+  --realme-color-tertiary-fixed: #D5E1F5;
+  --realme-color-on-tertiary-fixed: #030810;
+  --realme-color-tertiary-fixed-dim: #ABC3EC;
+  --realme-color-on-tertiary-fixed-dim-variant: #122A53;
+  --realme-color-error: #910725;
+  --realme-color-on-error: #FFFFFF;
+  --realme-color-error-container: #FDE6EB;
+  --realme-color-on-error-container: #30020C;
+  --realme-color-surface: #FBFCFF;
+  --realme-color-on-surface: #181B24;
+  --realme-color-surface-variant: #FAFCFF;
+  --realme-color-on-surface-variant: #2C3136;
+  --realme-color-surface-container-hightest: #8D909C;
+  --realme-color-surface-container-high-2: #DADBE0;
+  --realme-color-surface-container-low-3: #F0F0F2;
+  --realme-color-surface-container: #DADBE0;
+  --realme-color-surface-container-lowest-2: #222631;
+  --realme-color-inverse-surface: #181B24;
+  --realme-color-inverse-on-surface: #FBFCFF;
+  --realme-color-surface-hint: #1A407E;
+  --realme-color-outline: #A6ACB3;
+  --realme-color-outline-variant: #C1C7CE;
+  --realme-color-background: #FBFCFF;
+  --realme-color-on-background-2: #181B24;
+  --realme-color-surface-bright: #DFE2EE;
+  --realme-color-surface-dim: #B0B2B7;
+  --realme-color-scrim: #000000;
+  --realme-color-shadow: #08152A;
+  --realme-color-accent: #2A0808;
+  --realme-color-on-accent: #FFFFFF;
+  --realme-color-accent-container: #FAE9E9;
+  --realme-color-on-accent-container: #2A0808;
+  --realme-color-accent-fixed: #FAE9E9;
+  --realme-color-on-accent-fixed: #000000;
+  --realme-color-accent-fixed-dim: #F6D4D4;
+  --realme-color-on-accent-fixed-dim-variant: #110303;
+  --realme-color-warning: #633602;
+  --realme-color-on-warning: #FEF3E6;
+  --realme-color-warning-container: #FEF3E6;
+  --realme-color-on-warning-container: #311B01;
 
   /* ==========================================
    * 2. BRAND-DERIVED ELEVATION SHADOWS
+   * Key: #0D1F3D (Midnight Navy)
    * ========================================== */
-  --vault-shadow-soft: 0px 2px 8px 0px rgba(15, 76, 92, 0.08);
-  --vault-shadow-medium: 0px 8px 24px -4px rgba(15, 76, 92, 0.16);
-  --vault-shadow-hard: 0px 16px 48px -8px rgba(15, 76, 92, 0.28);
+  --realme-shadow-soft-shadow: 1.5px 6px 30px 0px rgba(13, 31, 61, 0.12);
+  --realme-shadow-medium-shadow: 4px 6px 24px 0px rgba(13, 31, 61, 0.18);
+  --realme-shadow-hard-shadow: 0px 10px 20px 0px rgba(13, 31, 61, 0.20);
 
   /* ==========================================
    * 3. TYPOGRAPHY SYSTEM (15 ROLES & STYLES)
+   * Plus Jakarta Sans (Headings), JetBrains Mono (Body), DM Sans (Micro)
    * ========================================== */
-  --vault-type-display-large-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-display-large-font-weight: 700;
-  --vault-type-display-large-font-size: 57px;
-  --vault-type-display-large-line-height: 80px;
-  --vault-type-display-large-letter-spacing: -1.5px;
+  --realme-type-display-large-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-display-large-font-weight: 800;
+  --realme-type-display-large-font-size: 64px;
+  --realme-type-display-large-line-height: 96px;
+  --realme-type-display-large-letter-spacing: -2px;
 
-  --vault-type-display-medium-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-display-medium-font-weight: 700;
-  --vault-type-display-medium-font-size: 45px;
-  --vault-type-display-medium-line-height: 63px;
-  --vault-type-display-medium-letter-spacing: -1.0px;
+  --realme-type-display-medium-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-display-medium-font-weight: 800;
+  --realme-type-display-medium-font-size: 48px;
+  --realme-type-display-medium-line-height: 72px;
+  --realme-type-display-medium-letter-spacing: -2px;
 
-  --vault-type-display-small-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-display-small-font-weight: 600;
-  --vault-type-display-small-font-size: 36px;
-  --vault-type-display-small-line-height: 50px;
-  --vault-type-display-small-letter-spacing: -0.5px;
+  --realme-type-display-small-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-display-small-font-weight: 700;
+  --realme-type-display-small-font-size: 40px;
+  --realme-type-display-small-line-height: 60px;
+  --realme-type-display-small-letter-spacing: -1.4px;
 
-  --vault-type-headline-large-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-headline-large-font-weight: 600;
-  --vault-type-headline-large-font-size: 32px;
-  --vault-type-headline-large-line-height: 45px;
-  --vault-type-headline-large-letter-spacing: -0.25px;
+  --realme-type-headline-large-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-headline-large-font-weight: 700;
+  --realme-type-headline-large-font-size: 32px;
+  --realme-type-headline-large-line-height: 48px;
+  --realme-type-headline-large-letter-spacing: -1px;
 
-  --vault-type-headline-medium-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-headline-medium-font-weight: 600;
-  --vault-type-headline-medium-font-size: 28px;
-  --vault-type-headline-medium-line-height: 39px;
-  --vault-type-headline-medium-letter-spacing: 0px;
+  --realme-type-headline-medium-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-headline-medium-font-weight: 700;
+  --realme-type-headline-medium-font-size: 28px;
+  --realme-type-headline-medium-line-height: 42px;
+  --realme-type-headline-medium-letter-spacing: -1px;
 
-  --vault-type-headline-small-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-headline-small-font-weight: 500;
-  --vault-type-headline-small-font-size: 24px;
-  --vault-type-headline-small-line-height: 34px;
-  --vault-type-headline-small-letter-spacing: 0px;
+  --realme-type-headline-small-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-headline-small-font-weight: 600;
+  --realme-type-headline-small-font-size: 24px;
+  --realme-type-headline-small-line-height: 36px;
+  --realme-type-headline-small-letter-spacing: -0.9px;
 
-  --vault-type-title-large-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-title-large-font-weight: 500;
-  --vault-type-title-large-font-size: 22px;
-  --vault-type-title-large-line-height: 33px;
-  --vault-type-title-large-letter-spacing: 0px;
+  --realme-type-title-large-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-title-large-font-weight: 600;
+  --realme-type-title-large-font-size: 22px;
+  --realme-type-title-large-line-height: 33px;
+  --realme-type-title-large-letter-spacing: -0.75px;
 
-  --vault-type-title-medium-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-title-medium-font-weight: 600;
-  --vault-type-title-medium-font-size: 16px;
-  --vault-type-title-medium-line-height: 24px;
-  --vault-type-title-medium-letter-spacing: 0.15px;
+  --realme-type-title-medium-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-title-medium-font-weight: 500;
+  --realme-type-title-medium-font-size: 16px;
+  --realme-type-title-medium-line-height: 24px;
+  --realme-type-title-medium-letter-spacing: -0.55px;
 
-  --vault-type-title-small-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-title-small-font-weight: 600;
-  --vault-type-title-small-font-size: 14px;
-  --vault-type-title-small-line-height: 21px;
-  --vault-type-title-small-letter-spacing: 0.1px;
+  --realme-type-title-small-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-title-small-font-weight: 500;
+  --realme-type-title-small-font-size: 14px;
+  --realme-type-title-small-line-height: 24px;
+  --realme-type-title-small-letter-spacing: -0.4px;
 
-  --vault-type-body-large-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-body-large-font-weight: 400;
-  --vault-type-body-large-font-size: 16px;
-  --vault-type-body-large-line-height: 26px;
-  --vault-type-body-large-letter-spacing: 0px;
+  --realme-type-body-large-font-family: "JetBrains Mono", monospace;
+  --realme-type-body-large-font-weight: 400;
+  --realme-type-body-large-font-size: 16px;
+  --realme-type-body-large-line-height: 24px;
+  --realme-type-body-large-letter-spacing: -0.75px;
 
-  --vault-type-body-medium-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-body-medium-font-weight: 400;
-  --vault-type-body-medium-font-size: 14px;
-  --vault-type-body-medium-line-height: 22px;
-  --vault-type-body-medium-letter-spacing: 0px;
+  --realme-type-body-medium-font-family: "JetBrains Mono", monospace;
+  --realme-type-body-medium-font-weight: 400;
+  --realme-type-body-medium-font-size: 14px;
+  --realme-type-body-medium-line-height: 21px;
+  --realme-type-body-medium-letter-spacing: -0.45px;
 
-  --vault-type-body-small-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-body-small-font-weight: 400;
-  --vault-type-body-small-font-size: 12px;
-  --vault-type-body-small-line-height: 19px;
-  --vault-type-body-small-letter-spacing: 0.4px;
+  --realme-type-body-small-font-family: "JetBrains Mono", monospace;
+  --realme-type-body-small-font-weight: 400;
+  --realme-type-body-small-font-size: 12px;
+  --realme-type-body-small-line-height: 18px;
+  --realme-type-body-small-letter-spacing: -0.32px;
 
-  --vault-type-label-large-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-label-large-font-weight: 500;
-  --vault-type-label-large-font-size: 14px;
-  --vault-type-label-large-line-height: 21px;
-  --vault-type-label-large-letter-spacing: 0.1px;
+  --realme-type-label-large-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-label-large-font-weight: 600;
+  --realme-type-label-large-font-size: 14px;
+  --realme-type-label-large-line-height: 21px;
+  --realme-type-label-large-letter-spacing: -0.45px;
 
-  --vault-type-label-medium-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-label-medium-font-weight: 500;
-  --vault-type-label-medium-font-size: 12px;
-  --vault-type-label-medium-line-height: 18px;
-  --vault-type-label-medium-letter-spacing: 0.5px;
+  --realme-type-label-medium-font-family: "Plus Jakarta Sans", sans-serif;
+  --realme-type-label-medium-font-weight: 500;
+  --realme-type-label-medium-font-size: 12px;
+  --realme-type-label-medium-line-height: 18px;
+  --realme-type-label-medium-letter-spacing: -0.35px;
 
-  --vault-type-label-small-font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --vault-type-label-small-font-weight: 500;
-  --vault-type-label-small-font-size: 11px;
-  --vault-type-label-small-line-height: 16px;
-  --vault-type-label-small-letter-spacing: 0.5px;
+  --realme-type-label-small-font-family: "DM Sans", sans-serif;
+  --realme-type-label-small-font-weight: 500;
+  --realme-type-label-small-font-size: 11px;
+  --realme-type-label-small-line-height: 16.5px;
+  --realme-type-label-small-letter-spacing: -0.22px;
 
 }
