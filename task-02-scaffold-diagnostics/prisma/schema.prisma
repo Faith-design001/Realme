@@ -1,0 +1,128 @@
+// RealMe Database Schema (PostgreSQL with Row-Level Security)
+// Absolute multi-tenant data isolation enforced at engine layer
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  AGENT
+  TEAM_LEAD
+  MANAGING_BROKER
+}
+
+model Tenant {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String        @db.VarChar(128)
+  jurisdiction String        @default("Lagos-Lekki") @db.VarChar(64)
+  createdAt    DateTime      @default(now()) @map("created_at")
+  agents       Agent[]
+  listings     Listing[]
+  policyCards  CorporatePolicyCard[]
+
+  @@map("tenants")
+}
+
+model Agent {
+  id        String    @id @default(uuid()) @db.Uuid
+  tenantId  String    @map("tenant_id") @db.Uuid
+  fullName  String    @map("full_name") @db.VarChar(128)
+  email     String    @unique @db.VarChar(128)
+  role      Role      @default(AGENT)
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  tenant    Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  listings  Listing[]
+
+  @@index([tenantId])
+  @@map("agents")
+}
+
+model Listing {
+  id          String   @id @default(uuid()) @db.Uuid
+  tenantId    String   @map("tenant_id") @db.Uuid
+  agentId     String   @map("agent_id") @db.Uuid
+  title       String   @db.VarChar(256)
+  address     String   @db.VarChar(256)
+  locationTag String   @default("Lekki Phase 1") @map("location_tag") @db.VarChar(64)
+  askingPrice Decimal  @map("asking_price") @db.Decimal(18, 2)
+  status      String   @default("active") @db.VarChar(32)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  tenant        Tenant                 @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  agent         Agent                  @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  questionnaire ListingQuestionnaire?
+  caveats       InspectionCaveat[]
+  legalRecords  LegalCorrespondence[]
+
+  @@index([tenantId, agentId])
+  @@map("listings")
+}
+
+model ListingQuestionnaire {
+  id                String   @id @default(uuid()) @db.Uuid
+  tenantId          String   @map("tenant_id") @db.Uuid
+  listingId         String   @unique @map("listing_id") @db.Uuid
+  bottomDollarPrice Decimal  @map("bottom_dollar_price") @db.Decimal(18, 2)
+  sellerLegalName   String   @map("seller_legal_name") @db.VarChar(128)
+  signedDate        DateTime @map("signed_date")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  listing           Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@map("listing_questionnaires")
+}
+
+model InspectionCaveat {
+  id             String   @id @default(uuid()) @db.Uuid
+  tenantId       String   @map("tenant_id") @db.Uuid
+  listingId      String   @map("listing_id") @db.Uuid
+  category       String   @db.VarChar(64) // 'structural' | 'foundation' | 'environmental'
+  severity       String   @default("HIGH") @db.VarChar(32) // 'CRITICAL' | 'MONITOR' | 'CLEARED'
+  verbatimExcerpt String  @map("verbatim_excerpt") @db.Text
+  engineerLicense String  @map("engineer_license") @db.VarChar(64)
+  inspectionDate  DateTime @map("inspection_date")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  listing        Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, listingId])
+  @@map("inspection_caveats")
+}
+
+model LegalCorrespondence {
+  id             String   @id @default(uuid()) @db.Uuid
+  tenantId       String   @map("tenant_id") @db.Uuid
+  listingId      String   @map("listing_id") @db.Uuid
+  subject        String   @db.VarChar(256)
+  escrowDeadline DateTime @map("escrow_deadline")
+  dailyPenaltyPct Decimal @map("daily_penalty_pct") @db.Decimal(5, 2)
+  verbatimClauses String  @map("verbatim_clauses") @db.Text
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  listing        Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, listingId])
+  @@map("legal_correspondence")
+}
+
+model CorporatePolicyCard {
+  id           String   @id @default(uuid()) @db.Uuid
+  tenantId     String   @map("tenant_id") @db.Uuid
+  jurisdiction String   @db.VarChar(64)
+  title        String   @db.VarChar(256)
+  content      String   @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  tenant       Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, jurisdiction])
+  @@map("corporate_policy_cards")
+}
+
