@@ -19,7 +19,6 @@ task-02-scaffold-diagnostics/
 │   │   ├── 04-scaffold-and-architecture.md# Web app form factor, sub-second boot, 3G optimization
 │   │   └── 05-testing-and-diagnostics.md  # Anti-false-success, dependency checking, regression
 │   └── skills/
-│       ├── add-route.md                   # Direct skill file for adding secure RLS routes
 │       └── add-route/
 │           └── SKILL.md                   # Packaged Antigravity skill with frontmatter
 ├── docs/
@@ -38,15 +37,17 @@ task-02-scaffold-diagnostics/
 │   │   ├── api/
 │   │   │   ├── diagnostics/route.ts       # Deep telemetry & dependency probe
 │   │   │   └── health/route.ts            # Liveness health check endpoint
-│   │   ├── globals.css                    # Zero raw hex global stylesheet
 │   │   ├── layout.tsx                     # Next.js root layout with metadata & viewport
 │   │   └── page.tsx                       # Responsive minimal Home Screen configuration
-│   └── styles/
-│       └── tokens.css                     # Compiled design tokens from Task 01
+│   ├── styles/
+│   │   ├── globals.css                    # Single canonical stylesheet importing tokens
+│   │   └── tokens.css                     # Compiled design tokens from Task 01
+│   └── middleware.ts                      # Multi-tenant edge routing & security middleware
 ├── .env.example                           # Standard environment template
 ├── next.config.mjs                        # Next.js production configuration
 ├── package.json                           # Next.js, Prisma, TypeScript manifest
 ├── README.md                              # Task 02 system overview and execution guide
+├── tailwind.config.js                     # Tailwind token mapping utility (0 raw hex)
 └── tsconfig.json                          # Strict TypeScript configuration
 ```
 
@@ -60,4 +61,3 @@ task-02-scaffold-diagnostics/
 - [x] **Light Mode Canvas**: `--realme-color-surface: #FBFCFF`.
 - [x] **PostgreSQL RLS Schema**: Multi-tenant models with foreign keys on `tenant_id` and `agent_id`.
 - [x] **Anti-False-Success Diagnostics**: Deep dependency inspection via `/api/diagnostics`.
-
