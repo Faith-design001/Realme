@@ -1,44 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-@import '../styles/tokens.css';
+@import '../styles/globals.css';
 
 /* ==========================================
- * RealMe Global Stylesheet
+ * RealMe App Router Layout Rules & Semantic Classes
  * 100% Token Consumption - 0 Raw Hex Values
  * Canvas: Light Mode Off-White (surface token)
  * ========================================== */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  width: 100%;
-  min-height: 100vh;
-  background-color: var(--realme-color-surface);
-  color: var(--realme-color-on-surface);
-  font-family: var(--realme-type-body-medium-font-family);
-  font-size: var(--realme-type-body-medium-font-size);
-  line-height: var(--realme-type-body-medium-line-height);
-  letter-spacing: var(--realme-type-body-medium-letter-spacing);
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-/* Base Utility Classes mapped to Semantic Roles */
 .surface-canvas {
   background-color: var(--realme-color-surface);
   color: var(--realme-color-on-surface);
