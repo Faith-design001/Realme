@@ -2,7 +2,7 @@
 @import './tokens.css';
 
 /* ==============================================================================
- * RealMe Global Stylesheet Layer
+ * RealMe Global Stylesheet Layer (Single Canonical Stylesheet)
  * Maps 100% tokens to custom color properties
  * Zero Raw Hex Codes Permitted
  * ============================================================================== */
@@ -40,4 +40,35 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+}
+
+/* Base Utility Classes mapped to Semantic Roles */
+.surface-canvas {
+  background-color: var(--realme-color-surface);
+  color: var(--realme-color-on-surface);
+}
+
+.primary-card {
+  background-color: var(--realme-color-surface);
+  border: 1px solid var(--realme-color-outline-variant);
+  box-shadow: var(--realme-elevation-level-1);
+  border-radius: 8px;
+}
+
+.primary-container-card {
+  background-color: var(--realme-color-primary-container);
+  color: var(--realme-color-on-primary-container);
+  border-radius: 8px;
+}
+
+.warning-container-card {
+  background-color: var(--realme-color-warning-container);
+  color: var(--realme-color-on-warning-container);
+  border-radius: 8px;
+}
+
+.error-container-card {
+  background-color: var(--realme-color-error-container);
+  color: var(--realme-color-on-error-container);
+  border-radius: 8px;
 }

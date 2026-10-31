@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import './globals.css';
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'RealMe | Deal Intelligence & Transaction Platform',
@@ -28,4 +28,3 @@ export default function RootLayout({
     </html>
   );
 }
-
