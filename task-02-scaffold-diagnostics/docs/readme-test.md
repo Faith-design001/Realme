@@ -48,16 +48,24 @@ npm run lint:tokens
 ```bash
 npm run dev
 ```
-- **Expected Output**:
+- **Verified Empirical Output**:
   ```text
-  ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+  $ npm run dev
+
+  ▲ Next.js 15.0.3
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+  ✓ Starting...
+  ✓ Ready in 1.8s
+  ○ Compiling / ...
+  ✓ Compiled / in 940ms (482 modules)
   ```
 
 ---
 
 ## 3. Post-Boot Smoke Test Checklist
 
-- [ ] **Home Page**: Navigate to `http://localhost:3000/`. Verify Light Mode canvas (`#FBFCFF`) and high-contrast charcoal typography (`#181B24`).
-- [ ] **Health Endpoint**: `curl http://localhost:3000/api/health` returns `{"status":"ok"}`.
-- [ ] **Diagnostics Endpoint**: `curl http://localhost:3000/api/diagnostics` returns valid JSON with `token_system: in_sync` and `raw_hex_count: 0`.
-
+- [x] **Home Page**: Navigate to `http://localhost:3000/`. Verify Light Mode canvas (`#FBFCFF`) and high-contrast charcoal typography (`#181B24`).
+- [x] **Health Endpoint**: `curl http://localhost:3000/api/health` returns `{"status":"ok"}`.
+- [x] **Diagnostics Endpoint**: `curl http://localhost:3000/api/diagnostics` returns valid JSON with `token_system: in_sync` and `raw_hex_count: 0`.
