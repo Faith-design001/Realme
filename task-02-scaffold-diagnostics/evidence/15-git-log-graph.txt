@@ -1,0 +1,21 @@
+* f5f89ba docs(audit): update directory manifest in working-tree.md with canonical stylesheet and middleware
+* b303359 docs(telemetry): record first-load performance bottleneck analysis in performance-note.md
+* f6fc47e docs(telemetry): record server API network telemetry and static asset latency log in performance-note.md
+* 912b8a0 docs(telemetry): record empirical dev server startup and 940ms route compilation benchmark
+* 911ef57 docs(telemetry): update model-choices.md with architectural model selection and error recovery log
+* 96e878c refactor: eliminate duplicate globals.css and loose skill files, consolidate canonical styles
+* ab21e60 feat(scaffold): add tailwind token configuration, authentication middleware shell, and global style layers
+* e2628b9 docs(task-02): add understanding telemetry, workflow plan, and assumptions critique to scaffold-prompt.md
+* 4aa98ac feat(task-02): scaffold Next.js workspace, multi-tenant Prisma schema, and diagnostics telemetry
+* c523c19 Fix section title typo in README.md
+* 9b2afdf fix(theme): restore authentic light mode surface (#FBFCFF) and tokens across styles and evidence sheets
+* b507ab2 fix(design-system): enforce 100% authentic Figma tokens across all screens, styles, and evidence mockups
+* 5c678c5 feat(ui): redesign screens with modern executive audit dashboard hierarchy and regenerate proof sheets
+* ed22303 docs: remove duplicate task-01-design-system/README.md to leave single root README.md
+* f1698b0 fix(typography): correct label small font family to Plus Jakarta Sans across tokens and specs
+* 38c8aee docs: merge repository and task specifications into unified master README
+* 13749f3 evidence: update before and after palette proof sheets from Figma export
+* f920185 fix(typography): correct label small font family from DM Sans to JetBrains Mono across tokens and specs
+* eeb25de docs: clean repository clone URL to realme.git
+* 2dedc6d refactor: align 100% of design system tokens, documentation, and screens with RealMe Figma export
+

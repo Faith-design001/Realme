@@ -1,0 +1,13 @@
+[DELIBERATE FAILURE 1: NESTED FOLDER COMMAND COLLISION]
+Command: cd C:\Users\user\Desktop\Realme\task-01-design-system
+$ npm run dev
+
+npm ERR! code ENOENT
+npm ERR! syscall open
+npm ERR! path C:\Users\user\Desktop\Realme\task-01-design-system\package.json
+npm ERR! errno -4058
+npm ERR! enoent ENOENT: no such file or directory, open 'C:\Users\user\Desktop\Realme\task-01-design-system\package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+
+Context: Scaffold was generated into a nested subfolder (task-01-design-system/task-02-scaffold-diagnostics) rather than the canonical project root, causing root execution scripts to fail to find package.json.
+

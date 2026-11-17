@@ -1,0 +1,17 @@
+[ANTIGRAVITY INITIAL SCAFFOLD PLAN: TASK 02 REALME DEAL INTELLIGENCE]
+Date: October 31, 2026
+Target Stack: Next.js 14 (App Router), TypeScript, Prisma ORM, PostgreSQL (Row-Level Security)
+Color Tokens: 100% Token Consumption (Pinned Primary 40 #0D1F3D, Surface #FBFCFF)
+
+STAGES:
+1. Initialize package.json with locked dependencies (Next.js 14.2.15, Prisma 5.22, React 18).
+2. Configure tsconfig.json with strict typechecking and path mapping (@/*).
+3. Configure tailwind.config.js mapping all utilities to CSS custom properties (0 raw hex strings).
+4. Establish canonical styles/globals.css importing compiled tokens from Task 01.
+5. Define prisma/schema.prisma with multi-tenant models (Tenant, Agent, Listing, ListingQuestionnaire, InspectionCaveat, LegalCorrespondence).
+6. Build root layout (src/app/layout.tsx) with responsive mobile viewport and Plus Jakarta Sans fonts.
+7. Create minimal responsive entry configuration screen (src/app/page.tsx).
+8. Establish multi-tenant edge authentication middleware shell (src/middleware.ts).
+9. Add liveness probe (/api/health) and deep dependency diagnostic probe (/api/diagnostics).
+10. Verify zero raw hex linter (npm run lint:tokens) and run production build (npm run build).
+

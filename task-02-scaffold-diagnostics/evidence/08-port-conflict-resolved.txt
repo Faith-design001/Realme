@@ -1,0 +1,24 @@
+[RECOVERY 2: PORT 3000 CONFLICT RESOLUTION]
+Command 1: Identify owning process on port 3000
+PS > Get-NetTCPConnection -LocalPort 3000 | Select-Object LocalAddress, LocalPort, State, OwningProcess
+
+LocalAddress LocalPort State  OwningProcess
+------------ --------- -----  -------------
+0.0.0.0           3000 Listen         14229
+
+Command 2: Terminate zombie process by PID
+PS > Stop-Process -Id 14229 -Force
+
+Command 3: Test port availability via Node TCP socket binding
+PS > node -e "const net = require('net'); const server = net.createServer(); server.once('error', (err) => { console.log('Port error:', err.code); process.exit(1); }); server.once('listening', () => { console.log('Port 3000 is available!'); server.close(); }); server.listen(3000);"
+Port 3000 is available!
+
+Command 4: Restart development server cleanly
+PS > npm run dev
+  ▲ Next.js 14.2.15
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1.8s
+

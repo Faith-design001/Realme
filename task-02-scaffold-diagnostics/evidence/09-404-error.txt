@@ -1,0 +1,20 @@
+[DELIBERATE FAILURE 3: HTTP 404 AND BLANK ROUTE CAPTURE]
+Command: curl -i http://localhost:3000/api/v1/deals/unregistered-caveats
+Timestamp: 2026-10-31T19:30:12.104Z
+
+HTTP/1.1 404 Not Found
+Content-Type: text/html; charset=utf-8
+Vary: Accept-Encoding
+Date: Sat, 31 Oct 2026 19:30:12 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 148
+
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><title>404: This page could not be found</title></head><body><h1>404</h1><p>This page could not be found.</p></body></html>
+
+Diagnosis Order:
+1. Checked filesystem under src/app/ to verify route path mapping.
+2. Verified src/app/api/v1/deals/unregistered-caveats does not exist in App Router tree.
+3. Verified src/middleware.ts matcher rules to ensure route was not blocked or rewritten at edge.
+4. Concluded route target is unmapped and requires explicit route.ts handler creation.
+

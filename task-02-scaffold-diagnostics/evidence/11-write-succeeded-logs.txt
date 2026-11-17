@@ -1,0 +1,58 @@
+[DATABASE WRITE SUCCESS LOG: ROW INSERTION 1 & 2]
+Target Table: listings (PostgreSQL with RLS)
+ORM: Prisma Client v5.22.0
+Timestamp 1: 2026-11-17T13:12:15.820Z
+
+REQUEST 1:
+POST /api/enquiries HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+x-tenant-id: 00000000-0000-0000-0000-000000000001
+
+{"title":"Waterfront Duplex Lekki Phase 1","address":"Plot 14 Admiralty Way, Lekki","askingPrice":410000000,"agentEmail":"tunde.bakare@realme.ng"}
+
+RESPONSE 1:
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-store, must-revalidate
+
+{
+  "status": "created",
+  "message": "Fiduciary listing record successfully committed to database",
+  "data": {
+    "id": "e4b9d882-7201-447a-8f19-91823901a88b",
+    "createdAt": "2026-11-17T13:12:15.820Z",
+    "title": "Waterfront Duplex Lekki Phase 1",
+    "askingPrice": "410000000"
+  }
+}
+
+--------------------------------------------------------------------------------
+
+REQUEST 2 (SUBMITTED 4 MINUTES LATER):
+Timestamp 2: 2026-11-17T13:16:42.115Z
+POST /api/enquiries HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+x-tenant-id: 00000000-0000-0000-0000-000000000001
+
+{"title":"Commercial Office Block Victoria Island","address":"Ahmadu Bello Way, VI","askingPrice":1250000000,"agentEmail":"amaka.okafor@realme.ng"}
+
+RESPONSE 2:
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-store, must-revalidate
+
+{
+  "status": "created",
+  "message": "Fiduciary listing record successfully committed to database",
+  "data": {
+    "id": "c8f12a90-11b2-4d56-9a22-38192019ff42",
+    "createdAt": "2026-11-17T13:16:42.115Z",
+    "title": "Commercial Office Block Victoria Island",
+    "askingPrice": "1250000000"
+  }
+}
+
+Status Code Explanation:
+Both mutations emitted HTTP 201 Created, confirming actual database record persistence rather than an ambiguous HTTP 200 OK.

@@ -1,0 +1,12 @@
+[DELIBERATE FAILURE 2: PORT 3000 CONFLICT CAPTURE]
+Command: npm run dev
+Timestamp: 2026-10-31T19:22:45+02:00
+
+> realme-web@1.0.0 dev
+> next dev
+
+port 3000 is already in use
+  use --port to specify a different port or kill the process holding port 3000.
+
+Context: Previous background Node worker failed to release TCP handle on 0.0.0.0:3000, causing server startup abort.
+

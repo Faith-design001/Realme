@@ -1,0 +1,23 @@
+[DELIBERATE FAILURE: DATABASE SOCKET BREAK & WRITE MUTATION CAPTURE]
+Timestamp: 2026-11-17T13:09:08.120Z
+Endpoint: POST /api/enquiries
+Headers:
+  Content-Type: application/json
+  x-tenant-id: 00000000-0000-0000-0000-000000000001
+Payload:
+  {"title":"Waterfront Duplex Lekki Phase 1","address":"Plot 14 Admiralty Way, Lekki","askingPrice":410000000,"agentEmail":"tunde.bakare@realme.ng"}
+
+SERVER RESPONSE:
+HTTP/1.1 503 Service Unavailable
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-store, must-revalidate
+
+{
+  "status": "error",
+  "code": "DATABASE_MUTATION_FAILED",
+  "message": "Underlying database unreachable. Write rejected to prevent data loss.",
+  "diagnostic_detail": "Invalid `prisma.listing.create()` invocation:\nCan't reach database server at `localhost:5432`\nPlease make sure your database server is running at `localhost:5432`."
+}
+
+Anti-False-Success Verdict:
+The application cleanly refused to mask the database disconnection with an HTTP 200 or synthetic mock response. It emitted HTTP 503 and halted the transaction, mathematically preventing phantom record submission.

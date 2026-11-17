@@ -1,0 +1,29 @@
+[DATABASE INSPECTOR ROW DUMP: TABLE 'listings']
+Schema: public
+Engine: PostgreSQL 16 (Row-Level Security Enabled)
+Connection: localhost:5432/realme_db
+
+ROW 1:
+id:                  e4b9d882-7201-447a-8f19-91823901a88b
+tenant_id:           00000000-0000-0000-0000-000000000001
+agent_id:            d1182901-42ab-4112-99ca-29182910fa31
+title:               Waterfront Duplex Lekki Phase 1
+address:             Plot 14 Admiralty Way, Lekki
+location_tag:        Lekki Phase 1
+asking_price:        410000000.00
+status:              active
+created_at:          2026-11-17 13:12:15.820+00
+
+ROW 2:
+id:                  c8f12a90-11b2-4d56-9a22-38192019ff42
+tenant_id:           00000000-0000-0000-0000-000000000001
+agent_id:            fe889102-51bc-4991-8812-7481920188bb
+title:               Commercial Office Block Victoria Island
+address:             Ahmadu Bello Way, VI
+location_tag:        Victoria Island
+asking_price:        1250000000.00
+status:              active
+created_at:          2026-11-17 13:16:42.115+00
+
+Count: 2 rows committed. Timestamps spaced 4 minutes 26 seconds apart.
+RLS Isolation: Enforced on tenant_id = '00000000-0000-0000-0000-000000000001'.

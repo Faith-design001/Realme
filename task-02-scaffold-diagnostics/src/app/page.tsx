@@ -1,3 +1,5 @@
+import DealEnquiryForm from './components/DealEnquiryForm';
+
 export default function HomePage() {
   return (
     <main
@@ -247,6 +249,9 @@ export default function HomePage() {
             </a>
           </div>
         </section>
+
+        {/* RealMe Deal Mutation & Database Persistence Form */}
+        <DealEnquiryForm />
 
         {/* Footer */}
         <footer

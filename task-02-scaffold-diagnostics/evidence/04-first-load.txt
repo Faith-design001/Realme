@@ -1,0 +1,15 @@
+[SERVER API NETWORK TELEMETRY LOG: FIRST LOAD]
+Timestamp: 2026-10-31T18:58:32.410Z
+Host: localhost:3000
+
+GET / 200 OK in 10420ms
+- Content-Type: text/html; charset=utf-8
+- Transfer-Encoding: chunked
+- Cache-Control: no-store, must-revalidate
+
+○ Compiling / ...
+✓ Compiled / in 940ms (482 modules)
+
+GET /_next/static/css/app/layout.css?v=1700000 200 OK in 45ms
+GET /_next/static/chunks/app/page.js 200 OK in 120ms
+
