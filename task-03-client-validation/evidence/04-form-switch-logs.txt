@@ -1,0 +1,14 @@
+[BROWSER CONSOLE & NETWORK TELEMETRY: FORM SWITCHING LOGS]
+Host: http://localhost:3005
+Session: Authenticated Field Agent Onboarding
+
+[00:00.120] Navigated to http://localhost:3005/auth?tab=signup
+[00:00.125] [SPA_TAB_SWITCH] Switched to signup with 0 page reloads. Active URL: ?tab=signup
+[00:04.280] User clicked [Sign In] tab button
+[00:04.292] [SPA_TAB_SWITCH] Switched to login with 0 page reloads. Active URL: ?tab=login
+[00:04.295] Network Request Count: 0 (No HTTP requests initiated; state preserved in memory)
+[00:08.910] User clicked [Recover Password] tab button
+[00:08.921] [SPA_TAB_SWITCH] Switched to reset with 0 page reloads. Active URL: ?tab=reset
+[00:08.924] Network Request Count: 0 (Zero new sessions created, zero socket handshakes)
+[00:12.440] User clicked Browser Back Button
+[00:12.448] [SPA_TAB_SWITCH] Switched to login via popstate event. Active URL: ?tab=login

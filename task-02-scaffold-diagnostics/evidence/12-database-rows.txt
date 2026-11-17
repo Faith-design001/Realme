@@ -27,3 +27,4 @@ created_at:          2026-11-17 13:16:42.115+00
 
 Count: 2 rows committed. Timestamps spaced 4 minutes 26 seconds apart.
 RLS Isolation: Enforced on tenant_id = '00000000-0000-0000-0000-000000000001'.
+

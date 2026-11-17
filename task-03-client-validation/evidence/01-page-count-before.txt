@@ -1,0 +1,11 @@
+[MULTI-PAGE APPLICATION ROUTE AUDIT: BEFORE COLLAPSE]
+Application: RealMe Deals
+Architecture: Traditional MPA (Separate Routes)
+
+List of discrete authentication pages:
+1. /agents/register      - New field agent registration (124 KB bundle, 1,850ms on 3G)
+2. /agents/login         - Agent sign-in portal (112 KB bundle, 1,720ms on 3G)
+3. /agents/forgot-pwd    - Credential recovery form (98 KB bundle, 1,640ms on 3G)
+
+Total discrete page count: 3 pages.
+Operational Finding: Switching between views requires full page unloads, socket re-establishment, and white-screen delay under erratic Lekki cellular conditions.

@@ -1,0 +1,14 @@
+[UX RESOLUTION TRACE: NUMERIC TEXT INPUT WORKING]
+Input Field: LASRERA Registration Code
+Element Used: <input type="text" inputmode="numeric" name="lasreraCode" placeholder="Practitioner License Code" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+VERIFICATION OF CORRECT BEHAVIOR:
+Step 1: Zero spinner arrows rendered in DOM. Clean horizontal padding across all mobile browsers.
+Step 2: Mobile virtual keyboard immediately opens dedicated numeric keypad layout (via inputmode="numeric").
+Step 3: User types "0" -> Value: "0" (Preserved as string character).
+Step 4: User types "41289" -> Value: "041289" (Leading zero preserved intact).
+Step 5: User attempts to paste alphanumeric string "LASRERA-041289" -> Regex replacement instantaneously strips non-digits, leaving clean "041289".
+Step 6: Vertical scrolling with thumb across input does not trigger value increments.
+
+When Number Input Would Be Correct:
+A native number input (<input type="number">) is correct strictly when collecting a continuous numeric quantity that requires arithmetic calculation or step increments, such as property square meters (sqm) or bedroom counts (1, 2, 3).

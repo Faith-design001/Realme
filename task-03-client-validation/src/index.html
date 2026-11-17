@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RealMe Authentication | Fiduciary Portal Lekki</title>
+  <meta name="description" content="Single-page multi-tenant authentication portal for RealMe field agents in Lekki and Victoria Island.">
+  <link rel="stylesheet" href="./tokens.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--realme-color-surface);
+      color: var(--realme-color-on-surface);
+      font-family: var(--realme-type-body-medium-font-family);
+      font-size: var(--realme-type-body-medium-font-size);
+      line-height: var(--realme-type-body-medium-line-height);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justifyContent: center;
+      padding: 2rem 1rem;
+    }
+    .auth-card {
+      width: 100%;
+      maxWidth: 32rem;
+      background-color: var(--realme-color-surface-container-low);
+      border: 1px solid var(--realme-color-outline-variant);
+      border-radius: 0.5rem;
+      box-shadow: var(--realme-elevation-level-1);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .brand-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--realme-color-outline-variant);
+      padding-bottom: 1.25rem;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      font-family: var(--realme-type-label-small-font-family);
+      font-size: var(--realme-type-label-small-font-size);
+      font-weight: var(--realme-type-label-small-font-weight);
+      background-color: var(--realme-color-primary-container);
+      color: var(--realme-color-on-primary-container);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      text-transform: uppercase;
+    }
+    .brand-title {
+      font-family: var(--realme-type-headline-large-font-family);
+      font-size: clamp(1.75rem, 3vw + 1rem, 2.25rem);
+      font-weight: var(--realme-type-headline-large-font-weight);
+      color: var(--realme-color-primary);
+      letter-spacing: var(--realme-type-headline-large-letter-spacing);
+    }
+    .brand-subtitle {
+      font-family: var(--realme-type-body-small-font-family);
+      font-size: var(--realme-type-body-small-font-size);
+      color: var(--realme-color-on-surface-variant);
+    }
+    .tab-nav {
+      display: flex;
+      border-bottom: 1px solid var(--realme-color-outline-variant);
+      gap: 0.5rem;
+    }
+    .tab-button {
+      padding: 0.75rem 1rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--realme-type-label-medium-font-family);
+      font-size: var(--realme-type-label-medium-font-size);
+      font-weight: var(--realme-type-label-medium-font-weight);
+      color: var(--realme-color-on-surface-variant);
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+    }
+    .tab-button[aria-selected="true"] {
+      color: var(--realme-color-primary);
+      border-bottom-color: var(--realme-color-primary);
+      font-weight: 700;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      position: relative;
+    }
+    .form-label {
+      font-family: var(--realme-type-label-small-font-family);
+      font-size: var(--realme-type-label-small-font-size);
+      font-weight: var(--realme-type-label-small-font-weight);
+      color: var(--realme-color-on-surface);
+    }
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--realme-color-outline);
+      border-radius: 0.375rem;
+      background-color: var(--realme-color-surface);
+      color: var(--realme-color-on-surface);
+      font-family: var(--realme-type-body-medium-font-family);
+      font-size: var(--realme-type-body-medium-font-size);
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--realme-color-primary);
+      box-shadow: 0 0 0 2px var(--realme-color-primary-container);
+    }
+    .form-input[aria-invalid="true"] {
+      border-color: var(--realme-color-error);
+      background-color: var(--realme-color-error-container);
+      color: var(--realme-color-on-error-container);
+    }
+    .error-msg {
+      display: none;
+      align-items: center;
+      gap: 0.375rem;
+      font-family: var(--realme-type-body-small-font-family);
+      font-size: 0.75rem;
+      color: var(--realme-color-error);
+      margin-top: 0.25rem;
+    }
+    .error-msg.visible {
+      display: flex;
+    }
+    .caution-icon {
+      width: 1rem;
+      height: 1rem;
+      fill: var(--realme-color-error);
+      flex-shrink: 0;
+    }
+    .pwd-toggle {
+      position: absolute;
+      right: 0.75rem;
+      background: none;
+      border: none;
+      color: var(--realme-color-primary);
+      font-family: var(--realme-type-label-small-font-family);
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .terms-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      border-radius: 0.375rem;
+      background-color: var(--realme-color-primary);
+      color: var(--realme-color-on-primary);
+      font-family: var(--realme-type-label-large-font-family);
+      font-size: var(--realme-type-label-large-font-size);
+      font-weight: var(--realme-type-label-large-font-weight);
+      cursor: pointer;
+      box-shadow: var(--realme-elevation-level-1);
+      transition: background-color 0.15s ease-in-out;
+    }
+    .submit-btn[aria-disabled="true"] {
+      background-color: var(--realme-color-outline-variant);
+      color: var(--realme-color-on-surface-variant);
+      cursor: not-allowed;
+    }
+    .status-alert {
+      display: none;
+      padding: 0.75rem 1rem;
+      border-radius: 0.375rem;
+      font-family: var(--realme-type-body-small-font-family);
+      font-size: 0.8125rem;
+    }
+    .status-alert.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <main class="auth-card" role="main">
+    <header class="brand-header">
+      <span class="brand-badge">Lekki Central • Fiduciary Access</span>
+      <h1 class="brand-title">RealMe</h1>
+      <p class="brand-subtitle">Fiduciary real estate deal intelligence for Lagos field agents.</p>
+    </header>
+
+    <!-- Navigation Tabs (Controlled via ?tab= parameter with no reload) -->
+    <nav class="tab-nav" role="tablist" aria-label="Authentication Views">
+      <button id="tab-signup-btn" class="tab-button" role="tab" aria-selected="true" aria-controls="panel-signup" onclick="switchAuthTab('signup')">
+        Register Agent
+      </button>
+      <button id="tab-login-btn" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-login" onclick="switchAuthTab('login')">
+        Sign In
+      </button>
+      <button id="tab-reset-btn" class="tab-button" role="tab" aria-selected="false" aria-controls="panel-reset" onclick="switchAuthTab('reset')">
+        Recover Password
+      </button>
+    </nav>
+
+    <!-- TAB 1: REGISTRATION FORM -->
+    <section id="panel-signup" role="tabpanel" aria-labelledby="tab-signup-btn">
+      <form id="signup-form" novalidate onsubmit="handleSignupSubmit(event)">
+        <!-- 1. Full Legal Name (Min 2 words, >= 2 chars) -->
+        <div class="form-group">
+          <label for="reg-name" class="form-label">Full Legal Name (LASRERA Certificate Name)</label>
+          <div class="input-wrapper">
+            <input type="text" id="reg-name" class="form-input" required aria-describedby="name-err" placeholder="e.g. Babatunde Adeleke" onblur="validateName(this)" oninput="clearError(this)">
+          </div>
+          <div id="name-err" class="error-msg" role="alert">
+            <svg class="caution-icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+            <span>Full legal name must contain at least two words separated by a space.</span>
+          </div>
+        </div>
+
+        <!-- 2. Work Email (RFC Regex in real time) -->
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="reg-email" class="form-label">Corporate Work Email</label>
+          <div class="input-wrapper">
+            <input type="email" id="reg-email" class="form-input" required aria-describedby="email-err" placeholder="agent@realme.ng" oninput="validateEmailRealtime(this)" onblur="validateEmailRealtime(this)">
+          </div>
+          <div id="email-err" class="error-msg" role="alert">
+            <svg class="caution-icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+            <span>Enter a valid corporate email address (name@domain.tld).</span>
+          </div>
+        </div>
+
+        <!-- 3. LASRERA Registration Code (Numeric Text, no spinner) -->
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="reg-lasrera" class="form-label">LASRERA License Number</label>
+          <div class="input-wrapper">
+            <input type="text" inputmode="numeric" id="reg-lasrera" class="form-input" required aria-describedby="lasrera-err" placeholder="Practitioner License Code" oninput="validateLasrera(this)" onblur="validateLasrera(this)">
+          </div>
+          <div id="lasrera-err" class="error-msg" role="alert">
+            <svg class="caution-icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+            <span>Invalid practitioner license credentials.</span>
+          </div>
+        </div>
+
+        <!-- 4. Corporate Password (Length >= 12, toggle visibility) -->
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="reg-pwd" class="form-label">Corporate Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="reg-pwd" class="form-input" required aria-describedby="pwd-hint pwd-err" oninput="validatePassword(this)">
+            <button type="button" class="pwd-toggle" aria-label="Toggle password visibility" onclick="togglePasswordVisibility('reg-pwd')">Show</button>
+          </div>
+          <p id="pwd-hint" style="font-size: 0.75rem; color: var(--realme-color-on-surface-variant); margin-top: 0.25rem;">
+            Length beats complexity. Must be at least 12 characters.
+          </p>
+          <div id="pwd-err" class="error-msg" role="alert">
+            <svg class="caution-icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+            <span>Password is too short. It must contain at least 12 characters.</span>
+          </div>
+        </div>
+
+        <!-- 5. Fiduciary Terms & NDPA Acceptance Checkbox -->
+        <div class="terms-group">
+          <input type="checkbox" id="reg-terms" required aria-required="true" onchange="checkFormValidity()">
+          <label for="reg-terms" style="font-size: 0.8125rem; color: var(--realme-color-on-surface);">
+            I accept the <a href="#terms" style="color: var(--realme-color-primary);">NDPA Data Notice</a> and agree to maintain strict confidentiality of unadvertised seller bottom-dollar reserve prices.
+          </label>
+        </div>
+
+        <!-- Submit Button: Never dropped from tab order -->
+        <div style="margin-top: 1.5rem;">
+          <button type="submit" id="reg-submit-btn" class="submit-btn" aria-disabled="true" aria-describedby="btn-msg">
+            Complete Agent Registration
+          </button>
+          <p id="btn-msg" class="error-msg" role="alert" style="margin-top: 0.5rem; justify-content: center;">
+            <svg class="caution-icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V8h2v4z"/></svg>
+            <span>You must complete all required fields and accept fiduciary terms to register.</span>
+          </p>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB 2: LOGIN FORM (Conditional view) -->
+    <section id="panel-login" role="tabpanel" aria-labelledby="tab-login-btn" style="display: none;">
+      <form id="login-form" novalidate onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label for="login-email" class="form-label">Agent Corporate Email</label>
+          <input type="email" id="login-email" class="form-input" required placeholder="agent@realme.ng">
+        </div>
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="login-pwd" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="login-pwd" class="form-input" required>
+            <button type="button" class="pwd-toggle" onclick="togglePasswordVisibility('login-pwd')">Show</button>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <button type="submit" class="submit-btn">Sign In to Deal Room</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB 3: PASSWORD RECOVERY (Conditional view) -->
+    <section id="panel-reset" role="tabpanel" aria-labelledby="tab-reset-btn" style="display: none;">
+      <form id="reset-form" novalidate onsubmit="handleResetSubmit(event)">
+        <div class="form-group">
+          <label for="reset-email" class="form-label">Account Work Email</label>
+          <input type="email" id="reset-email" class="form-input" required placeholder="agent@realme.ng">
+        </div>
+        <p style="font-size: 0.8125rem; color: var(--realme-color-on-surface-variant); margin-top: 0.5rem;">
+          A 6-digit cryptographic recovery code will be dispatched to your authorized brokerage email.
+        </p>
+        <div style="margin-top: 1.5rem;">
+          <button type="submit" class="submit-btn">Send Recovery Code</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Live Status Console -->
+    <div id="form-status" class="status-alert" role="status" aria-live="polite"></div>
+  </main>
+
+  <script>
+    // 1. Single Page URL Query Param Switching (?tab=signup|login|reset)
+    function switchAuthTab(tab) {
+      const tabs = ['signup', 'login', 'reset'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}-btn`);
+        const panel = document.getElementById(`panel-${t}`);
+        const isActive = t === tab;
+        btn.setAttribute('aria-selected', isActive);
+        panel.style.display = isActive ? 'block' : 'none';
+      });
+
+      // Update URL without page reload
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', tab);
+      window.history.pushState({ tab }, '', url.toString());
+      console.log(`[SPA_TAB_SWITCH] Switched to ${tab} with 0 page reloads. Active URL: ${url.search}`);
+    }
+
+    // Initialize tab from current URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const activeTab = params.get('tab') || 'signup';
+      switchAuthTab(activeTab);
+    });
+
+    // 2. Validation Category 1: Name Rule (>= 2 words, >= 2 chars)
+    function validateName(input) {
+      const val = input.value.trim();
+      const err = document.getElementById('name-err');
+      const isValid = /^[a-zA-Z]{2,}(?:\s+[a-zA-Z]{2,})+$/.test(val);
+      if (!isValid) {
+        input.setAttribute('aria-invalid', 'true');
+        err.classList.add('visible');
+      } else {
+        input.setAttribute('aria-invalid', 'false');
+        err.classList.remove('visible');
+      }
+      checkFormValidity();
+    }
+
+    // 3. Validation Category 2: Real-time Email on Registration
+    function validateEmailRealtime(input) {
+      const val = input.value.trim();
+      const err = document.getElementById('email-err');
+      const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val);
+      if (val.length > 0 && !isValid) {
+        input.setAttribute('aria-invalid', 'true');
+        err.classList.add('visible');
+      } else {
+        input.setAttribute('aria-invalid', 'false');
+        err.classList.remove('visible');
+      }
+      checkFormValidity();
+    }
+
+    // 4. Validation Category 3: LASRERA Code (digits only)
+    function validateLasrera(input) {
+      input.value = input.value.replace(/[^0-9]/g, '');
+      const err = document.getElementById('lasrera-err');
+      const isValid = /^\d{6}$/.test(input.value);
+      if (input.value.length > 0 && !isValid) {
+        input.setAttribute('aria-invalid', 'true');
+        err.classList.add('visible');
+      } else {
+        input.setAttribute('aria-invalid', 'false');
+        err.classList.remove('visible');
+      }
+      checkFormValidity();
+    }
+
+    // 5. Validation Category 4: Password Length >= 12
+    function validatePassword(input) {
+      const val = input.value;
+      const err = document.getElementById('pwd-err');
+      if (val.length > 0 && val.trim().length < 12) {
+        input.setAttribute('aria-invalid', 'true');
+        err.classList.add('visible');
+      } else {
+        input.setAttribute('aria-invalid', 'false');
+        err.classList.remove('visible');
+      }
+      checkFormValidity();
+    }
+
+    function clearError(input) {
+      input.setAttribute('aria-invalid', 'false');
+    }
+
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      const isPwd = input.type === 'password';
+      input.type = isPwd ? 'text' : 'password';
+    }
+
+    // Form Validity Check & Accessible Button State
+    function checkFormValidity() {
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const lasrera = document.getElementById('reg-lasrera').value.trim();
+      const pwd = document.getElementById('reg-pwd').value.trim();
+      const terms = document.getElementById('reg-terms').checked;
+      const btn = document.getElementById('reg-submit-btn');
+
+      const isNameValid = /^[a-zA-Z]{2,}(?:\s+[a-zA-Z]{2,})+$/.test(name);
+      const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+      const isLasreraValid = /^\d{6}$/.test(lasrera);
+      const isPwdValid = pwd.length >= 12;
+
+      const allValid = isNameValid && isEmailValid && isLasreraValid && isPwdValid && terms;
+      btn.setAttribute('aria-disabled', !allValid);
+      return allValid;
+    }
+
+    // Submit handler with client feedback
+    async function handleSignupSubmit(e) {
+      e.preventDefault();
+      const isValid = checkFormValidity();
+      const btnMsg = document.getElementById('btn-msg');
+      if (!isValid) {
+        btnMsg.classList.add('visible');
+        return;
+      }
+      btnMsg.classList.remove('visible');
+
+      const statusBox = document.getElementById('form-status');
+      statusBox.style.display = 'block';
+      statusBox.style.backgroundColor = 'var(--realme-color-primary-container)';
+      statusBox.style.color = 'var(--realme-color-on-primary-container)';
+      statusBox.textContent = 'Submitting registration to server...';
+
+      try {
+        const res = await fetch('/api/v1/agents/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-tenant-id': '00000000-0000-0000-0000-000000000001'
+          },
+          body: JSON.stringify({
+            fullName: document.getElementById('reg-name').value.trim(),
+            email: document.getElementById('reg-email').value.trim(),
+            lasreraCode: document.getElementById('reg-lasrera').value.trim(),
+            password: document.getElementById('reg-pwd').value.trim(),
+            termsAccepted: true
+          })
+        });
+        const data = await res.json();
+        statusBox.textContent = `Server Response: HTTP ${res.status} - Registration Successful! User ID: ${data.data?.id || 'Registered'}`;
+      } catch (err) {
+        statusBox.style.backgroundColor = 'var(--realme-color-error-container)';
+        statusBox.style.color = 'var(--realme-color-on-error-container)';
+        statusBox.textContent = `Server Request Error: ${err.message}`;
+      }
+    }
+  </script>
+</body>
+</html>

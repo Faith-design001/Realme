@@ -1,0 +1,12 @@
+{
+  "name": "realme-client-validation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RealMe Task 03: Client Validation, Accessible Form Architecture, and Direct Endpoint Attack",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "lint:tokens": "powershell -Command \"if (Get-ChildItem -Path 'src' -Recurse -File | Where-Object { $_.Name -ne 'tokens.css' } | Select-String -Pattern '#[0-9a-fA-F]{3,8}') { Write-Error 'Raw hex values detected!'; exit 1 } else { Write-Host '100% Token Compliance Verified: 0 raw hex values.' }\"",
+    "attack": "node scripts/attack.js"
+  }
+}

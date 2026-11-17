@@ -1,0 +1,30 @@
+[DETERMINISTIC GIT ROLLBACK AUDIT: TASK 03]
+Date: November 17, 2026
+
+STEP 1: LIST RECENT COMMITS TO IDENTIFY OFFENDING REGRESSION
+$ git log --oneline -n 6
+d891f2a (HEAD -> main) feat(regression): loosen full name validation to accept single token names
+2188e4d feat(task-02): implement deal mutation form, complete interview answers, defects log, and machine evidence
+f5f89ba docs(audit): update directory manifest in working-tree.md with canonical stylesheet and middleware
+b303359 docs(telemetry): record first-load performance bottleneck analysis in performance-note.md
+f6fc47e docs(telemetry): record server API network telemetry and static asset latency log in performance-note.md
+912b8a0 docs(telemetry): record empirical dev server startup and 940ms route compilation benchmark
+
+STEP 2: TARGET COMMIT IDENTIFIED
+- Offending Commit: d891f2a
+- Clean Parent Commit: 2188e4d
+
+STEP 3: EXECUTE NON-DESTRUCTIVE ROLLBACK COMMAND
+$ git revert --no-edit d891f2a
+
+[main a104ef9] Revert "feat(regression): loosen full name validation to accept single token names"
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+STEP 4: VERIFY RESTORED CODE INTEGRITY
+$ git log --oneline -n 2
+a104ef9 (HEAD -> main) Revert "feat(regression): loosen full name validation to accept single token names"
+d891f2a feat(regression): loosen full name validation to accept single token names
+
+Two Sentences on Why Naming the ID is Safer:
+1. Identifying the specific cryptographic SHA-1/SHA-256 commit ID instructs Git to reverse the exact diff hunk byte-for-byte, preventing unintentional modification of adjacent lines or unrelated components.
+2. Conversely, prompting an AI agent in natural language to "undo the last change" relies on probabilistic text generation, which regularly hallucinates previous variable names, changes formatting styles, and re-introduces previously solved bugs.

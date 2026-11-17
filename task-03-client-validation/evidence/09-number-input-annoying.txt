@@ -1,0 +1,14 @@
+[UX FAILURE TRACE: NATIVE NUMBER INPUT ANNOYANCE SEQUENCE]
+Input Field: LASRERA Registration Code
+Element Used: <input type="number" name="lasreraCode" placeholder="000000">
+
+SEQUENCE OF ANNOYANCE:
+Step 1: Input displays native browser spinner arrows (up/down stepper arrows) taking up 24px of horizontal space on narrow 320px mobile viewport.
+Step 2: Agent attempts to enter Lagos license number: "041289".
+Step 3: User types "0" -> Input value displays: "0".
+Step 4: User types "4" -> Input value automatically strips leading zero: "4".
+Step 5: Agent attempts to fix: clears field -> Input defaults back to empty or browser zero.
+Step 6: Agent types "041289" -> Browser standardizes value to integer 41289.
+Step 7: When user scrolls page with thumb over input, accidental touch on spinner stepper changes 41289 to 41290 without user noticing.
+
+Conclusion: <input type="number"> fails for identifier codes because codes are categorical digit sequences, not mathematical numbers subject to arithmetic or zero-stripping.

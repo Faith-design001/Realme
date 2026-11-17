@@ -21,3 +21,4 @@ Cache-Control: no-store, must-revalidate
 
 Anti-False-Success Verdict:
 The application cleanly refused to mask the database disconnection with an HTTP 200 or synthetic mock response. It emitted HTTP 503 and halted the transaction, mathematically preventing phantom record submission.
+

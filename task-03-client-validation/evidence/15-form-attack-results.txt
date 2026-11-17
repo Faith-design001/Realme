@@ -1,0 +1,25 @@
+[FORM-LEVEL ATTACK & DEFEAT TEST RESULTS]
+Target: RealMe Browser Registration Form (Client-Side Interface)
+Evaluation Methodology: Attempting to defeat client-side validation rules via browser interaction.
+
+TEST SCENARIOS & RESULTS:
+1. Single-Character Name Attack:
+   - Input: "a"
+   - Result: BLOCKED. Form displayed caution SVG icon with error: "Full legal name must contain at least two words separated by a space." Submit button remained in aria-disabled="true" state.
+
+2. Whitespace-Only Password Attack:
+   - Input: "            " (12 space characters)
+   - Result: DEFEATED CLIENT RULE. Because the password length check measured raw string length (12) without trim() on initial draft, the browser briefly treated 12 spaces as valid!
+   - Fix Applied: Updated client rule to enforce value.trim().length >= 12.
+
+3. Minimal Syntax Email Attack:
+   - Input: "a@b"
+   - Result: BLOCKED. RFC regex required standard top-level domain (e.g. .com, .ng). Error displayed in real-time.
+
+4. Copied Trailing Space in Email Attack:
+   - Input: "agent@realme.ng "
+   - Result: DEFEATED REAL-TIME CHECK. Trailing space caused regex match to fail until user blurred or trimmed.
+
+5. Form Bypass Attempt via Disabled Button:
+   - User clicked disabled button without accepting terms:
+   - Result: Form did not submit; accessible alert fired: "You must complete all required fields and accept fiduciary terms to register."

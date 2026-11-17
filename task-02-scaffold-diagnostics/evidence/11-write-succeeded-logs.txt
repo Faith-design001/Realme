@@ -56,3 +56,4 @@ Cache-Control: no-store, must-revalidate
 
 Status Code Explanation:
 Both mutations emitted HTTP 201 Created, confirming actual database record persistence rather than an ambiguous HTTP 200 OK.
+

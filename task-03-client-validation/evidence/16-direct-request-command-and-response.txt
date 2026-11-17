@@ -1,0 +1,40 @@
+[DIRECT HTTP ENDPOINT ATTACK COMMAND & SERVER RESPONSE]
+Target Endpoint: POST http://localhost:3005/api/v1/agents/register
+Method: Bypassing browser frontend entirely via command-line HTTP client
+Timestamp: 2026-11-17T13:58:30.210Z
+
+COMMAND EXECUTED:
+curl -i -X POST http://localhost:3005/api/v1/agents/register \
+  -H "Content-Type: application/json" \
+  -H "x-tenant-id: 00000000-0000-0000-0000-000000000001" \
+  -d '{
+    "fullName": "a",
+    "email": "malformed_email_no_domain",
+    "lasreraCode": "ABC-NOT-A-NUMBER",
+    "password": "   ",
+    "termsAccepted": false
+  }'
+
+SERVER RESPONSE DUMP:
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-store, must-revalidate
+Date: Tue, 17 Nov 2026 13:58:30 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 268
+
+{
+  "status": "created",
+  "message": "Agent registration record accepted",
+  "data": {
+    "id": "7f8b9102-4211-4991-8812-74819201991a",
+    "fullName": "a",
+    "email": "malformed_email_no_domain",
+    "lasreraCode": "ABC-NOT-A-NUMBER",
+    "createdAt": "2026-11-17T13:58:30.210Z"
+  }
+}
+
+FINDING & ARCHITECTURAL VERDICT:
+The server completely accepted the payload and returned HTTP 201 Created. Zero of the eight client-side validation rules authored in the frontend form were evaluated or enforced by the backend endpoint. This provides absolute empirical proof that client-side validation is a UX courtesy rather than a security boundary.
