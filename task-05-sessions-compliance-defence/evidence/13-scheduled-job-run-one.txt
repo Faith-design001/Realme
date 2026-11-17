@@ -1,0 +1,15 @@
+================================================================================
+REALME TASK 05: EVIDENCE 13 - SCHEDULED CRON JOB RUN ONE (PROCESSING EXPIRED CANDIDATE)
+================================================================================
+[2026-11-17T17:11:05.092Z] [CRON_START] NDPA Deletion Lifecycle Worker initiated.
+[2026-11-17T17:11:05.092Z] [CRON_CONFIG] Grace period threshold: 7 days (168 hours). Target evaluation timestamp: 2026-11-25T17:11:05.092Z
+[2026-11-17T17:11:05.093Z] [CRON_PROGRESS] Found 1 expired account deletion candidate(s).
+[2026-11-17T17:11:05.093Z] [CRON_TRANSACTION_START] Executing atomic NDPA sanitization on Agent ID: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b
+[2026-11-17T17:11:05.093Z] [CRON_TRANSACTION_SUCCESS] Sanitized: ibrahim.lawal@realme.ng -> anonymized_5e6f7a8b@redacted.realme.internal. Purged 0 sessions. Retained 1 statutory escrow ledger records.
+[2026-11-17T17:11:05.093Z] [CRON_END] NDPA Deletion Lifecycle Worker completed. Candidates scanned: 1, Rows anonymized: 1, Sessions purged: 0, Statutory ledgers preserved: 1, Errors: 0. Elapsed: 1ms.
+
+Audit Verification:
+- Target Account: ibrahim.lawal@realme.ng -> Anonymized to anonymized_5e6f7a8b@redacted.realme.internal
+- Password Hash: PURGED
+- Settled Escrow Ledgers Preserved: 1 (₦41,000,000 escrow deposit retained under AML Act)
+- Candidate Processing Success: 1 candidate scanned, 1 row anonymized.

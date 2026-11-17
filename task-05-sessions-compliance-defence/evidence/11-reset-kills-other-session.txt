@@ -1,0 +1,24 @@
+================================================================================
+REALME TASK 05: EVIDENCE 11 - PASSWORD RESET INVALIDATES ALL CONCURRENT SESSIONS
+================================================================================
+Setup:
+Agent Tunde Bakare logged in on two distinct browser clients:
+1. Browser Client A (Android Mobile): Cookie realme_session=8e55bcc0f61f84401996c1c859279dcc9a95de5a58042bb05bccc5fa506defb9; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+   - Initial Status: HTTP 200 OK (Authenticated)
+2. Browser Client B (Office Desktop): Cookie realme_session=50766f5bd1414d204f40adb7adab75c67eafd65c78916b0446b460940d92dca4; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+   - Initial Status: HTTP 200 OK (Authenticated)
+
+ACTION: Password Reset Executed
+Endpoint: POST /api/v1/auth/reset-password
+Payload: {"email":"tunde.bakare@realme.ng","newPassword":"[REDACTED]"}
+Response: HTTP 200 OK
+Body: {"status":"PASSWORD_RESET_SUCCESS","agentEmail":"tunde.bakare@realme.ng","allSessionsRevokedCount":5,"message":"Password updated. Every active session across all devices has been terminated."}
+
+POST-RESET VERIFICATION ON BROWSER CLIENT A (Mobile):
+Endpoint: GET /api/v1/auth/me with Client A Cookie
+HTTP Status: 401 Unauthorized
+Body: {"error":"Unauthenticated: No valid session token presented"}
+
+Conclusion:
+Password reset unconditionally purged ALL active database session rows for the agent.
+Client A was terminated immediately without waiting for natural cookie expiration.

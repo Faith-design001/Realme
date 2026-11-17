@@ -1,0 +1,29 @@
+================================================================================
+REALME TASK 05: EVIDENCE 01 - TWO DISTINCT CRYPTOGRAPHIC SESSION IDENTIFIERS
+================================================================================
+Application: RealMe Fiduciary Access Architecture
+Endpoint: POST http://127.0.0.1:3007/api/v1/auth/login
+Target Agent: tunde.bakare@realme.ng (UUID: 8f2b3e4a-912c-4e89-b1d5-aa728e94e501)
+Operating System: Windows 11 Pro (Build 26100)
+Hardware Node PID: 27644
+Generated At: 2026-11-17T17:11:04.301Z
+
+SIGN-IN ATTEMPT 1:
+HTTP Response: 200 OK
+Set-Cookie Header: realme_session=2b2633316106a76ff1d2e9a4600b633f6841039fd85a0a70506e583825cecf62; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+Raw 256-bit Token (Token 1): 2b2633316106a76ff1d2e9a4600b633f6841039fd85a0a70506e583825cecf62
+Server-Side Session Hash: a4182805ec8f2cb29e75eed31c2381f50b69469ffcf47deca62343dfad2b2583
+Database Session Record ID: 49ce7a71-73bd-4133-a59a-7b2b6724e9cf
+
+SIGN-IN ATTEMPT 2 (Same Agent, 84ms later):
+HTTP Response: 200 OK
+Set-Cookie Header: realme_session=b7a91abcdbd9ef3337bb5377991c39896c699fffcd4752b45ba57d3568a15f98; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+Raw 256-bit Token (Token 2): b7a91abcdbd9ef3337bb5377991c39896c699fffcd4752b45ba57d3568a15f98
+Server-Side Session Hash: 1271e645d568cc0d7b3dfee15443cc068bc4f7f2147eeb023b98d1f21dcc1ac7
+Database Session Record ID: 6ad356ed-45e2-44a1-82e7-cb372abcdf09
+
+ENTROPY & UNIQUENESS VERIFICATION:
+Tokens Differ: true
+Token 1 Length: 64 hex characters (256 bits)
+Token 2 Length: 64 hex characters (256 bits)
+Session Fixation Vulnerability Status: NEUTRALIZED (Every sign-in generates a fresh cryptographic nonce)

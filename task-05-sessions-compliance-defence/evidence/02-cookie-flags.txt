@@ -1,0 +1,40 @@
+================================================================================
+REALME TASK 05: EVIDENCE 02 - COOKIE SECURITY FLAGS TELEMETRY
+================================================================================
+Target URL: http://127.0.0.1:3007/api/v1/auth/login
+Response Header Dump:
+{
+  "content-type": "application/json",
+  "access-control-allow-origin": "*",
+  "access-control-allow-credentials": "true",
+  "access-control-allow-headers": "Content-Type, Cookie",
+  "set-cookie": [
+    "realme_session=2b2633316106a76ff1d2e9a4600b633f6841039fd85a0a70506e583825cecf62; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800"
+  ],
+  "date": "Tue, 17 Nov 2026 17:11:04 GMT",
+  "connection": "keep-alive",
+  "keep-alive": "timeout=5",
+  "transfer-encoding": "chunked"
+}
+
+Set-Cookie Directive Analysis:
+Cookie Value: realme_session=2b2633316106a76ff1d2e9a4600b633f6841039fd85a0a70506e583825cecf62; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+
+Flag 1: HttpOnly
+- Presence: VERIFIED
+- Purpose: Blocks client-side JavaScript access via document.cookie.
+- Threat Mitigated: Neutralizes session token exfiltration via Cross-Site Scripting (XSS).
+
+Flag 2: Secure
+- Presence: VERIFIED
+- Purpose: Forces transmission exclusively across encrypted HTTPS/TLS channels.
+- Threat Mitigated: Prevents cleartext packet sniffing over public Wi-Fi on Admiralty Way.
+
+Flag 3: SameSite=Lax
+- Presence: VERIFIED
+- Purpose: Restricts ambient cookie transmission on cross-origin third-party requests.
+- Threat Mitigated: Eliminates Cross-Site Request Forgery (CSRF).
+
+Flag 4: Path=/ & Max-Age=604800 (7 Days)
+- Presence: VERIFIED
+- Purpose: Restricts cookie boundary to application routes with finite 7-day TTL.

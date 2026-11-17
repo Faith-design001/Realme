@@ -1,0 +1,19 @@
+================================================================================
+REALME TASK 05: EVIDENCE 12 - ACCOUNT DELETION REQUEST LOCKS ACCOUNT IMMEDIATELY
+================================================================================
+Initiating NDPA Section 34 Account Deletion Request:
+Endpoint: POST /api/v1/auth/delete-account
+Request Cookie: realme_session=b119a03eb555656639809c656a0f5da5cfab6b15f232551455f36242ccee972a; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+HTTP Response: 200 OK
+Body: {"status":"DELETION_SCHEDULED","agentId":"5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b","accountLocked":true,"sessionsRevoked":1,"gracePeriodDays":7,"hardDeletionDate":"2026-11-24T17:11:05.041Z","message":"Account locked immediately. 7-day grace period initiated under NDPA Section 34."}
+
+IMMEDIATE RE-AUTHENTICATION ATTEMPT:
+Agent Ibrahim Lawal attempts to log in with valid credentials 2 seconds after deletion request:
+Endpoint: POST /api/v1/auth/login
+HTTP Response: 403 Forbidden
+Body: {"error":"Account is locked pending NDPA deletion grace period. Contact managing broker to cancel.","code":"ACCOUNT_PENDING_DELETION","deletionScheduledFor":"2026-11-24T17:11:05.041Z"}
+
+VERIFICATION:
+- Account Status: PENDING_DELETION
+- Active Sessions: 0
+- Access Status: LOCKED IMMEDIATELY (7-day statutory grace period active)

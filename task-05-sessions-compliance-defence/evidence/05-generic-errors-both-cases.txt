@@ -1,0 +1,22 @@
+================================================================================
+REALME TASK 05: EVIDENCE 05 - GENERIC ERROR MESSAGE INDISTINGUISHABILITY
+================================================================================
+Testing User Enumeration Defences at the Login Boundary:
+
+CASE 1: Correct Registered Email + Incorrect Password
+Request Payload: {"email":"tunde.bakare@realme.ng","password":"WrongPassword123!"}
+HTTP Status: 401 Unauthorized
+Response Body: {"error":"Incorrect email or password","code":"AUTH_CREDENTIALS_INVALID"}
+
+CASE 2: Non-Existent Email + Arbitrary Password
+Request Payload: {"email":"nonexistent.agent@realme.ng","password":"WrongPassword123!"}
+HTTP Status: 401 Unauthorized
+Response Body: {"error":"Incorrect email or password","code":"AUTH_CREDENTIALS_INVALID"}
+
+ATTACKER RECONNAISSANCE ANALYSIS:
+Status Codes Match: true (401)
+Response Bodies Match: true
+Response Content: {"error":"Incorrect email or password","code":"AUTH_CREDENTIALS_INVALID"}
+
+What an attacker learns if these are not indistinguishable:
+If Case 1 returned "Password incorrect" and Case 2 returned "User not found", an attacker running automated wordlists would definitively discover every valid corporate email registered at Realme Properties Ltd. They could then mount targeted phishing or credential-stuffing attacks against confirmed employees.

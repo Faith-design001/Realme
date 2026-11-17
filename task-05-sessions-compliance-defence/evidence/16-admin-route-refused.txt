@@ -1,0 +1,28 @@
+================================================================================
+REALME TASK 05: EVIDENCE 16 - COPIED-LINK TEST: ADMIN ROUTE ACCESS REFUSAL
+================================================================================
+Target Protected Route: GET /api/v1/admin/fiduciary-audit
+Purpose: Displays confidential seller reserve pricing (₦410M) and Governor's Consent dispute caveats.
+Security Requirement: Must verify AUTHORISATION (Role === 'MANAGING_BROKER'), not just AUTHENTICATION.
+
+TEST 1: Unauthenticated Request (No Cookie)
+HTTP Response: 401 Unauthorized
+Response Body: {"error":"HTTP 401 Unauthorized: Authentication required to view administrative route","code":"UNAUTHENTICATED"}
+
+TEST 2: Copied-Link Test (Ordinary Agent 'AGENT' Role pastes Admin URL)
+User: Tunde Bakare (Role: AGENT)
+Cookie Presented: realme_session=1cbc46603a3419859a454aa922b5e5e9be0ecee8079909a9ed0262174a424f8e; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+HTTP Response: 403 Forbidden
+Response Body: {"error":"HTTP 403 Forbidden: Access Denied. Managing Broker credentials required to view fiduciary audit ledgers.","code":"INSUFFICIENT_PRIVILEGES","currentUserRole":"AGENT","requiredRole":"MANAGING_BROKER"}
+Security Verification:
+- Did the route allow access? NO.
+- Did the route return 401 and loop to login? NO.
+- Did the route correctly return HTTP 403 Forbidden? YES.
+- Access Refusal Status: PASS. Ordinary logged-in agents cannot read broker reserves.
+
+TEST 3: Authorized Managing Broker Access
+User: Olumide Adeleke (Role: MANAGING_BROKER)
+Cookie Presented: realme_session=7c18a4b731cac5acef359e943be5ced5ab5e35d7a5db4cf82e9986b2666d775e; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+HTTP Response: 200 OK
+Response Body: {"status":"ACCESS_GRANTED","fiduciaryDossier":{"brokerage":"Realme Properties Ltd (Lekki Phase 1)","managingBroker":"Olumide Adeleke","confidentialListings":[{"property":"Plot 14, Admiralty Way, Lekki Phase 1","publicAskPrice":475000000,"confidentialBottomDollarReserve":410000000,"escrowDepositHeld":41000000,"activeLitigationCaveat":"Lagos High Court Suit LD/2410/2025: Governor's Consent dispute with former developer."}],"totalEscrowDepositsKobo":"4100000000"}}
+Access Status: GRANTED.

@@ -1,0 +1,17 @@
+================================================================================
+REALME TASK 05: EVIDENCE 15 - ZERO-COST FRONT-END CREDENTIAL STATE HAND-OFF
+================================================================================
+Feature: Cross-Tab Credential State Hand-Off without Server Request or External Library
+File: task-03-client-validation/src/index.html (Lines 88-112)
+
+EXECUTION TRACE:
+1. Field Agent attempts login with email: "tunde.bakare@realme.ng" and mistypes password.
+2. Server returns HTTP 401 Unauthorized ("Incorrect email or password").
+3. Local Component State preserves typed email buffer: formState.login.email = "tunde.bakare@realme.ng".
+4. Agent clicks "Forgot Password?" hyperlink.
+5. Client router switches view: window.history.pushState(null, '', '?tab=reset').
+6. Active Form transitions to Reset Password view.
+7. Reset Password email field automatically reads buffered state:
+   document.getElementById('reset-email').value = formState.login.email;
+8. User experience: The field agent arrives on the Reset screen with their corporate email pre-populated.
+9. Cost: 0 network requests, 0 external library dependencies (Zustand/Redux size = 0 KB).

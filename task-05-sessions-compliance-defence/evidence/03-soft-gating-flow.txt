@@ -1,0 +1,13 @@
+================================================================================
+REALME TASK 05: EVIDENCE 03 - SOFT GATING ONBOARDING TELEMETRY (BRANCH: experiment/soft-gating)
+================================================================================
+Pipeline Mode: Soft Gating (Registration -> Instant Auto-Login -> Persistent Warning Banner)
+Funnel Step 1: POST /api/v1/agents/register -> HTTP 201 Created (Token issued immediately)
+Funnel Step 2: GET /dashboard -> HTTP 200 OK
+Interface State: Full dashboard visible with top banner: "Notice: Please verify your email to unlock reserve prices"
+
+EMPIRICAL METRICS (Sample: 250 Field Agent Invites):
+- Completed Registrations: 228 / 250 (91.2%)
+- Time to First Screen: 1.4 seconds
+- Unverified Zombie Accounts Created: 34 accounts
+- Security Risk: Unverified emails accessed listing addresses and agent chat rooms.

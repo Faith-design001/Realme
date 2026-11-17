@@ -1,0 +1,21 @@
+================================================================================
+REALME TASK 05: EVIDENCE 06 - TWO AGENTS SHARING ONE BROWSER TERMINAL
+================================================================================
+Test Scenario:
+Agent A (Tunde Bakare, Field Agent) logs in on shared desktop terminal at Lekki branch office.
+Agent B (Olumide Adeleke, Managing Broker) subsequently logs in on the same browser terminal.
+
+STEP 1: Agent A Logs In
+- Account: tunde.bakare@realme.ng
+- Response Cookie Issued: realme_session=6f28dce040817c5c28540335cbc73d6e2be1ca52bbc6e0bb136b927d19a3db5d; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+- GET /api/v1/auth/me Verified Identity: {"authenticated":true,"session":{"id":"f4037239-608d-4db5-98ee-0a1f8f256df6","expiresAt":"2026-11-24T17:11:04.498Z","ipAddress":"192.168.1.100"},"agent":{"id":"8f2b3e4a-912c-4e89-b1d5-aa728e94e501","fullName":"Tunde Bakare","email":"tunde.bakare@realme.ng","role":"AGENT","status":"ACTIVE"}}
+
+STEP 2: Agent B Logs In Without Explicit Clear
+- Account: adeleke.olumide@realme.ng
+- Response Cookie Issued: realme_session=cb6111a01d87c49fcfd933ec5e3d46d5e1a951144277e7ab2b1cbd5d4c7dd8a1; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+- GET /api/v1/auth/me Verified Identity: {"authenticated":true,"session":{"id":"27e2cff2-0b34-45a0-afb7-607f6ecf2048","expiresAt":"2026-11-24T17:11:04.555Z","ipAddress":"192.168.1.100"},"agent":{"id":"3c1d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f","fullName":"Olumide Adeleke","email":"adeleke.olumide@realme.ng","role":"MANAGING_BROKER","status":"ACTIVE"}}
+
+STEP 3: Cookie Overwrite & Session Isolation Check
+- Does Agent B inherit Agent A's session? NO.
+- Overwrite Behavior: Browser Set-Cookie with Path=/ replaces previous cookie value.
+- Request Resolution: Server resolves request strictly against the active incoming session hash. Agent B receives role 'MANAGING_BROKER' with no cross-user session pollution.

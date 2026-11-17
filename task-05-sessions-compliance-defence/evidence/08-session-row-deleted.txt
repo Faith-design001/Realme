@@ -1,0 +1,17 @@
+================================================================================
+REALME TASK 05: EVIDENCE 08 - SERVER-SIDE SESSION ROW DELETED AFTER LOGOUT
+================================================================================
+Action: POST /api/v1/auth/logout with Cookie: realme_session=ea01334497d82686a9c149cb44ffc7eac634d94a95169f96e5d7c30e6703afa1; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800
+HTTP Response: 200 OK
+Response Body: {"status":"LOGGED_OUT","serverRevocation":true,"message":"Session row deleted from database and browser cookie cleared"}
+Response Set-Cookie: realme_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=Lax
+
+SQL Query Verification:
+SELECT * FROM sessions WHERE session_hash = 'e673bdae84f373a78e7d0c7ae4e180b01a57e99761d2ecbe0d84491e441d0231';
+Result: 0 Rows Returned (Query returned empty set)
+
+Subsequent Request Verification:
+GET /api/v1/auth/me with Revoked Cookie:
+HTTP Status: 401 Unauthorized
+Body: {"error":"Unauthenticated: No valid session token presented"}
+Status: SESSION ROW PERMANENTLY DESTROYED AT SOURCE OF TRUTH

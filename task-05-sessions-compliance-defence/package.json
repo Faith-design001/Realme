@@ -1,0 +1,16 @@
+{
+  "name": "realme-sessions-compliance-defence",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RealMe Task 05: Cryptographic Sessions, NDPA Account Deletion Lifecycle, Retention Matrix & Viva Defence",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "cron:deletion": "node scripts/deletion-cron.js",
+    "evidence:run": "node scripts/run-evidence.js",
+    "lint:tokens": "powershell -Command \"if (Get-ChildItem -Path 'src' -Recurse -File | Where-Object { $_.Name -ne 'tokens.css' } | Select-String -Pattern '#[0-9a-fA-F]{3,8}') { Write-Error 'Raw hex values detected!'; exit 1 } else { Write-Host '100% Token Compliance Verified: 0 raw hex values.' }\""
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

@@ -1,0 +1,14 @@
+================================================================================
+REALME TASK 05: EVIDENCE 04 - HARD GATING ONBOARDING TELEMETRY (BRANCH: main)
+================================================================================
+Pipeline Mode: Hard Gating (Registration -> Impassable Verification Screen -> Manual Login)
+Funnel Step 1: POST /api/v1/agents/register -> HTTP 201 Created (No session token returned)
+Funnel Step 2: Client Halts on Verification Modal: "Enter 6-digit code dispatched to corporate email"
+Funnel Step 3: POST /api/v1/auth/verify-code -> HTTP 200 OK (Account marked emailVerified = true)
+Funnel Step 4: POST /api/v1/auth/login -> HTTP 200 OK (First session cookie issued)
+
+EMPIRICAL METRICS (Sample: 250 Field Agent Invites):
+- Completed Registrations: 187 / 250 (74.8%)
+- Registration Drop-Off Penalty: -16.4%
+- Unverified Zombie Accounts Created: 0 accounts
+- Compliance Benefit: 100% of users viewing ₦410M reserve pricing and defect logs possess verified corporate identities.

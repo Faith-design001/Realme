@@ -1,0 +1,14 @@
+================================================================================
+REALME TASK 05: EVIDENCE 17 - PUBLISHED TECHNICAL ARTICLE & ESSAY
+================================================================================
+Title: When "Delete Account" Is A Crime: Architecting NDPA Compliance in High-Stakes Nigerian Proptech
+Author: Realme Technical Engineering Team
+Publication URL: https://medium.com/@faithdesign/when-delete-account-is-a-crime-ndpa-compliance-proptech-realme-2026
+Date: November 17, 2026
+
+SUMMARY:
+A deep-dive technical engineering article analyzing why naive database deletion ('DELETE FROM users') violates Nigerian statutory law when handling real estate escrow deposits and property defect disclosures. Walkthrough covers:
+1. The Broken Promise: Promising to delete structural defect caveats and why it cannot be kept.
+2. The 7-Day Grace Period: Balancing immediate session revocation with dispute recovery.
+3. Anonymization vs Deletion: Overwriting identity digests while maintaining foreign keys for Anti-Money Laundering audit compliance.
+4. Cross-Task Telemetry: Lessons learned building RealMe across five weeks.

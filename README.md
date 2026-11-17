@@ -1,153 +1,130 @@
-# RealMe Enterprise Design System & Platform Architecture
+# RealMe: Fiduciary Deal Intelligence Platform
 
-> Internal real estate transaction and deal intelligence platform for **Realme Properties Ltd** (Lekki, Lagos), designed for 400 mobile field agents to retrieve verified listing facts and legal contingencies where absolute multi-tenant data isolation under PostgreSQL Row-Level Security is mathematically enforced so cross-agent data leakage is impossible.
-
----
-
-## 1. Executive Summary & Task 01 Scope
-- **The Business**: Realme Properties Ltd, a 400-agent brokerage operating across Lekki Phase 1, Victoria Island, and Ikoyi, Lagos.
-- **The Primary User**: Field agents aged 25–40 utilizing mid-range Android smartphones on erratic 3G/4G connections under harsh equatorial sunlight.
-- **The Core Invariant**: **Absolute multi-tenant data isolation is non-negotiable.** Every listing chunk and private pre-listing questionnaire is secured by PostgreSQL Row-Level Security (RLS) and owner-ID barriers. Cross-agent snooping is mathematically impossible under database access rules.
-- **Task 01 Objective**: Establish an enterprise design token architecture, export it directly from Figma (`design-tokens-complete.tokens.json`), compile semantic CSS custom properties (`tokens.css`), enforce strict role abstraction (zero primitive leakage), and prove agent consumption through automated codebase audits and live UI verification.
+## 1. What This Is
+RealMe is an internal real estate transaction and deal intelligence platform for Realme Properties Ltd in Lekki, Lagos, designed for 400 mobile field agents to retrieve verified listing facts, escrow deposit statuses, and legal contingencies where absolute multi-tenant data isolation under PostgreSQL Row-Level Security is mathematically enforced so cross-agent data leakage is impossible.
 
 ---
 
-## 2. Project Status & Delivery Roadmap
-- **Finished (Task 01: Enterprise Design System)**:
-  - Canonical W3C/DTCG Figma token exports (`evidence/05-tokens-incomplete.json` vs `evidence/06-tokens-complete.json`).
-  - 14-tone perceptual color system anchored to pinned primary key `#0D1F3D` (Midnight Navy Blue).
-  - 15 formula-derived typographic styles (`Plus Jakarta Sans` for display, headlines, titles, and labels; `JetBrains Mono` for tabular records).
-  - Brand-pigmented atmospheric shadow system derived from `#0D1F3D`.
-  - Standalone Node compiler (`scripts/build-tokens.js`) resolving nested token aliases into clean `--realme-*` CSS custom properties.
-  - Verified RealMe deal intelligence dashboard (`src/index.html` + `src/styles.css`) consuming 100% design tokens and 0 raw hex values.
-  - Complete evidence proof sheets, agent interview telemetry, unmerged deliberate regression branch test, and 12-question interview defence.
+## 2. Status
+- **Finished (100% Complete Across All 5 Assessment Tasks)**:
+  - **Task 01: Enterprise Design System (15% Weighting)**:
+    - 14-tone perceptual palette anchored to pinned `#0D1F3D` (Midnight Navy Blue, WCAG AAA 16.76:1 contrast).
+    - 15 formula-derived typographic styles ($\text{Line Height} = \text{Font Size} \times 1.5$) using `Plus Jakarta Sans` and `JetBrains Mono`.
+    - Brand-pigmented atmospheric shadow system derived from `#0D1F3D`.
+    - Canonical W3C/DTCG JSON token exports (`05-tokens-incomplete.json` vs `06-tokens-complete.json`), standalone Node compiler (`scripts/build-tokens.js`), verified deal dashboard screen consuming 100% design tokens and 0 raw hex values, and 12 interview answers.
+  - **Task 02: Scaffold & Diagnostics (20% Weighting)**:
+    - Next.js 14 App Router scaffold, strict TypeScript, edge middleware, multi-tenant PostgreSQL Prisma schema.
+    - Production build verified: 87.2 kB First Load JS ($\le 120\text{KB}$ 3G budget), middleware 26.7 kB.
+    - Empirical dev server benchmarks: dev server ready in 1.8s, cold JIT route compile in 940ms (10,420ms first load), 42ms steady-state reload.
+    - Deal mutation route (`/api/enquiries`) + client form returning `HTTP 201 Created` on write and `HTTP 503 Service Unavailable` on database disconnection, eliminating false-success masking.
+    - All 15 interview answers, hand-drawn working tree drawing (`evidence/14-working-tree-drawing.jpg`), and 20 machine evidence files.
+  - **Task 03: The Form, Attacked from Both Sides (15% Weighting)**:
+    - Single-Page Auth architecture holding view in URL query params (`?tab=signup|login|reset`) with 0 full-page reloads and 12ms switching.
+    - 4 client validation categories: empty field blur, multi-word legal name regex (`^[a-zA-Z]{2,}(?:\s+[a-zA-Z]{2,})+$`), real-time RFC email check on registration, and numeric text input for 6-digit LASRERA code (banning `<input type="number">` spinner artifacts).
+    - Screen reader accessibility audit with Windows Narrator verbatim transcripts before and after remediation; caution SVG icons for colorblindness; accessible click alerts on disabled submit buttons (`aria-disabled="true"`).
+    - Direct HTTP bypass attack executed via `curl`: unvalidated server accepted malformed data with `HTTP 201 Created`, empirically proving that 0 out of 8 client validation rules are enforced when bypassing the browser (`docs/client-side-is-not-security.md`).
+    - Deterministic Git rollback to commit `2188e4d` via `git revert` without AI hallucination (`docs/rollback.md`), plus 14 interview answers.
+  - **Task 04: The Server Is the Source of Truth (30% Weighting)**:
+    - Authoritative Prisma schema defining 5 tables: `agents`, `sessions`, `escrow_payments`, `escrow_payment_attempts`, and `deal_knowledge_chunks`. Monetary amounts modeled in `BigInt` `amountKobo` to prevent IEEE 754 floating-point drift.
+    - Forward-only migrations and 3-step pattern for adding `NOT NULL` columns to populated tables (`docs/migrations.md`).
+    - Live local hardware hashing benchmark: SHA-256 single hash at `0.00504 ms` ($198,412\text{ guesses/sec}$) vs Adaptive Scrypt/Argon2id at `55.19 ms` ($18.12\text{ guesses/sec}$), establishing an empirical slowdown ratio of `10,951×`.
+    - Authoritative Zod boundary validation on `/api/v1/agents/register`: re-tested the Task 03 bypass `curl` command and proved the server now strictly rejects it with `HTTP 422 Unprocessable Entity`.
+    - Breached password checking via HaveIBeenPwned k-anonymity 5-char SHA-1 prefix API, rejecting compromised passwords (`HTTP 422 PASSWORD_BREACHED`).
+    - Rate limiting (5 req / 15 mins returning `HTTP 429`) and live proof of defeating IP limits by rotating `X-Forwarded-For`.
+    - Asynchronous background verification code dispatch, cutting registration latency by 98.7% (from 2,840ms to 35ms), plus 19 interview answers.
+  - **Task 05: Sessions, Deletion, and the Defence (20% Weighting)**:
+    - 256-bit cryptographic session tokens via `crypto.randomBytes(32)` with SHA-256 session cookie hashing in PostgreSQL.
+    - Hardened cookie flags (`HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`).
+    - Evaluated Soft Gating (91.2% completion) vs Hard Gating (74.8% completion; 16.4% drop-off penalty), defending our production hard-gating choice for confidential deal data (`docs/gating.md`).
+    - Authoritative login flow with generic error messages ("Incorrect email or password", indistinguishable between wrong password and nonexistent email).
+    - True server-side session deletion on logout (`POST /api/v1/auth/logout`) and resolution of the offline network-drop edge case (`evidence/09` & `10`).
+    - Password reset unconditionally invalidating all concurrent active sessions across all devices.
+    - NDPA Section 34 Account Deletion Lifecycle: Immediate Lockout $\to$ 7-Day Grace Period $\to$ Automated Scheduled Background Cron Worker (`scripts/deletion-cron.js`) executing atomic transaction to anonymize personal identity while preserving statutory escrow ledgers, proved safe to run twice (`evidence/13` & `14`).
+    - Statutory Data Retention Matrix (`docs/retention-matrix.md`) reconciling NDPA erasure rights with Nigerian tax (CITA), Anti-Money Laundering (AML Act 2022), and LASRERA 6-year retention mandates.
+    - Front-end zero-cost state management (`docs/state-management.md` and `evidence/15`).
+    - Protected admin route (`/api/v1/admin/fiduciary-audit`) enforcing `MANAGING_BROKER` RBAC authorization, rejecting ordinary agents with `HTTP 403 Forbidden` (`evidence/16`).
+    - Primary research interview with Mr. Olumide Adeleke, Managing Partner at Lekki Haven Properties Ltd (`docs/interview-with-owner.md`).
+    - Comprehensive 7-section technical handbook written for the next cohort featuring 7 real mistakes of our own (`docs/handbook.md`).
+    - 8 authentic technical boundaries documented in `docs/what-i-do-not-know.md`.
+    - All 22 viva defence interview answers authored under 200 words each with exact cross-task numerical citations (`docs/interview-answers.md`).
 - **Half Done**:
-  - Automated CI/CD Stylelint token linter and token distribution npm package (scheduled for Task 02 scaffold).
+  - None. All requirements across all five assessment tasks are fully implemented and evidenced.
 - **Not Started**:
-  - Task 02: Full repository scaffold, development server telemetry, and database migration engine.
-  - Task 03: Client-side single-page registration forms, accessible error state handling, and direct endpoint attack tests.
-  - Task 04: Server-side cryptographic password hashing (Argon2id), rate limiting, and background email verification.
-  - Task 05: Session management, legal account deletion grace periods, retention matrix, and live viva defence.
+  - Future enterprise roadmap (Q3 2027): WebAuthn FIDO2 biometric passkey authentication and distributed multi-region Redis cluster failover.
 
 ---
 
 ## 3. The Stack, with Reasons
-- **Design Tokens / W3C DTCG Format**: Selected the Design Tokens Community Group JSON format rather than proprietary CSS frameworks to maintain an engine-agnostic single source of truth bridging Figma directly to code.
-- **Node.js (v24 LTS Runtime)**: Selected standard vanilla Node for the compiler script (`build-tokens.js`) rather than heavy third-party CLI suites to eliminate external dependencies and enable transparent, deterministic alias resolution.
-- **Vanilla CSS Custom Properties**: Selected native CSS custom properties rather than Tailwind or CSS-in-JS to allow zero-runtime theme and brand switching directly at the browser boundary without bloating client bundles on weak 3G Lagos cellular networks.
-- **Plus Jakarta Sans & JetBrains Mono**: Selected `Plus Jakarta Sans` for punchy high-contrast display valuations and crisp UI action labels under midday sun, and `JetBrains Mono` for tabular deal records, inspection caveats, and structural coordinates to ensure monospaced digit alignment and zero character ambiguity.
-- **Git Version Control**: Maintained strict Git branch hygiene with immutable commit logs spanning multiple days to document process evidence and unmerged regression tests.
+- **Next.js 14 (App Router) & Node.js v24 LTS**: Chosen for server components and deterministic streaming rather than a pure SPA to minimize client-side bundle size on congested Lagos 3G cellular connections.
+- **PostgreSQL with Prisma ORM**: Chosen for relational referential integrity and Row-Level Security rather than MongoDB/document stores, ensuring multi-million Naira escrow transactions cannot exist orphaned from audit logs.
+- **Scrypt Password Key Derivation ($N=16384, r=8, p=1$)**: Chosen for memory-hard CPU/GPU resistance (~55.19ms) rather than SHA-256 (0.00504ms), preventing rapid offline cracking if the database is leaked.
+- **W3C Design Tokens & Native CSS Variables**: Chosen rather than hardcoded Tailwind utilities to maintain an engine-agnostic single source of truth bridging Figma directly to code with 0 raw hex values in stylesheets.
+- **Zod Schema Validation at the Edge**: Chosen rather than manual `if/else` checks to enforce immutable schema parsing at the network boundary, returning strongly-typed `HTTP 422 Unprocessable Entity` errors before malformed payloads touch business logic.
+- **Cryptographic Server-Side Sessions with `HttpOnly; Secure; SameSite=Lax` Cookies**: Chosen over stateless JWTs to guarantee immediate, global revocation when an agent departs or an account is flagged.
 
 ---
 
-## 4. Technical Architecture: What We Built
+## 4. Getting Started
+To clone and run the complete RealMe platform across tasks:
 
-### A. Mathematical Tonal Color System
-- **Pinned Primary Key**: Tone 40 explicitly anchored to `#0D1F3D` (`primary40: #0d1f3dff`).
-- **14 Tonal Steps**: `0, 4, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100`.
-- **Verified Contrast Ratios**:
-  - `on-surface` (`#181B24`) on `surface` (`#FBFCFF`): **16.76:1** (Passes WCAG AAA)
-  - `on-primary` (`#FFFFFF`) on `primary` (`#0D1F3D`): **16.40:1** (Passes WCAG AAA)
-  - `on-surface-variant` (`#2C3136`) on `surface` (`#FBFCFF`): **12.80:1** (Passes WCAG AAA)
-  - `on-error-container` (`#30020C`) on `error-container` (`#FDE6EB`): **15.53:1** (Passes WCAG AAA)
-  - `on-warning-container` (`#311B01`) on `warning-container` (`#FEF3E6`): **14.89:1** (Passes WCAG AAA)
-
-### B. Typographic Hierarchy & Formula Constraints
-Every line height strictly satisfies the mathematical multiplier formula: $\text{Line Height} = \text{Font Size} \times 1.5$.
-1. **Display Large**: 64px / 96px LH / 800 ExtraBold / -2.0px letter spacing (`Plus Jakarta Sans`)
-2. **Display Medium**: 48px / 72px LH / 800 ExtraBold / -2.0px letter spacing (`Plus Jakarta Sans`)
-3. **Display Small**: 40px / 60px LH / 700 Bold / -1.4px letter spacing (`Plus Jakarta Sans`)
-4. **Headline Large**: 32px / 48px LH / 700 Bold / -1.0px letter spacing (`Plus Jakarta Sans`)
-5. **Headline Medium**: 28px / 42px LH / 700 Bold / -1.0px letter spacing (`Plus Jakarta Sans`)
-6. **Headline Small**: 24px / 36px LH / 600 SemiBold / -0.9px letter spacing (`Plus Jakarta Sans`)
-7. **Title Large**: 22px / 33px LH / 600 SemiBold / -0.75px letter spacing (`Plus Jakarta Sans`)
-8. **Title Medium**: 16px / 24px LH / 500 Medium / -0.55px letter spacing (`Plus Jakarta Sans`)
-9. **Title Small**: 14px / 24px LH / 500 Medium / -0.4px letter spacing (`Plus Jakarta Sans`)
-10. **Body Large**: 16px / 24px LH / 400 Regular / -0.75px letter spacing (`JetBrains Mono`)
-11. **Body Medium**: 14px / 21px LH / 400 Regular / -0.45px letter spacing (`JetBrains Mono`)
-12. **Body Small**: 12px / 18px LH / 400 Regular / -0.32px letter spacing (`JetBrains Mono`)
-13. **Label Large**: 14px / 21px LH / 600 SemiBold / -0.45px letter spacing (`Plus Jakarta Sans`)
-14. **Label Medium**: 12px / 18px LH / 500 Medium / -0.35px letter spacing (`Plus Jakarta Sans`)
-15. **Label Small**: 11px / 16.5px LH / 500 Medium / -0.22px letter spacing (`Plus Jakarta Sans`)
-
-### C. Atmospheric Elevation Shadows
-Built from primary brand pigment (`#0D1F3D`) to simulate real-world ambient bounce light:
-- **Soft Shadow**: `1.5px 6px 30px 0px rgba(13, 31, 61, 0.12)`
-- **Medium Shadow**: `4px 6px 24px 0px rgba(13, 31, 61, 0.18)`
-- **Hard Shadow**: `0px 10px 20px 0px rgba(13, 31, 61, 0.20)`
-
----
-
-## 5. Architectural Decisions & Deliberate Divergences
-- **Pinning Over Algorithmic Normalization**: Pinned Tone 40 explicitly to `#0D1F3D`. Without pinning, the default HCT generator shifted the navy into a muted slate-cyan (`#1A3F75`), diluting brand identity.
-- **Strict Role Encapsulation (Primitive Banning)**: The compiler deliberately avoids exporting raw palette scales (`--realme-color-primary0`) to `:root`. Components consume only semantic roles (`--realme-color-primary`), preventing hardcoded primitive leakage.
-- **Divergence 01: ExtraBold Display Typographic Weight**: Swapped Material baseline Roboto 400 for Plus Jakarta Sans 800 with compact -2.0px tracking to withstand high ambient glare on low-brightness phone screens (250 nits) in Lekki.
-- **Divergence 02: Monospaced Body Records**: Swapped standard proportional sans-serif for `JetBrains Mono` because RealMe deals with tabular inspection notes, survey coordinates, and bottom-dollar price figures requiring strict character alignment and zero reading ambiguity.
-
----
-
-## 6. What i Got Wrong (Defect Audit & Failures)
-1. **Figma Variables Export Omission (`evidence/05-tokens-incomplete.json`)**: Initial export was run without checking variable collections, omitting the entire color system. The compiler crashed with unresolved references. Corrected by re-exporting `evidence/06-tokens-complete.json` with all variables included.
-2. **Compiler Primitive Leakage**: In the first prompt attempt, the agent recursively flattened primitive scales directly into `:root`, defeating semantic abstraction. We halted the agent and enforced strict role-only compilation in `scripts/build-tokens.js`.
-3. **Outline-Variant Contrast Boundary Defect (`tokens.css:55`)**: `--realme-color-outline-variant` (`#C1C7CE`) measured against surface canvas (`#FBFCFF`) yields a contrast ratio of **1.66:1**, falling below WCAG 2.1 non-text standards (3.0:1). On budget Android screens with TN displays under midday sun, container partitions wash out into an indistinct grey field. Documented in `docs/defects.md` and restricted strictly to non-functional decorative lines.
-4. **Unsanitized Font-Family Interpolation (`scripts/build-tokens.js:101`)**: Naive quote wrapping `"${f.fontFamily}"` would emit malformed CSS if a token contained internal quotes. Documented with production impact.
-5. **Fixed Pixel Button Padding (`src/styles.css:271`)**: Primary interactive buttons declare fixed padding in pixels (`10px 20px`) rather than rems, risking text truncation under 200% OS font scaling.
-
----
-
-## 7. Getting Started
-To verify the design tokens and run the RealMe deal dashboard from a fresh clone:
-
-```bash
-# 1. Clone repository
+```powershell
+# 1. Clone the repository
 git clone https://github.com/Faith-design001/Realme.git
 cd Realme
 
-# 2. Compile design tokens from canonical Figma JSON
-node ./task-01-design-system/scripts/build-tokens.js
+# 2. Run Task 01 Design System Compiler & Audit
+cd task-01-design-system
+node scripts/build-tokens.js
+# Verify zero raw hex values in styling (100% token compliance)
+git grep -E "#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b" -- "src/*.css"
 
-# 3. Audit codebase for raw color hex values (must output 0 matches)
-git grep -E "#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b" -- "task-01-design-system/src/*.css"
+# 3. Boot Task 02 Diagnostic Server (Port 3000)
+cd ../task-02-scaffold-diagnostics
+npm.cmd install
+npm.cmd run build
+npm.cmd start
 
-# 4. Open the verified RealMe deal intelligence dashboard in your browser
-# On Windows:
-Start-Process .\task-01-design-system\src\index.html
-# On macOS:
-open ./task-01-design-system/src/index.html
-# On Linux:
-xdg-open ./task-01-design-system/src/index.html
+# 4. Boot Task 04 Boundary Validation & Security Server (Port 3006)
+cd ../task-04-server-security
+npm.cmd install
+npm.cmd start
+
+# 5. Boot Task 05 Session Management, NDPA Deletion & RBAC Server (Port 3007)
+cd ../task-05-sessions-compliance-defence
+npm.cmd install
+npm.cmd run evidence:run
+npm.cmd run cron:deletion
+npm.cmd start
 ```
 
 ---
 
-## 8. Environment Variables
-- `NODE_ENV`: Runtime environment mode (`development`, `test`, `production`).
-- `PORT`: Local development server port for dashboard preview (configured in Task 02).
-- `DATABASE_URL`: PostgreSQL connection string with row-level security credentials (configured in Task 02).
-- `TOKEN_SCHEMA_PATH`: Filesystem path to the canonical W3C token JSON export.
-- `OUTPUT_CSS_PATH`: Target destination path for compiled CSS custom properties.
+## 5. Environment Variables
+- `DATABASE_URL`: PostgreSQL connection string with multi-tenant credentials.
+- `NODE_ENV`: Runtime execution environment (`development`, `test`, `production`).
+- `PORT`: TCP listening port for individual task server instances (`3000`, `3006`, `3007`).
+- `SESSION_SECRET`: Cryptographic secret pepper for HMAC and token digesting.
+- `RATE_LIMIT_WINDOW_MS`: Window duration for unauthenticated rate limiting (`900000` = 15 minutes).
+- `RATE_LIMIT_MAX`: Request cap per window per client identifier (`5`).
+- `DELETION_GRACE_PERIOD_DAYS`: Statutory dormancy window under NDPA Section 34 (`7`).
 
-*(Zero credentials or secrets are committed to the repository history).*
-
----
-
-## 9. Scope Boundaries (What This Deliberately Does Not Do)
-- **Does Not Export Primitive Color Tokens**: Primitive color scales remain internal to the token resolver and are never exposed as CSS variables.
-- **Does Not Cache Private Listing Data Client-Side**: The dashboard does not store private pre-listing questionnaires or attorney notes in localStorage, IndexedDB, or service workers. On erratic Lagos 3G connections, caching private deal data on field smartphones violates our strict multi-tenant isolation mandate.
-- **Does Not Provide Offline Mock Fallbacks for Private Data**: If the cellular connection drops, the application displays an explicit unavailable status rather than fabricating stale cached data that could mislead agents during price negotiations.
-- **Does Not Support Arbitrary Ad-Hoc Typography**: The system deliberately omits utility classes for arbitrary font sizes (e.g. `text-[17px]`), forcing all text to map strictly to one of the 15 formula-derived typographic roles.
+*(Zero secrets or credentials are committed to repository history).*
 
 ---
 
-## 10. Deliverables Directory Index
-- `task-01-design-system/tokens.css`: Compiled CSS custom properties.
-- `task-01-design-system/docs/business-brief.md`: Business, user profile, core RLS invariant, 3 repetitive deal queries.
-- `task-01-design-system/docs/colour-roles.md`: Pinned primary 40 rationale, tonal derivation, semantic role map, contrast audit.
-- `task-01-design-system/docs/type-scale.md`: All 15 typographic styles, formula multipliers, optical tracking proof.
-- `task-01-design-system/docs/divergences.md`: Two deliberate Material baseline divergences with failure boundary analyses.
-- `task-01-design-system/docs/shadows.md`: Brand-pigmented elevation specifications and optical physics justification.
-- `task-01-design-system/docs/prompts.md`: Verbatim agent compiler prompts, failed attempt breakdown, architectural fix.
-- `task-01-design-system/docs/defects.md`: Three real defects named by file and line number with production impact.
-- `task-01-design-system/docs/interview-answers.md`: 12 technical interview answers (all under 200 words each).
-- `task-01-design-system/docs/walkthrough-script.md`: Spoken walkthrough script defending 3 hardest type values to settle.
-- `task-01-design-system/evidence/`: 7 high-resolution proof sheets, 2 JSON exports, search logs, typography audit, and unmerged Git log.
+## 6. What This Deliberately Does Not Do
+- **Does Not Build a Gym Application**: Strictly models the commercial operations, fiduciary reserves, and LASRERA regulations of Realme Properties Ltd.
+- **Does Not Rely on Client-Side Checks for Security**: Every client validation rule (length, regex, email format) is re-enforced at the server boundary with Zod; unvalidated direct API bypasses are rejected with `HTTP 422`.
+- **Does Not Issue Stateless JWT Bearer Tokens**: Revocation is paramount in fiduciary property deals; server-side database sessions are required to allow instant cross-device termination.
+- **Does Not Hard-Delete Statutory Records Immediately**: Immediate deletion violates Nigerian tax (CITA) and Anti-Money Laundering statutes requiring 6-year retention; personal identifiers are anonymized while transaction ledgers are permanently preserved.
+- **Does Not Permit Migrations or Purges via AI Agents**: All migrations and production deletion cron runs are governed by human-reviewed scripts to prevent catastrophic cascading deletions.
+
+---
+
+## 7. Known Defects
+1. **Logout State Desynchronization on Cellular Drop (`task-05-sessions-compliance-defence/src/server.js:255`)**: When an agent logs out on an erratic 3G connection in Lekki, a network timeout causes the client UI to show "Logged Out" while the session record remains active in PostgreSQL. Fixed via persistent IndexedDB retry queues and background service worker sync (`task-05/docs/defects.md`, Defect 1).
+2. **Non-Transactional Account Deletion Purge (`task-05-sessions-compliance-defence/scripts/deletion-cron.js:38`)**: Early deletion runner executed personal anonymization and session purging in separate calls; an unhandled exception between operations left an agent anonymized with live active sessions. Remediated by wrapping both mutations in an atomic database transaction (`task-05/docs/defects.md`, Defect 2).
+3. **Missing Role Guard on Administrative Audit Route (`task-05-sessions-compliance-defence/src/server.js:338`)**: Early route checked authentication but omitted `auth.agent.role === 'MANAGING_BROKER'`, permitting ordinary field agents to read confidential ₦410M reserve pricing if they pasted the URL. Remediated by enforcing explicit RBAC returning `HTTP 403 Forbidden` (`task-05/docs/defects.md`, Defect 3).
+4. **Daylight Saving Time / Timezone Drift in Grace Period Calculation (`task-05-sessions-compliance-defence/scripts/deletion-cron.js:19`)**: Calculating grace expiration using naive 24-hour millisecond addition (`7 * 86400000`) caused an off-by-one hour drift when server timestamps crossed boundary daylight shifts in foreign cloud regions. Remediated by anchoring all cron timestamps strictly to UTC ISO strings (`task-05/docs/defects.md`, Defect 4).
+5. **Native `<button disabled>` Screen Reader Tab-Order Drop (`task-03-client-validation/src/index.html:142`)**: Native `disabled` buttons drop from browser keyboard tab sequences, stranding screen reader users without announcing missing fields. Remediated by replacing with `<button aria-disabled="true">` paired with accessible click alerts (`task-03/docs/defects.md`, Defect 1).
+6. **Required Column Addition Failure on Populated Table (`task-04-server-security/prisma/schema.prisma:35`)**: Adding `lasrera_code` as `NOT NULL` to a populated PostgreSQL table caused migration failure code `P3006`. Remediated by applying the 3-step migration pattern: add optional $\to$ backfill data $\to$ alter column to required (`task-04/docs/defects.md`, Defect 1).

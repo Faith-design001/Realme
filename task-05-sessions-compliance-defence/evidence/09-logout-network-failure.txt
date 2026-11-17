@@ -1,0 +1,22 @@
+================================================================================
+REALME TASK 05: EVIDENCE 09 - LOGOUT NETWORK FAILURE EDGE CASE (THE BROKEN STATE)
+================================================================================
+Scenario:
+An agent at an Admiralty Way coffee shop clicks "Log Out".
+During request transit, the 3G cellular modem drops packet.
+The browser UI displays "You have been logged out" because the client script cleared local state.
+However, the server request timed out with HTTP 504 Gateway Timeout.
+
+Server Log:
+POST /api/v1/auth/logout?simulate_network_drop=true
+HTTP Response: 504 Gateway Timeout
+Body: {"error":"Gateway Timeout: Network dropped before server could delete session row","sessionRemainsActive":true}
+
+Database Inspection:
+SELECT * FROM sessions WHERE session_hash = '89fe6e5258f4a32e57614ad57f42ac68daf16678004a6ef206ebe80097ec5635';
+Result: 1 ROW STILL ACTIVE IN POSTGRESQL!
+Session ID: fa714983-5606-4913-bda4-18f6dfb71ba8
+
+THE DANGEROUS DISCREPANCY:
+The user believes they are logged out.
+An attacker who copied the session cookie can continue to authenticate and read ₦410M deal caveats.
