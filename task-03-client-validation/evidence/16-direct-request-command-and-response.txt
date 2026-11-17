@@ -38,3 +38,4 @@ Content-Length: 268
 
 FINDING & ARCHITECTURAL VERDICT:
 The server completely accepted the payload and returned HTTP 201 Created. Zero of the eight client-side validation rules authored in the frontend form were evaluated or enforced by the backend endpoint. This provides absolute empirical proof that client-side validation is a UX courtesy rather than a security boundary.
+

@@ -1,0 +1,24 @@
+[MIGRATION TRACE: INITIAL SCHEMA MIGRATION]
+Command: npx prisma migrate dev --name init_task04_authoritative_schema
+Timestamp: 2026-11-17T16:11:08.820Z
+
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": PostgreSQL database "realme_db", schema "public" at "localhost:5432"
+
+Applying migration `20261117161108_init_task04_authoritative_schema`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 20261117161108_init_task04_authoritative_schema/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+TABLES INITIALIZED:
+- public.agents (UUID, full_name, email, password_hash, lasrera_code, role)
+- public.sessions (UUID, agent_id, session_hash, ip_address, expires_at)
+- public.escrow_payments (UUID, reference, amount_kobo, status, bank_audit_stamp)
+- public.escrow_payment_attempts (UUID, attempt_ref, amount_kobo, failure_reason)
+- public.deal_knowledge_chunks (UUID, listing_address, category, chunk_text)

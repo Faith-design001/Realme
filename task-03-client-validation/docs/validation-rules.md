@@ -57,3 +57,4 @@ For each rule, three explicit factors are recorded:
 * **What goes wrong without it**: Non-consensual processing of personal data under NDPA Section 25, exposing the brokerage to regulatory sanctions and invalidating non-disclosure agreements regarding confidential seller reserve pricing.
 * **Who it wrongly blocks**: Legitimate fast-moving agents who scan on small screens and tap "Register" without noticing the agreement box.
 * **The Trade-off**: When an agent taps the disabled submit button without checking terms, an explicit alert fires: *"You must accept the Fiduciary Non-Disclosure Agreement before registering."* The button does not silently fail.
+

@@ -1,0 +1,16 @@
+[RECOVERY TRACE: THREE-STEP MIGRATION PATTERN RESOLUTION]
+Problem: Safely adding NOT NULL column "bvn_verified" to populated "agents" table without downtime or constraint violations.
+
+STEP 1: Add column as nullable (optional)
+SQL: ALTER TABLE "agents" ADD COLUMN "bvn_verified" BOOLEAN DEFAULT NULL;
+Output: Column successfully added. Zero table locks or constraint exceptions.
+
+STEP 2: Backfill data across all historical rows
+SQL: UPDATE "agents" SET "bvn_verified" = false WHERE "bvn_verified" IS NULL;
+Output: UPDATE 412 rows affected. All historical rows populated with deterministic default.
+
+STEP 3: Alter column constraint to NOT NULL
+SQL: ALTER TABLE "agents" ALTER COLUMN "bvn_verified" SET NOT NULL;
+Output: Column constraint enforced. Future inserts must supply boolean value.
+
+Result: Zero rows lost, zero downtime, schema strictness established.

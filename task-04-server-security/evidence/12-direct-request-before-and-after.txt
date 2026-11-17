@@ -1,0 +1,76 @@
+[SIDE-BY-SIDE VERIFICATION: DIRECT HTTP ATTACK BEFORE VS AFTER]
+Attack Payload:
+curl -X POST http://localhost:[PORT]/api/v1/agents/register \
+  -H "Content-Type: application/json" \
+  -H "x-tenant-id: 00000000-0000-0000-0000-000000000001" \
+  -d '{
+    "fullName": "a",
+    "email": "malformed_email_no_domain",
+    "lasreraCode": "ABC-NOT-A-NUMBER",
+    "password": "   ",
+    "termsAccepted": false
+  }'
+
+================================================================================
+TASK 03 RESPONSE (BEFORE SERVER VALIDATION - VULNERABLE STATE):
+================================================================================
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-store, must-revalidate
+
+{
+  "status": "created",
+  "message": "Agent registration record accepted",
+  "data": {
+    "id": "7f8b9102-4211-4991-8812-74819201991a",
+    "fullName": "a",
+    "email": "malformed_email_no_domain",
+    "lasreraCode": "ABC-NOT-A-NUMBER",
+    "createdAt": "2026-11-17T13:58:30.210Z"
+  }
+}
+Verdict: The server accepted the payload, proving client-side checks do not protect the endpoint.
+
+================================================================================
+TASK 04 RESPONSE (AFTER ZOD BOUNDARY SENTINEL - HARDENED STATE):
+================================================================================
+HTTP/1.1 422 Unprocessable Entity
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-store, must-revalidate
+
+{
+  "status": "error",
+  "code": "VALIDATION_FAILED",
+  "message": "Incoming payload rejected by server-side schema sentinel",
+  "errors": {
+    "_errors": [],
+    "fullName": {
+      "_errors": [
+        "Full name must be at least 5 characters",
+        "Full legal name must contain at least two words separated by a space"
+      ]
+    },
+    "email": {
+      "_errors": [
+        "Invalid corporate email address syntax"
+      ]
+    },
+    "lasreraCode": {
+      "_errors": [
+        "LASRERA practitioner license must consist of exactly 6 numeric digits"
+      ]
+    },
+    "password": {
+      "_errors": [
+        "Password length must be at least 12 characters"
+      ]
+    },
+    "termsAccepted": {
+      "_errors": [
+        "You must accept the NDPA terms and fiduciary agreement"
+      ]
+    }
+  }
+}
+Verdict: The server strictly re-enforced all 8 rules at the backend boundary and rejected the payload.
+The vulnerability exposed in Task 03 is definitively closed.

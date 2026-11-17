@@ -31,3 +31,4 @@ The registration checkbox explicitly binds the agent to three legal commitments:
    * The agent consents to the electronic verification of their LASRERA practicing license and National Identity Number (NIN) against government databases.
 3. **Automated Session Revocation on Separation**:
    * The agent acknowledges that upon termination of brokerage association, access to all active listings, client contacts, and cached documents is automatically revoked without notice.
+

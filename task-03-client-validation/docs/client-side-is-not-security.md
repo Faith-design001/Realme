@@ -92,3 +92,4 @@ In **Task 04 (The Server Is the Source of Truth)**, we will permanently eliminat
 2. **Duplicating All 8 Rules on the Server**: Every single rule derived in Task 03 will be strictly re-enforced server-side.
 3. **Argon2id Password Hashing**: Passwords containing pure whitespace will be rejected, and valid passwords will be cryptographically hashed.
 4. **Re-executing the Direct Attack**: We will resend the exact same `curl` command and capture the server rejecting it with `HTTP 422 Unprocessable Entity`.
+

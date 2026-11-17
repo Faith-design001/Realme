@@ -49,3 +49,4 @@ Per the assessment requirement (*"A perfect submission with no defects named is 
 * **Root Cause**: The route handler relied entirely on the frontend form having checked `password.trim().length >= 12`. Because raw HTTP POST requests bypass frontend JavaScript, the server accepted unvalidated data.
 * **Production Cost**: Severe authentication bypass. Attackers can register accounts with empty or whitespace passwords, compromising database integrity and security compliance.
 * **Remediation**: Explicitly scheduled for resolution in Task 04 via Zod schema boundary validation and Argon2id hashing.
+

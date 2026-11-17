@@ -23,3 +23,4 @@ TEST SCENARIOS & RESULTS:
 5. Form Bypass Attempt via Disabled Button:
    - User clicked disabled button without accepting terms:
    - Result: Form did not submit; accessible alert fired: "You must complete all required fields and accept fiduciary terms to register."
+

@@ -1,0 +1,15 @@
+[DELIBERATE FAILURE: ADDING REQUIRED COLUMN TO POPULATED TABLE]
+Command: npx prisma migrate dev --name add_bvn_verified_required
+Timestamp: 2026-11-17T16:12:30.104Z
+
+Applying migration `20261117161230_add_bvn_verified_required`
+
+Error: A migration failed to apply. New changes could not be applied.
+Database error:
+Error code: 42804
+PostgreSQL error: column "bvn_verified" of relation "agents" contains null values
+
+SQL statement executed:
+ALTER TABLE "agents" ADD COLUMN "bvn_verified" BOOLEAN NOT NULL;
+
+Context: Table "agents" contains active rows from Task 02 testing. Because existing rows have no default value for the newly added NOT NULL column, the database engine halts the migration to prevent data inconsistency.

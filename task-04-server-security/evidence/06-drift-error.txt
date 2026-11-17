@@ -1,0 +1,18 @@
+[DELIBERATE FAILURE: SCHEMA DRIFT ERROR CAPTURE]
+Scenario: Added new field "referralBrokerCode" to prisma/schema.prisma and ran `prisma generate` without running `prisma migrate dev`.
+Runtime Request: GET /api/v1/agents/d7c89563-a2c2-4a65-86f0-5a2a8459b658
+Timestamp: 2026-11-17T16:15:10.412Z
+
+PRISMA CLIENT EXCEPTION:
+PrismaClientKnownRequestError: 
+Invalid `prisma.agent.findUnique()` invocation:
+
+The column `agents.referral_broker_code` does not exist in the current database.
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: { table: 'public.agents', column: 'referral_broker_code' }
+
+Explanation:
+The two things that have gone out of step are the TypeScript Client types in Node memory and the physical PostgreSQL schema on disk. Generating the client refreshed the TypeScript interface to anticipate "referral_broker_code", but the physical PostgreSQL relation was never altered via migration.
+
+Fix: Reconciled physical schema by running `prisma migrate dev --name sync_drift_field`.

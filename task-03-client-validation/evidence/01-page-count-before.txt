@@ -9,3 +9,4 @@ List of discrete authentication pages:
 
 Total discrete page count: 3 pages.
 Operational Finding: Switching between views requires full page unloads, socket re-establishment, and white-screen delay under erratic Lekki cellular conditions.
+

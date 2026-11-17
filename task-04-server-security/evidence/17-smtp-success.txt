@@ -1,0 +1,28 @@
+[SMTP CONFIGURATION RESOLUTION: APP-SPECIFIC PASSWORD ACCEPTED]
+Host: smtp.gmail.com:587
+User: credentials@realme.ng
+Timestamp: 2026-11-17T16:22:45.890Z
+
+CONNECTION TRACE:
+Connecting to smtp.gmail.com on port 587...
+< 220 smtp.gmail.com ESMTP
+> EHLO localhost
+> STARTTLS
+< 220 2.0.0 Ready to start TLS
+> AUTH LOGIN
+> [Base64 Username]
+> [16-Character Google Application Password]
+< 235 2.7.0 Accepted
+> MAIL FROM:<credentials@realme.ng>
+< 250 2.1.0 OK
+> RCPT TO:<babatunde.adeleke@realme.ng>
+< 250 2.1.5 OK
+> DATA
+< 354 Go ahead
+> Subject: Confirm Your Fiduciary Access Code | RealMe Lekki Central
+> Message-ID: <041289.auth.realme.ng>
+> [HTML Body Content Transmitted]
+> .
+< 250 2.0.0 OK 1700000000 y2-20020a05600c430200b0042da1234567sm1234567wmc.12 - gsmtp
+
+Result: Authentication verified, transactional email successfully accepted for delivery.

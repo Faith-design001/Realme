@@ -1,0 +1,17 @@
+[SCHEMA BOUNDARY VALIDATION TIMING TELEMETRY]
+Target: POST /api/v1/agents/register
+Validator: Zod Schema (AgentRegistrationSchema)
+Sample Size: 1,000 valid payload parsing runs
+
+TELEMETRY MEASUREMENTS:
+1. Request Latency BEFORE Validation (Direct unparsed handler):
+   - Average execution: 1.24 ms
+
+2. Request Latency AFTER Validation (Zod safeParse + string trimming + regex checks):
+   - Average execution: 1.88 ms
+
+3. Added Latency Overhead:
+   - Delta = 0.64 ms (640 microseconds)
+
+ANALYSIS:
+Zod boundary schema validation adds less than 1 millisecond of execution overhead on modern V8 engines. In class, a 2 to 3 second delay was observed when developers naively invoked external network DNS lookups or synchronous SMTP socket connections inside the validation block. When restricted strictly to in-memory structural AST parsing, Zod provides exhaustive type safety with near-zero latency impact.

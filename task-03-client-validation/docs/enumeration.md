@@ -44,3 +44,4 @@ The LASRERA code functions as a restricted authorization credential granting acc
 
 * **The Usability Penalty**: Removing the format hint increases friction for legitimate field agents. An agent who holds both a 6-digit state license and a 10-digit national association ID might mistakenly type their national ID first, triggering a validation failure.
 * **Is It Worth It?**: Yes. In a fiduciary real estate platform where confidential seller reserve prices dictate tens of millions of Naira in commission disputes, protecting against automated license enumeration is a critical operational control that far outweighs a minor, one-time onboarding clarification.
+

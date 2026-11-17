@@ -1,0 +1,20 @@
+[SMTP CONFIGURATION FAILURE: GOOGLE AUTHENTICATION REJECTION]
+Host: smtp.gmail.com:587
+User: credentials@realme.ng
+Timestamp: 2026-11-17T16:18:10.115Z
+
+CONNECTION TRACE:
+Connecting to smtp.gmail.com on port 587...
+< 220 smtp.gmail.com ESMTP y2-20020a05600c430200b0042da1234567sm1234567wmc.12 - gsmtp
+> EHLO localhost
+< 250-smtp.gmail.com at your service
+> AUTH LOGIN
+< 334 VXNlcm5hbWU6
+> [Base64 Username]
+< 334 UGFzc3dvcmQ6
+> [Standard Account Password]
+< 535-5.7.8 Username and Password not accepted. Learn more at
+< 535 5.7.8  https://support.google.com/mail/?p=BadCredentials y2-20020a05600c430200b0042da1234567sm1234567wmc.12 - gsmtp
+
+Root Cause:
+Google rejected the login because the configuration supplied a standard account password rather than an Application-Specific Password with 2-Factor Authentication enabled.

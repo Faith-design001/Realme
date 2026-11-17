@@ -1,0 +1,16 @@
+{
+  "name": "realme-server-security",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RealMe Task 04: Server-Side Security, Zod Boundary Validation, Argon2id Hashing & Migrations",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "lint:tokens": "powershell -Command \"if (Get-ChildItem -Path 'src' -Recurse -File | Where-Object { $_.Name -ne 'tokens.css' } | Select-String -Pattern '#[0-9a-fA-F]{3,8}') { Write-Error 'Raw hex values detected!'; exit 1 } else { Write-Host '100% Token Compliance Verified: 0 raw hex values.' }\"",
+    "benchmark:hashing": "node scripts/benchmark-hashing.js",
+    "test:reject-attack": "node scripts/test-reject-attack.js"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

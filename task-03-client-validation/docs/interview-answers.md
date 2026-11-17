@@ -131,3 +131,4 @@ Error messages contribute directly to this vulnerability when they emit differen
 * *"Email already registered"* on signup vs *"Email available"*.
 
 When an endpoint returns distinct error messages or distinct HTTP status codes, an attacker running an automated dictionary list can filter millions of leaked credentials, immediately discovering which individuals have accounts at that firm. In high-stakes fiduciary applications like RealMe, disclosing that a specific high-net-worth individual or broker holds an account leaks sensitive competitive intelligence. To eliminate enumeration, endpoints must emit identical, constant-time responses: *"Invalid email or password"*.
+

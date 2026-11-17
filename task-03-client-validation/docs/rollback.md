@@ -58,3 +58,4 @@ git revert --no-edit d891f2a
 
 1. **Cryptographic Precision**: A Git commit SHA-1 digest is a mathematically unique hash of the exact tree object, parent hierarchy, and file contents. Naming the ID instructs the VCS to invert the exact diff hunk byte-for-byte, eliminating ambiguity.
 2. **Preventing AI Hallucination**: Asking an AI model in natural language to *"undo the last change"* relies on the model's probabilistic reconstruction of previous context. Models frequently alter adjacent comments, change variable naming, or re-introduce previously fixed defects when attempting to "undo" in prose.
+

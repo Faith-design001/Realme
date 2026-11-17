@@ -12,3 +12,4 @@ Session: Authenticated Field Agent Onboarding
 [00:08.924] Network Request Count: 0 (Zero new sessions created, zero socket handshakes)
 [00:12.440] User clicked Browser Back Button
 [00:12.448] [SPA_TAB_SWITCH] Switched to login via popstate event. Active URL: ?tab=login
+

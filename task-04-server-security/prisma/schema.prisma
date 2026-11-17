@@ -1,0 +1,124 @@
+// RealMe Task 04: Server-Side Security & Authoritative Relational Schema
+// Multi-tenant PostgreSQL Schema with Row-Level Security (RLS)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  AGENT
+  TEAM_LEAD
+  MANAGING_BROKER
+}
+
+enum PaymentStatus {
+  INITIATED
+  PROCESSING
+  SETTLED
+  FAILED
+  ABANDONED
+  DISPUTED
+}
+
+// 1. The people who use the system
+model Agent {
+  id              String                  @id @default(uuid()) @db.Uuid
+  tenantId        String                  @map("tenant_id") @db.Uuid
+  fullName        String                  @map("full_name") @db.VarChar(128)
+  email           String                  @unique @db.VarChar(128)
+  passwordHash    String                  @map("password_hash") @db.VarChar(255)
+  lasreraCode     String                  @map("lasrera_code") @db.VarChar(32)
+  role            Role                    @default(AGENT)
+  emailVerified   Boolean                 @default(false) @map("email_verified")
+  createdAt       DateTime                @default(now()) @map("created_at")
+  updatedAt       DateTime                @updatedAt @map("updated_at")
+
+  sessions        Session[]
+  payments        EscrowPayment[]
+  paymentAttempts EscrowPaymentAttempt[]
+  chunksAuthored  DealKnowledgeChunk[]
+
+  @@index([tenantId])
+  @@map("agents")
+}
+
+// 2. Their sessions (Hashed tokens, server-side tracking)
+model Session {
+  id             String    @id @default(uuid()) @db.Uuid
+  agentId        String    @map("agent_id") @db.Uuid
+  sessionHash    String    @unique @map("session_hash") @db.VarChar(64) // SHA-256 hash of random session token
+  ipAddress      String?   @map("ip_address") @db.VarChar(45)
+  userAgent      String?   @map("user_agent") @db.Text
+  expiresAt      DateTime  @map("expires_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  agent          Agent     @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([agentId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+// 3. A money table (Immutable settled transactions & escrow ledger)
+model EscrowPayment {
+  id              String        @id @default(uuid()) @db.Uuid
+  tenantId        String        @map("tenant_id") @db.Uuid
+  agentId         String        @map("agent_id") @db.Uuid
+  reference       String        @unique @db.VarChar(64) // Unique banking transaction reference
+  amountKobo      BigInt        @map("amount_kobo")     // Stored in Kobo to prevent floating-point drift
+  currency        String        @default("NGN") @db.VarChar(3)
+  status          PaymentStatus @default(SETTLED)
+  escrowClauseRef String        @map("escrow_clause_ref") @db.VarChar(128)
+  bankAuditStamp  String        @map("bank_audit_stamp") @db.VarChar(128)
+  settledAt       DateTime      @default(now()) @map("settled_at")
+
+  agent           Agent         @relation(fields: [agentId], references: [id], onDelete: Restrict)
+
+  @@index([tenantId, agentId])
+  @@index([reference])
+  @@map("escrow_payments")
+}
+
+// 3b. Separately: A money-attempts table (Failed, abandoned, and network-interrupted attempts)
+model EscrowPaymentAttempt {
+  id              String        @id @default(uuid()) @db.Uuid
+  tenantId        String        @map("tenant_id") @db.Uuid
+  agentId         String        @map("agent_id") @db.Uuid
+  attemptRef      String        @unique @map("attempt_ref") @db.VarChar(64)
+  amountKobo      BigInt        @map("amount_kobo")
+  attemptStatus   PaymentStatus @default(INITIATED) @map("attempt_status")
+  failureReason   String?       @map("failure_reason") @db.Text
+  clientIp        String?       @map("client_ip") @db.VarChar(45)
+  gatewayLatencyMs Int?         @map("gateway_latency_ms")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  agent           Agent         @relation(fields: [agentId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, createdAt])
+  @@index([attemptRef])
+  @@map("escrow_payment_attempts")
+}
+
+// 4. The chunks for your retrieval system (Fiduciary RAG Deal Intelligence)
+model DealKnowledgeChunk {
+  id              String    @id @default(uuid()) @db.Uuid
+  tenantId        String    @map("tenant_id") @db.Uuid
+  authorAgentId   String    @map("author_agent_id") @db.Uuid
+  listingAddress  String    @map("listing_address") @db.VarChar(256)
+  category        String    @db.VarChar(64) // 'VALUATION_RESERVE' | 'STRUCTURAL_DEFECT' | 'TITLE_GOVERNOR_CONSENT'
+  chunkText       String    @map("chunk_text") @db.Text
+  tokenCount      Int       @map("token_count")
+  confidentiality String    @default("RESTRICTED_BROKER_ONLY") @db.VarChar(32)
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  authorAgent     Agent     @relation(fields: [authorAgentId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId, category])
+  @@index([listingAddress])
+  @@map("deal_knowledge_chunks")
+}

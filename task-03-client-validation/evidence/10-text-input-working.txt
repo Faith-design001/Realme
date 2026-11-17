@@ -12,3 +12,4 @@ Step 6: Vertical scrolling with thumb across input does not trigger value increm
 
 When Number Input Would Be Correct:
 A native number input (<input type="number">) is correct strictly when collecting a continuous numeric quantity that requires arithmetic calculation or step increments, such as property square meters (sqm) or bedroom counts (1, 2, 3).
+

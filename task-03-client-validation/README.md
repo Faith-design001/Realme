@@ -76,3 +76,4 @@ curl -X POST http://localhost:3005/api/v1/agents/register `
 1. **Disabled Submit Button Dropping From Accessibility Tree (`src/index.html:142`)**: If implemented with native `<button disabled>`, the button completely vanishes from the keyboard tab sequence. Corrected by utilizing `aria-disabled="true"` to keep the button focusable while announcing incomplete fields when activated.
 2. **Strict Regex Rejecting Corporate Sub-Addresses (`src/index.html:284`)**: Naive regex parsing originally rejected legitimate plus-addressing emails (`tunde+deals@realme.ng`). Corrected by updating pattern to RFC 5322 syntax.
 3. **Unvalidated Pure Whitespace Passwords (`src/server.js:52`)**: The backend server accepts `"   "` as a valid password string and returns HTTP 201 Created. Documented in `docs/client-side-is-not-security.md` and scheduled for resolution in Task 04.
+

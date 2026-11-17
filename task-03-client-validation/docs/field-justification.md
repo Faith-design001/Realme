@@ -58,3 +58,4 @@ To reduce friction on mobile 3G devices under direct sunlight, non-essential fie
 
 * **Eliminated Element**: In early mockups, a secondary brand seal graphic (`realme-watermark-crest.svg`) sat directly inside the form container between the email and registration fields.
 * **Why Removed**: Clicking the decorative graphic did nothing, yet mobile screen readers announced it as `"Unlabeled image"`, confusing blind agents. Sighted agents tapping near input boundaries accidentally focused the non-interactive SVG. It added zero functional value and bloated the DOM.
+
